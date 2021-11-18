@@ -1,0 +1,35 @@
+@charset "EUC-KR";
+/* base¿ë css */
+body {
+	font-family:"µ¸¿ò", Dotum, "±¼¸²", Gulim, sans-serif; font-size:13px;
+	line-height:1.2; 
+}
+
+a:link { color:#000; text-decoration:none; }
+a:visited { color:#000; text-decoration:none; }
+a:hover { color:#000; text-decoration:underline; }
+a:focous { color:#000; text-decoration:underline; }
+a:active { color:#000; text-decoration:none; }
+
+
+/* layout¿ë css */
+footer {
+	min-width:1080px; height:120px; margin:0 auto 15px; background:#efefef; 
+	positon:fixed;
+}
+
+/* ---------- footer ¿µ¿ª ---------- */
+.footerInner { width:100%; padding:13px 0 0 70px; height:120px; position:relative; }
+.corp_area { padding-top:10px; }
+.corp_list { padding-left:5px; }
+.corp_area ul { text-align:left; }
+.corp_area li { display:inline-block;}
+.footerLogo { position:absolute; top:50px;}
+.company_info_area { overflow:hidden; margin-bottom:10px; padding-top:10px; }
+.company_info_area > div:nth-of-type(1) { padding:9px 0 5px 0; } 
+.company_info { overflow:hidden; margin: 0 0 0 190px;} 
+.company_info ul { text-align:left;}
+.company_info li { display:inline-block; }
+
+
+

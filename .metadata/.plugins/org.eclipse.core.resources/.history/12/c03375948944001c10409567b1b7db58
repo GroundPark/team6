@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/teststyle.css">
+<link rel="stylesheet" href="css/reset.css">
+<meta charset="UTF-8">
+<title>왼손잡상점</title>
+</head>
+<body>
+<div class="headerdiv">
+	<p><b>왼손잡상점 사이트 header</b></p>
+	</div>

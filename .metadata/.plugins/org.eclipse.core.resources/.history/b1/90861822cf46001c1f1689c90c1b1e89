@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.headerdiv{
+	height: 200px;	width:100%;
+	background-color:#c0c0c0;
+}	
+
+
+.maindiv{
+	height: 700px;	width:100%;
+	background-color:gray;
+}	
+
+
+.footerdiv{
+	height:150px; width:100%;
+	background-color:#99ccff;
+}	
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.footerdiv{
+	height: 150px;
+	width: auto;
+	background-color: #99ccff;}	
+}
+
+
+

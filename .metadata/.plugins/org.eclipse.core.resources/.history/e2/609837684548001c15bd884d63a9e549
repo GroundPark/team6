@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.maindiv{
+	height: 800px;	width:100%;
+	background-color:#efefef;
+}	
+
+
+
+
+
+

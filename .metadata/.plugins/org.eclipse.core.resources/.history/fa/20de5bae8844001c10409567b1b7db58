@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/teststyle.css">
+<link rel="stylesheet" href="css/reset.css">
+<meta charset="UTF-8">
+<title>탭 이름</title>
+</head>
+<body>
