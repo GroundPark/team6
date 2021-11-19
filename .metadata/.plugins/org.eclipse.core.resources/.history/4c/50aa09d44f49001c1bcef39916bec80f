@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.maindiv{
+	height: 800px;	width:100%;
+	background-color:#d3d3d3;
+}	
+
+
+.pdt_contents {
+	width:1350px; height:600px;  margin: 0 auto;
+	background-color:gray;
+}
+
+.pdt_img p{
+	margin:0; padding:0; width:400px; height:300px; 
+	float:left; text-align:center; line-height:300px; font-size:1em;
+	margin:18px 18px 18px 18px;
+	border: 1px solid black;
+	outline: 4px solid gray;
+	outline-offset: 4px;
+	outline-style: groove;
+}
+
+
+
+

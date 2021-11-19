@@ -1,0 +1,8 @@
+package product.vo;
+
+public class PdtPageInfo {
+	// 상품 관련 목록에서 페이징을 위해 필요한 데이터들과 검색 및 정렬에 필요할 데이터들을 저장할 클래스
+		private String keyword, cata, sort;
+		private String sprice, eprice;
+		private int cpage, psize, bsize, spage, epage, rcnt, pcnt;
+}

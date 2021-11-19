@@ -1,4 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="product.vo.*" %>
+
+<%
+// request.setCharacterEncoding("utf-8");
+// MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+
+// boolean isLogin = false;
+// if(memberInfo != null)		isLogin = true;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +22,7 @@
 <table class="header" border="1">
 <tr>
 	<td colspan="2" rowspan="2" align="right">
-		<a href="#"><img src="img/logo.png" alt="왼손잡상점" width="155px" height="100px" /></a>
+		<a href="index.jsp"><img src="img/logo.png" alt="왼손잡상점" width="155px" height="100px" /></a>
 	</td>
 	<td colspan="4" align="right" style="padding-right:30px">
 		<a href="#">회원가입</a> | <a href="#">로그인</a> | <a href="#">장바구니</a> | <a href="#">마이페이지</a> | <a href="#">고객센터</a>
@@ -39,23 +48,24 @@
 	</td>
 </tr>
 <tr align="center">
+	<!-- 여기 tmp.jpg는 임시 이미지입니다. 완성시 교체 또는 삭제하세요 -->
 	<td width="17%">
-		<a href="#"><img src="" alt="가위" /></a>
+		<a href="pdt_list.pdt">가위<img src="img/tmp.jpg" alt="가위" /></a>
 	</td>
 	<td width="17%">
-		<a href="#"><img src="" alt="문구" /></a>
+		<a href="pdt_office.pdt">문구<img src="img/tmp.jpg" alt="문구" /></a>
 	</td>
 	<td width="17%">
-		<a href="#"><img src="" alt="주방" /></a>
+		<a href="pdt_kitchen.pdt">주방<img src="img/tmp.jpg" alt="주방" /></a>
 	</td>
 	<td width="*%">
-		<a href="#"><img src="" alt="etc" /></a>
+		<a href="pdt_etc.pdt">etc<img src="img/tmp.jpg" alt="etc" /></a>
 	</td>
 	<td width="17%">
-		<a href=""><img src="" alt="도전펀딩" /></a>
+		<a href="#">도전펀딩<img src="img/tmp.jpg" alt="도전펀딩" /></a>
 	</td>
 	<td width="17%">
-		<a href="#"><img src="" alt="펀딩하기" /></a>
+		<a href="#">펀딩하기<img src="img/tmp.jpg" alt="펀딩하기" /></a>
 	</td>
 </tr>
 </table>

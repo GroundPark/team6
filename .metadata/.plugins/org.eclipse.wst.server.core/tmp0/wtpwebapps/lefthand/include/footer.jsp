@@ -28,9 +28,9 @@
 				<li><a href="#">고객센터 전화번호</a></li> |
 				<li><a href="#">회사 이메일</a></li>
 			</ul>
+			</div>
 		</div>
-	</div>
- </div>
+ 	</div>
 </footer>
 </body>
 </html>
