@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+<!--
+img 태그 : image. 이미지를 html 문서에 보여줌
+   - 닫는 태그 없음, 인라인 요소지만 자리 모자르면 다음 줄로 내려감
+   - src="경로 및 이미지파일명" : img 태그의 필수 속성. 보여줄이미지의 위치, 파일명을 지정
+   - width="픽셀값 or 백분율" : 이미지의 넓이로 백분율은 브라우저 기준
+   - height="픽셀값 or 백분율" : 이미지 높이로 ~~~~~~~
+      width, height 속성 둘다 사용하지않으면 이미지는 원본 크기로 보여줌
+	  width or height 중 하나만 사용하면 나머지 크기는 자동으로 비율에 자동으로 맞춰짐
+	  ! 보통 width를 조절하고 height는 자동맞춤되게 함.																					// 위아래 스크롤바는 상관없는데 좌우 스크롤바는 좀.. + 디자인 깨짐
+	  !! 혹시라도 엑박뜨는 경우를 위해 넓이, 높이 값을 줘야 깨졌을때 디자인 안깨지고 좋음
+   - border="정수" : 이미지의 테두리선 두께로 일반적으로 0으로 지정한 후 사용
+   - alt="대체 텍스트" : 이미지가 안보일 경우 대신 보여줄 텍스트
+									  주로 메뉴, 제목같이 글자로 보이는 이미지에 주로 사용 
+									  안쓰면 웹브라우저에서 엑박만뜨고 뭔지 전혀 모르니까 필수적으로 붙임
+   - title="텍스트" : 이미지에 마우스 오버시 뜨는 텍스트
+   								주로 메뉴등에 대한 설명글같은걸 입력함
+
+   - usemap="#맵이름" : 현 이미지를 이미지 맵 기능으로 사용하겠다는 의미
+
+>이미지 맵 : 이미지의 특정 부분에만 링크를 걸어주는 기능
+>>map 태그 : 이미지 맵 기능을 구현하여 링크를 거는 태그
+>> id="맵이름" : 링크를 걸 이미지의 usemap 속성에서 지정한 맵의 이름
+      name="맵이름" : 크롬의 경우 name 속성도 필요함. IE는 필요없음
+
+area 태그 : map 태그 내부에서만 사용되는 태그로 링크와 링크를 걸 부분을 지정하는 태그
+   - shape="rect|circle|poly" : 링크를 걸 부분에 대한 도형 모양을 지정
+   - coords="좌표값들" : shape 속성에 지정한 도형에 맞는 좌표값을 x, y 순으로 지정
+								        shape가 rect 인 경우 : coords="좌상단 x좌표, 좌상단 y좌표, 우하단 x좌표, 우하단 y좌표"
+										shape가 circle인 경우 : coords="중심점x좌표, 중심점y좌표, 반지름"
+										shape가 poly 인 경우 : coords="x값1, y값2, ... x값n, x값n"
+										>> poly 인 경우 최소 삼각형에 필요한 꼭지점 3개를 위해 6개 이상의 좌표가 필요. 반드시 짝수개로 입력
+   - href="경로 및 파일이름" : 이동할 url
+   - alt="대체 텍스트" : 이미지 안보일경우 보여줄 텍스트
+
+!! 이미지 태그와 이미지 태그 에디터상에서 깔끔하게 보이려고 엔터쳐서 줄바꿈하면 웹브라우저에서 '엔터'의 간격이 생김
+   이미지를 완전히 붙여서 보여주려면 에디터상에서 보기싫어도 태그사이를 붙여야함
+-->
+<img src="img/a.jpg" width="400" border="3" />
+<img src="img/b.jpg" width="662" height="400" border="0" title="타이틀 속성 텍스트" alt="alt 속성 텍스트"/>
+<br />
+<img src="https://ssl.pstatic.net/tveta/libs/1316/1316311/f18d468362845d3ef467_20210129155200465.jpg" width="800" usemap="#map" />
+<map id="map" name="map">
+	<area shape="rect" coords="30,20,180,120" href="p_tag.html" title="RECT" />
+	<area shape="circle" coords="300,80,60" href="h_tag.html" title="CIRCLE" />
+	<area shape="poly" coords="500,20,600,10,800,50,700,120" href="font_tag.html" title="POLY" />
+</map>
+</body>
+</html>
