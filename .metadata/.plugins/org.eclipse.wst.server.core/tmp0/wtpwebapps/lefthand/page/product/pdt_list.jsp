@@ -27,6 +27,9 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <body>
 <div class="pdt_contents" >
+<br />
+<h2 align="center">수업 mvc 테스트용 페이지로 레이아웃 적용 안함. 레이아웃 확인은 문구/도전펀딩/펀딩하기로 </h2>
+<br />
 <h2 align="center">인기 | 판매량 | 높은가격| 낮은가격 </h2>
 <table width="800" cellpadding="5">
 <%

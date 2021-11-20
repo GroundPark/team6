@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.maindiv{
+	height: 70%;	width:100%;
+	background-color:#d3d3d3;
+}	
+
+
+.pdt_contents {
+	width:80%; height:600px;  margin: 0 auto;
+	background-color:#bbbbbb;
+	
+}
+
+

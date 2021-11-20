@@ -1,20 +1,2 @@
 @charset "EUC-KR";
 /* base용 css */
-body {
-	font-family:"돋움", Dotum, "굴림", Gulim, sans-serif; font-size:13px;
-	line-height:1.2; 
-}
-
-	a:link { color:#4f4f4f; text-decoration:none; }	/* a의 속성 link에서 실행, decoration : 밑줄여부 */
-	a:visited { color:#4f4f4f; text-decoration:none; }
-	a:hover { color:#f00; text-decoration:underline; }
-	a:active { color:#f00; text-decoration:none; }
-	a:focus { color:#f00; text-decoration:underline; }
-
-/* layout용 css */
-footer {
-	weight:100%; height:120px; margin-bottom:15px; background:#efefef; 
-	positon:relatvie;
-}
-
-.header { margin:0 auto; width:80%; height:150px; }
