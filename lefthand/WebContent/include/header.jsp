@@ -16,7 +16,6 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css" />	
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
-<link rel="stylesheet" type="text/css" href="css/header.css" />
 <link rel="stylesheet" type="text/css" href="css/footer.css" />
 <link rel="stylesheet" type="text/css" href="css/teststyle.css" />	<!-- 박지상 테스트용 css -->
 <script type="text/javascript" src=""></script>
