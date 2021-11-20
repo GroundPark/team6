@@ -15,7 +15,7 @@ a:visited { color:#8a2e91; text-decoration:none; }
 a:hover { color:#f00; text-decoration:underline; }
 a:focus { color:#f00; text-decoration:underline; }
 a:active { color:#f00; text-decoration:none; }
-
+	
 /*----------------- 해더 영역 ----------------- */
 
 #header { position:relative; width:1200px; height:200px; margin:0 auto;  border:0px black solid; }
