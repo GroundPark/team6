@@ -24,14 +24,16 @@ if(pdtPageInfo.getEprice() != null && !pdtPageInfo.getEprice().equals(""))
 args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 	
 %>
+
+<%
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<body>
 <div class="pdt_contents" >
 <br />
-<h2 align="center">수업 mvc 테스트용 페이지로 레이아웃 적용 안함. 레이아웃 확인은 문구/도전펀딩/펀딩하기로 </h2>
+<h2 align="center">mvc 테스트용 </h2>
 <br />
-<h2 align="center">인기 | 판매량 | 높은가격| 낮은가격 </h2>
-<table width="800" cellpadding="5">
+<p align="right" style="padding:15px 75px 15px; "> 인기 | 판매량 | 높은가격| 낮은가격 </p>
 <%
 if(pdtList.size() > 0){
 // 상품 검색결과가 있으면
@@ -46,27 +48,29 @@ if(pdtList.size() > 0){
 		}
 		
 		if(pdtPageInfo.getPsize() == 12) {
-		// 한 페이지에 12개의 상품 목록을 보여줄 경우(한 줄에 4개씩 보여줌)
-			if(i%3 == 0)		out.println("<tr align='center'>");
+		// 한 페이지에 12개의 상품 목록을 보여줄 경우(한 줄에 3	개씩 보여줌)
+			if(i%3 == 0)		out.println("<div align='center'>");
 %>
-<td width="25%">
-	<%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:250px; height:250px;" /><br />
-	<%=pi.getPi_name() %></a><br /><%=pi.getPi_price() %> 원
-</td>
+<div class="pdt">
+	<%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	<%=pi.getPi_name() %></a><br /><span class="pdt_price"><%=pi.getPi_price() %> 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=(int)(pi.getPi_price() * (1-pi.getPi_discount()))  %> 원
+</div>
 <%
-			if(i%4 == 3) 	out.println("</tr>");
+			if(i%4 == 3) 	out.println("</div>");
 		}
 	}
 
 }else{
-	out.println("<tr><th>검색된 상품이 없습니다.</th></tr>");
+	out.println("<div>검색된 상품이 없습니다.</div>");
 }
 %>
-</table>
+
+</div>
+
 <%
 if (pdtList.size() > 0){
 // 상품 검색결과가 있으면 페이지 번호를 출력
-	out.println("<p style='width:100%;' align='center'>");
+	out.println("<p style='font-size:1.25em; width:100%;' align='center'>");
 
 	args = "?sort=" + pdtPageInfo.getSort() + "&psize=" + pdtPageInfo.getPsize() + schargs;
 	
@@ -97,6 +101,6 @@ if (pdtList.size() > 0){
 	out.println("</p>");
 }
 %>
+
 </div>
-</body>
 <%@ include file="../../include/footer.jsp" %>

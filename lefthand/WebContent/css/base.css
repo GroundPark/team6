@@ -22,10 +22,10 @@ a:active { color:#f00; text-decoration:none; }
 #header h2, legend, .banner h3, .search h3, #slogan h2, #footer h2 { display:none; }
 
 .logo { width:230px; height:130px; }
-#logo { position:absolute; top:15px; left:150px; }
+#logo { position:absolute; top:15px; left:10px; }
 
 #infoMenu { position:absolute; top:0; right:0; text-align:right; margin-right:25px; font-size:0.9em; padding:8px 0 7px 0; }
-#infoMenu li { display:inline; padding:0 3px 0 8px; background:url("../img/header/topnavi_bar.gif") no-repeat 0 4px;}
+#infoMenu li { display:inline; padding:0 3px 0 8px; background:url("img/header/topnavi_bar.gif") no-repeat 0 4px;}
 #infoMenu li:first-child { background:none; }
 /* id가 'infoMenu'인 요소내에 있는 li요소들 중 첫번째 요소의 배경이미지를 삭제 */
 #infoMenu li a { color:#676767; }

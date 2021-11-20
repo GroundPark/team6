@@ -16,11 +16,9 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css" />	
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
-<link rel="stylesheet" type="text/css" href="css/header.css" />
 <link rel="stylesheet" type="text/css" href="css/footer.css" />
-<link rel="stylesheet" type="text/css" href="css/teststyle.css" />	<!-- 박지상 테스트용 css -->
-<script type="text/javascript" src=""></script>
-<script type="text/javascript" src=""></script>
+<link rel="stylesheet" type="text/css" href="css/teststyle.css" />	<!-- 테스트용 css -->
+<script src="../../js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <!-- #header 영역 시작 -->	
@@ -49,12 +47,13 @@
 	</ul>
 	<h2>메인 메뉴</h2>
 	<ul id="navigation">
+	<!-- 제대로 동작되는놈 : pdt_list.pdt 나머지는 임시 -->
 		<li><a href="pdt_list.pdt">가위</a></li>
-		<li><a href="pdt_office.pdt">문구</a></li>
-		<li><a href="pdt_kitchen.pdt">주방</a></li>
-		<li><a href="pdt_etc.pdt">etc</a></li>
-		<li><a href="#">도전펀딩</a></li>
-		<li><a href="#">펀딩하기</a></li>
+		<li><a href="page/product/pdt_office.jsp">문구</a></li>
+		<li><a href="page/product/pdt_kitchen.jsp">주방</a></li>
+		<li><a href="page/product/pdt_etc.jsp">etc</a></li>
+		<li><a href="page/product/chal_funding_list.jsp">도전펀딩</a></li>
+		<li><a href="page/product/funding_list.jsp">펀딩하기</a></li>
 	</ul>
 	<h2>SNS</h2>
 	<ul id="sns">

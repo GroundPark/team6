@@ -21,16 +21,15 @@
 				</ul>
 			</div>
 		</div>
-			<div class="ci_area">
+		<div class="ci_area">
 			<ul class="company_info">
 				<li><a href="#">사업자 등록번호</a></li> |
 				<li><a href="#">사업자 정보</a></li> |
 				<li><a href="#">고객센터 전화번호</a></li> |
 				<li><a href="#">회사 이메일</a></li>
 			</ul>
-			</div>
 		</div>
- 	</div>
+	</div>
 </footer>
 </div>
 </body>

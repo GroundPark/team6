@@ -47,7 +47,7 @@ public class JdbcUtil {
 	public static void commit(Connection conn) {	
 		try {
 			conn.commit();
-			System.out.println("���� ����");
+			System.out.println("commit 됨");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +57,7 @@ public class JdbcUtil {
 	public static void rollback(Connection conn) {	
 		try {
 			conn.rollback();
-			System.out.println("���� ����");
+			System.out.println("rollback 됨");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

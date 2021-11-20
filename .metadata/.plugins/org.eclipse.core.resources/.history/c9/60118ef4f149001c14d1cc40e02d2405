@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="../../include/header.jsp" %>
+<body>
+<div class="pdt_contents">
+		<div class="item-wrap" style="position: relative;">
+			<a href="/all/?idx=319" class="_fade_link shop-item-thumb hover_img_none">
+				<img data-prodcode="s20211026cc870c2730cc9" alt="" src="https://cdn.imweb.me/thumbnail/20211026/d561a56ce4629.jpg" class="_org_img org_img _lazy_img" data-original="https://cdn.imweb.me/thumbnail/20211026/d561a56ce4629.jpg" data-src="https://cdn.imweb.me/thumbnail/20211026/d561a56ce4629.jpg" style="display: inline;">
+					<div class="item-overlay">
+						<div class="item-pay">
+							<div><h2>[비틀즈 by 로버트휘태커] 아트포스터 (3종)</h2>
+									 <p class="pay no-margin" style="">13,000원</p>
+								<div class="ns-icon clearfix">
+								</div>
+							</div>
+						</div>
+					</div>
+			</a>
+		</div>
+	</div>	
+</body>
+<%@ include file="../../include/footer.jsp" %>

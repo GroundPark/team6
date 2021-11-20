@@ -35,7 +35,7 @@ public class ProductDao {
 			rcnt = rs.getInt(1);
 			
 		}catch(Exception e) {
-			System.out.println("productDao : getPdtCount() �޼ҵ� ����");			
+			System.out.println("productDao : getPdtCount() 에서 에러남");			
 			e.printStackTrace();
 		}finally {
 			close(rs);	close(stmt);
@@ -81,7 +81,7 @@ public class ProductDao {
 			pdtList.add(pdt);
 			}
 			}catch(Exception e) {
-				System.out.println("productDao : getPdtList() �޼ҵ� ����");			
+				System.out.println("productDao : getPdtList() 에서 에러남");			
 				e.printStackTrace();
 			}finally {
 				close(rs);	close(stmt);
@@ -109,7 +109,7 @@ public class ProductDao {
 			cataList.add(cata);
 			}
 			}catch(Exception e) {
-				System.out.println("productDao : getCataList() �޼ҵ� ����");			
+				System.out.println("productDao : getCataList() 에서 에러남");			
 				e.printStackTrace();
 			}finally {
 				close(rs);	close(stmt);

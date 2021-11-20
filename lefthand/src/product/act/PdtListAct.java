@@ -19,7 +19,7 @@ public class PdtListAct implements Action{
 			psize = Integer.parseInt(request.getParameter("psize"));
 		
 		
-		// 액션
+		// 시작 가격, 종료가격으로 검색 있으면 좋을듯? 
 		String keyword, cata, sprice, eprice;
 		keyword = request.getParameter("keyword");		
 		cata = request.getParameter("cata");			
