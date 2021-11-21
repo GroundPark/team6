@@ -55,7 +55,7 @@
 	</div>
 	<div id="fundinglike"><input type="button" value="좋아요  ♡" id="fundinglikebtn" /></div>
 	<div id="fundinginquiry"><a href="#">문의하기</a></div>
-	<div id="fundingprice">2500 원</div>
+	<div id="fundingprice">개당 2500 원</div>
 	<div id="fundingnum"><input type="button" value="-" class="plusminus" id="minus" /> <input type="text" class="num" id="num" value="1" readonly /> <input type="button" value="+" class="plusminus" id="plus" /></div>
 	<div id="fundingtotalprice">총 가격 <span id="totalprice">2500</span>원</div>
 	<div id="funding"><a href="#">펀딩하기</a></div>
