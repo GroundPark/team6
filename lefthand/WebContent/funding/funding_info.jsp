@@ -6,39 +6,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/funding_info.css" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css" />
-	<script src="../jquery/jquery-3.6.0.js"></script>
-	<script>
-	$(document).ready(function() {
-		$("#img1").click(function() {
-			$("#bigImg").attr("src", $(this).attr("src"))
-			// id가 bigImg인 개체의 src속성 값을 변경
-			// 이벤트를 일으킨 객체(this)의 src 속성값을 bigImg의 src 속성에 넣어줌
-		});
-		$("#img2").click(function() {
-			$("#bigImg").attr("src", $(this).attr("src"))
-		});
-		$("#img3").click(function() {
-			$("#bigImg").attr("src", $(this).attr("src"))
-		});
-	});
-	
-	$(document).ready(function() {
-		$("#minus").click(function() {
-			if ($("#num").val() > 1) {
-				$("#num").attr("value", parseInt($("#num").val()) - 1);
-				$("#totalprice").text(2500 * $("#num").val())
-			}
-		});
-	});
-	
-	$(document).ready(function() {
-		$("#plus").click(function() {
-			$("#num").attr("value", parseInt($("#num").val()) + 1)
-			$("#totalprice").text(2500 * $("#num").val())
-		});
-	});
-	$(document)
-	</script>
+<script src="funding_info.js"></script>
+<script src="../jquery/jquery-3.6.0.js"></script>
 </head>
 <body>
 <div id="fundinginfo">
@@ -58,7 +27,7 @@
 		총 ?????원<br /><br /><br />
 		??? 명 참여
 	</div>
-	<div id="fundinglike"><input type="button" value="좋아요  ♡" id="fundinglikebtn" /></div>
+	<div id="fundinglike"><input type="button" value="좋아요 ♡" id="fundinglikebtn" /></div>
 	<div id="fundinginquiry"><a href="#">문의하기</a></div>
 	<div id="fundingprice">2500 원</div>
 	<div id="fundingnum"><input type="button" value="-" class="plusminus" id="minus" /> <input type="text" class="num" id="num" value="1" readonly /> <input type="button" value="+" class="plusminus" id="plus" /></div>
