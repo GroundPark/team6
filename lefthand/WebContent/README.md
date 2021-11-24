@@ -31,25 +31,25 @@ service
 
 
 src (mvc 모델 서블릿, 클래스, vo 파일...등)
-도전펀딩
-펀딩
-멤버
-상품
-서비스
+- 도전펀딩
+- 펀딩
+- 멤버
+- 상품
+- 서비스
 
 
 
 WebContent
 
-admin : admin 관련 전부 (담당자 구조)
+- admin : admin 관련 전부 (담당자 구조)
 
-css : 모든 css(단, 페이지내 style 줄수가 짧다면 굳이 안넣어도 됨)
+- css : 모든 css(단, 페이지내 style 줄수가 짧다면 굳이 안넣어도 됨)
 
-img : 사이트 공통 이미지
+- img : 사이트 공통 이미지
 
-include : include 할 페이지들(기본 : header, footer)
+- include : include 할 페이지들(기본 : header, footer)
 
-js : 모든 js, jq 들 (단, 공통적으로 잘 안쓰는거면 페이지내 <script>로 해도됨)
+- js : 모든 js, jq 들 (단, 공통적으로 잘 안쓰는거면 페이지내 <script>로 해도됨)
 
  
  
@@ -65,6 +65,7 @@ page
 
  
 
-메인(index) 파일 : mainPage.jsp
+메인(index) 페이지 파일 : mainPage.jsp
+관리자 페이지 파일 : 
 
 
