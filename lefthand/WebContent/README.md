@@ -11,7 +11,7 @@ member
 
 product 미완 (마지막 수정자 : 박지상)
  상품 : 수업내용 끝나면 제대로 적용 / 분류별로 나눠야함
- > 프론트 : 목록(검색조건), 상세보기
+ 프론트 : 목록(검색조건), 상세보기
  - 정보 : ProductInfo, PdtCata
  - 컨트롤러 : ProductCtrl - *.pdt
  - 목록(pdt_list.pdt) : PdtListAct, PdtListSvc, pdt_list.jsp
@@ -27,21 +27,21 @@ service
 
 폴더 명세서
 
-> src (mvc 모델 서블릿, 클래스, vo 파일...등)
+src (mvc 모델 서블릿, 클래스, vo 파일...등)
 도전펀딩
 펀딩
 멤버
 상품
 서비스
 
-> WebContent
+WebContent
 admin : admin 관련 전부 (담당자 구조)
 css : 모든 css(단, 페이지내 style 줄수가 짧다면 굳이 안넣어도 됨)
 img : 사이트 공통 이미지
 include : include 할 페이지들(기본 : header, footer)
 js : 모든 js, jq 들 (단, 공통적으로 잘 안쓰는거면 페이지내 <script>로 해도됨)
 
->>page 
+page 
  - 도전펀딩 
  - 펀딩 
  - 멤버(마이페이지, 회원가입, 로그인, 장바구니 등.. 담당자 구조 따름) 
