@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="product.vo.*" %>
-<%@ include file="../../include/header.jsp" %>
+
 <%
 request.setCharacterEncoding("utf-8");
 
 ArrayList<ProductInfo> pdtList = (ArrayList<ProductInfo>)request.getAttribute("pdtList");
-ArrayList<ProductInfo> cataList = (ArrayList<ProductInfo>)request.getAttribute("cataList");
+ArrayList<PdtCata> cataList = (ArrayList<PdtCata>)request.getAttribute("cataList");
 
 PdtPageInfo pdtPageInfo = (PdtPageInfo)request.getAttribute("pdtPageInfo");
 
@@ -25,10 +25,65 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 	
 %>
 
-<%
-
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/mainSlide.css" />
+	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/footer.css" />
+	<script src="js/jquery-3.6.0.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/mainSlide.js"></script>
+	<script src="js/mainPage_scroll.js"></script>
+</head>
+<style>
+
+.maindiv{
+	height: 3000px;	width:1200px; margin: 0 auto;
+	background-color:#d3d3d3;
+}	
+
+.pdt_contents {
+	width:1200px;  margin: 0 auto;
+
+	overflow:hidden;
+	height:100%;	
+	
+	padding-bottom:300px;
+	position:relative;
+}
+
+
+.pdt { margin:20px; border:1px black solid; float:left; font-size:1.4em; }
+
+.pdt_price { text-decoration:line-through; color:gray; font-size:0.9em; }
+
+.pdt_real_price { color:red; font-size:1.2em; }
+
+.page_wrapper {
+	position:absolute;
+	left:0%; bottom:5%;
+	transform:translate(0%, -5%); 
+	width: 1200px; height: 60px; 
+	padding-top:50px;
+	padding-bottom:50px;
+}
+
+body {
+	position:relative;
+	padding-bottom:0px;
+}
+
+</style>
+<body>
+<header>
+<%@ include file="../../include/header.jsp" %>
+</header>
+<!-- ------------------------------------------------------------------------------------------------ -->
 <div class="pdt_contents" >
 <br />
 <h2 align="center">mvc 테스트용 </h2>
@@ -55,6 +110,7 @@ if(pdtList.size() > 0){
 	<%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:350px; height:350px; padding-bottom:25px;" /><br />
 	<%=pi.getPi_name() %></a><br /><span class="pdt_price"><%=pi.getPi_price() %> 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=(int)(pi.getPi_price() * (1-pi.getPi_discount()))  %> 원
 </div>
+
 <%
 			if(i%4 == 3) 	out.println("</div>");
 		}
@@ -65,11 +121,62 @@ if(pdtList.size() > 0){
 }
 %>
 
+<!-- 예제 데이터 시작 -->
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+<div class="pdt">
+	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
+	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
+</div>
+
+
+<!-- 예제 데이터 끝 -->
+
 </div>
 
 <%
 if (pdtList.size() > 0){
 // 상품 검색결과가 있으면 페이지 번호를 출력
+	out.println("<div class='page_wrapper'>");
 	out.println("<p style='font-size:1.25em; width:100%;' align='center'>");
 
 	args = "?sort=" + pdtPageInfo.getSort() + "&psize=" + pdtPageInfo.getPsize() + schargs;
@@ -99,8 +206,15 @@ if (pdtList.size() > 0){
 		}
 
 	out.println("</p>");
+	out.println("</div>");
 }
 %>
 
 </div>
+<!-- ------------------------------------------------------------------------------------------------ -->
+</main>
 <%@ include file="../../include/footer.jsp" %>
+</body>
+</html>
+
+
