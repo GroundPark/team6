@@ -8,16 +8,15 @@
 <title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/mainSlide.css" />
-	<link rel="stylesheet" type="text/css" href="css/mainLayoutTest.css" />
+	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
 	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/footerTest.css" />
+	<link rel="stylesheet" type="text/css" href="css/footer.css" />
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="js/mainSlide.js"></script>
 	<script src="js/mainPage_scroll.js"></script>
 </head>
 <body>
-<div id="test">
 <header>
 <%@ include file="include/header.jsp" %>
 </header>
@@ -164,6 +163,5 @@
 </main>
 <button class="back-to-top"><span class="label">페이지 위로 가기</span></button>
 <%@ include file="include/footer.jsp" %>
-</div>
 </body>
 </html>
