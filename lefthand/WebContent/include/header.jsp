@@ -27,12 +27,12 @@
 	</ul>
 	<h2>메인 메뉴</h2>
 	<ul id="navigation">
-		<li><a href="#">가위</a></li>
-		<li><a href="#">문구</a></li>
-		<li><a href="#">주방</a></li>
-		<li><a href="#">etc</a></li>
-		<li><a href="#">도전펀딩</a></li>
-		<li><a href="#">펀딩하기</a></li>
+		<li><a href="pdt_list.pdt">가위</a></li>
+		<li><a href="page/product/pdt_office.jsp">문구</a></li>
+		<li><a href="page/product/pdt_kitchen.jsp">주방</a></li>
+		<li><a href="page/product/pdt_etc.jsp">etc</a></li>
+		<li><a href="chal_list.chal">도전펀딩</a></li>
+		<li><a href="pdt_list.fdg">펀딩하기</a></li>
 	</ul>
 	<h2>SNS</h2>
 	<ul id="sns">
