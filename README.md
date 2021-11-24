@@ -6,4 +6,4 @@
 
 경로 
 
-C:\team6\lefthand
+C:\team6\lefthand\WebContent
