@@ -8,18 +8,7 @@
 <link rel="stylesheet" href="../css/admin_base.css" />
 <link rel="stylesheet" href="../css/admin_layout.css" />
 <script src="../js/jquery-3.6.0.js"></script>
-<script>
-$(document).ready(function() {
-	$('.menu1').click(function() {
-		$('.menu2').slideUp();
-		if ($(this).children('.menu2').is(':hidden')){
-			$(this).children('.menu2').slideDown();
-		} else{
-			$(this).children('.menu2').slideUp();
-		}
-	});
-  });
-</script>
+<script src="../js/admin.js"></script>
 </head>
 <body>
 <div id="outerBack">
