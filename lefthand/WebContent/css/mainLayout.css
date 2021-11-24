@@ -1,0 +1,273 @@
+/* 메인 페이지의 레이아웃을 비롯한 CSS */
+@charset "UTF-8";
+
+body {
+	position:relative;
+	padding-bottom:200px;
+}
+header {	
+	width:1200px;	
+	margin:0 auto;
+}
+main {	
+	width:1200px;	
+	margin:0 auto;
+}
+.back-to-top {
+	width:60px;
+	background:rgb(240, 240, 240);
+	border-width:0;
+	cursor:pointer;
+	display:block;
+	margin:0;
+	padding:16px;
+	position:absolute;
+	left:1800px;
+	top:2300px;
+	 
+}
+.back-to-top .label {
+	display:block;
+	height:18px;
+	margin:auto;
+	overflow:hidden;
+	width:26px; 
+}
+.back-to-top .label:before {
+	content:url("../img/sprites2.png");
+	display:inline-block;
+	font-size:0;
+	line-height:0;
+	margin-left:-40px;	
+}
+
+/* 첫번째 섹션 시작 */
+#section_1 {		
+	border:0px solid black;
+	width:1200px;
+	height:600px;
+	position:relative;
+	margin-top:20px;
+}
+#best_title {		/* BEST 상품 시작 */
+	width:300px;
+	height:40px;
+	postion:absolute;
+	font-size:1.2em;
+	font-weight:bold;
+	padding-left:10px;
+}
+#section_1_best{		
+	width:600px; 
+	height:600px;
+	border-right:1px solid black;
+}
+.best_list {
+	width:600px; 
+	height:280px;
+}
+.best_pdt {
+	border:1px solid black;
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;		
+}	
+.best_pdt_content{
+	position:relative;
+	top:200px;
+}					/* BEST 상품 종료 */
+					
+#funding_title {	/* 실시간 HOT펀딩 시작 */
+	width:300px;
+	height:40px;
+	postion:absolute;
+	font-size:1.2em;
+	font-weight:bold;
+	padding-left:10px;
+}
+#section_1_funding{
+	width:600px; 
+	height:300px;
+	position:absolute;
+	left:600px;
+	top:0px;
+}
+.funding_list {
+	width:600px; 
+	height:280px;
+}
+.funding_pdt {
+	border:1px solid black;
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;		
+}	
+.funding_pdt_content{
+	position:relative;
+	top:200px;
+}					/* 실시간 HOT펀딩 종료 */
+
+#challenge_title {	/* 도전펀딩 시작 */
+	width:300px;
+	height:40px;
+	postion:absolute;
+	font-size:1.2em;
+	font-weight:bold;
+	padding-left:10px;
+}
+#section_1_challenge{
+	width:600px; 
+	height:300px;
+	position:absolute;
+	left:600px;
+	top:300px;
+}
+.challenge_list {
+	width:600px; 
+	height:280px;
+}
+.challenge_pdt {
+	border:1px solid black;
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;		
+}	
+.challenge_pdt_content{
+	position:relative;
+	top:200px;
+}					/* 도전펀딩 종료 */
+/* 첫번째 섹션 종료 */
+
+
+/* 두번째 섹션 시작 */
+#section_2 {		
+	border:1px solid black;
+	width:1200px;
+	height:400px;
+	position:relative;
+	margin-top:30px;		/* section1과 간격을 띄우기 위함 */
+}
+#video{		
+	border:1px solid black;
+	width:800px;
+	height:400px;
+}
+#videoExplain{
+	border:1px solid black;
+	width:400px;
+	height:400px;
+	position:absolute;
+	top:0px;
+	left:800px;
+}
+#explain {
+	border:1px solid black;
+	width:400px;
+	height:400px;
+	text-align:center;
+/*	white-space:pre; */ 
+}
+/* 두번째 섹션 종료 */
+
+
+
+/* 세번째 섹션 시작 */
+#section_3 {		
+	border:0px solid black;
+	width:1200px;		/* 양 옆 100프로 다 쓰려면 main에서 빼는것밖에 방법이 없나? */
+	height:300px;
+	position:relative;
+	margin-top:30px;			/* section2와 간격을 띄우기 위함. 위에 section2에서 top:100을 해서 그 값을 더해서 움직여야 하나봄  */
+}
+#section_3_title {
+	width:300px;
+	height:40px;
+	postion:absolute;
+	font-size:1.2em;
+	font-weight:bold;
+}
+#section_3_review{
+	width:1200px;
+	height:240px;
+	position:absolute;
+	top:70px;
+}
+.review_obj {		/* 가운데 맞춤을 해야하는데 이거 눈대중임 가운데로 모으는 방법을 모르겠음 */
+	border:1px solid black;
+	width:250px;
+	height:200px;
+	display:inline-block;
+	margin-left:35px;
+}
+.review_top {
+	width:220px;
+	height:20px;
+	margin:5px auto;		
+}
+.reviewDate { margin-left:105px;}
+
+.review_score {
+	width:220px;
+	height:20px;
+	margin:10px auto;
+	border-bottom:2px solid #efefef;
+}
+.review_body {
+	border:1px solid #efefef;
+	width:220px;
+	height:100px;
+	margin:0 auto;
+}
+.review_bottom {
+	width:220px;
+	height:10px;
+	margin:0 auto;
+	padding-top:10px;
+}
+/* 세번째 섹션 종료 */
+
+
+
+/* 네번째 섹션 시작 */
+#section_4 {		
+	border:0px solid black;
+	width:1200px;		
+	height:250px;
+	position:relative;
+	margin:30px 0 0;		/* section3와 간격을 띄우기 위함.*/
+}
+#section_4_title {
+	width:300px;
+	height:40px;
+	postion:absolute;
+	font-size:1.2em;
+	font-weight:bold;
+}
+#section_4_interview{
+	border:1px solid black;
+	width:1200px;
+	height:190px;
+	position:absolute;
+	top:60px;	
+}
+#interview_img{
+	width:250px;
+	height:190px;
+	border:1px solid black;
+}
+#interview_content{
+	border:1px solid black;
+	width:950px;
+	height:190px;
+	position:absolute;
+	top:0px;
+	left:250px;
+	text-align:center;
+/* 	white-space:pre;	*/
+}
+/* 네번째 섹션 종료 */
+
+
