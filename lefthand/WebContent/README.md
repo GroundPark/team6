@@ -2,17 +2,27 @@
 
 https://suzxc2468.tistory.com/174
 
-- 수업때 자바 클래스 파일에 UTF-8 설정을 안해서 하다보면 .java에서 주석한글이 깨지므로 관련 확장자들 전부 UTF-8 설정해주세요(.txt도)
+- UTF-8 설정 필수!!
 
 - 파일이 없는 빈 폴더는 깃허브에서 안보여요
 
-- 다른 팀원이 한 영역에서 건들고 싶을때 파일 업로드할때 branch화 해서 올리고 담당자가 확인후 merge 하세요. 
+- 다른 팀원이 한 영역을 건들고 싶을때 파일 업로드할때 맨아래 라디오버튼을 눌러 branch화 해서 올리고 담당자가 확인후 merge 하세요. 
 
 동일이름이면 덮어씌워지니까 조심하고 서로 안다면 바로 업로드 하셔도 되요
 
-깃허브 빈 폴더 생성법 : https://mac-user-guide.tistory.com/57
+///////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////
+깃허브 비어있는 폴더 생성법 : https://mac-user-guide.tistory.com/57
+
+src의 package 안의 .java 파일이 이상하게 들어가 있을때 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=zzang9ha&logNo=221712872483
+
+import 한뒤 javaServlet 에러 : https://blog.naver.com/PostView.nhn?blogId=bgpoilkj&logNo=221656227898&parentCategoryNo=&categoryNo=53&viewDate=&isShowPopularPosts=false&from=postView
+
+classpath 충돌 : lefthand 폴더 .classpath 파일안에 
+<classpathentry kind="lib" path="F:/pjs/web/apache/lib/jsp-api.jar"/>			    <<--- 이부분을 자기걸로 수정
+<classpathentry kind="lib" path="F:/pjs/web/apache/lib/servlet-api.jar"/>   <<--- 이부분을 자기걸로 수정
+
+///////////////////////////////////////////////////////////////////////////
 
 
 파일 명세서
@@ -42,7 +52,7 @@ service
 
 
 
-//////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 폴더 명세서
 
