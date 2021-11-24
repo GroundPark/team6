@@ -16,7 +16,7 @@ section #search { width:100px; }
 </style>
 </head>
 <body>
-<%@ include file="incAdmin.jsp" %>
+<%@ include file="../include/incAdmin.jsp" %>
 <!-- main 영역 시작 -->
 <main>
 	<article>
