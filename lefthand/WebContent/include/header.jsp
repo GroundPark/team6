@@ -11,16 +11,19 @@
 	</ul>
 	<h2>검색 창</h2>
 	<ul id="searchMain">
-		<li><select class="hand" id="search_kind">
-			<option value="전체">전체</option>
-			<option value="가위">가위</option> 
-			<option value="문구">문구</option>
-			<option value="주방">주방</option>
-			<option value="etc">etc</option>
-			<option value="도전펀딩">도전펀딩</option>
-			<option value="펀딩하기">펀딩하기</option>
-		</select></li>
+		<li>
+			<select class="hand" id="search_kind">
+				<option value="전체">전체</option>
+				<option value="가위">가위</option> 
+				<option value="문구">문구</option>
+				<option value="주방">주방</option>
+				<option value="etc">etc</option>
+				<option value="도전펀딩">도전펀딩</option>
+				<option value="펀딩하기">펀딩하기</option>
+			</select>
+		</li>
 		<li><input type="text"  id="search_bar" /></li>
+		<li><a href="#"><img src="img/search_btn.png" id="search_img" alt="검색" /></a></li>
 	</ul>
 	<h2>메인 메뉴</h2>
 	<ul id="navigation">
