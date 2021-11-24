@@ -1,5 +1,6 @@
 파일 명세서
 
+
 challenge
 
 
@@ -27,6 +28,7 @@ service
 
 폴더 명세서
 
+
 src (mvc 모델 서블릿, 클래스, vo 파일...등)
 도전펀딩
 펀딩
@@ -34,13 +36,21 @@ src (mvc 모델 서블릿, 클래스, vo 파일...등)
 상품
 서비스
 
+
+
 WebContent
 admin : admin 관련 전부 (담당자 구조)
+
 css : 모든 css(단, 페이지내 style 줄수가 짧다면 굳이 안넣어도 됨)
+
 img : 사이트 공통 이미지
+
 include : include 할 페이지들(기본 : header, footer)
+
 js : 모든 js, jq 들 (단, 공통적으로 잘 안쓰는거면 페이지내 <script>로 해도됨)
 
+ 
+ 
 page 
  - 도전펀딩 
  - 펀딩 
@@ -50,6 +60,7 @@ page
 
 각각의 폴더엔 각각의 페이지에서 주로 사용할 img 폴더가 있고, 도전 펀딩의 경우 유저가 올리는 이미지를 저장할 userimg 폴더가 따로 있음
 
+ 
 
 메인(index) 파일 : mainPage.jsp
 
