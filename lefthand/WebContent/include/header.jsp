@@ -36,7 +36,7 @@
 	</ul>
 	<h2>SNS</h2>
 	<ul id="sns">
-		<li><a href="#"><img src="img/instargram.png" alt="인스타" /></a></li>
+		<li><a href="#"><img src="img/instagram.png" alt="인스타" /></a></li>
 		<li><a href="#"><img src="img/facebook.jpg" alt="페이스북" /></a></li>
 		<li><a href="#"><img src="img/twitter.png" alt="트위터" /></a></li>
 	</ul>
