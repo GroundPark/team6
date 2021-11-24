@@ -1,44 +1,49 @@
-/*
-base.css : ì‚¬ì´íŠ¸ ì „ì²´ì— ì ìš©í•  ê¸°ë³¸ ì„¤ì •ê°’.
-				  ê¸°ë³¸ ê¸€ê¼´, ë°°ê²½ ë“± ìŠ¤íƒ€ì¼ë¡œ ì‚¬ì´íŠ¸ ì „ì²´ì— í†µì¼ì„± ì¤Œ
-*/
+.hand { cursor:pointer; }	/* cursor:pointer : .handÅ¬·¡½º°¡ ÀÖ´Â ÅÂ±×¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ ¸¶¿ì½º¸ğ¾çÀÌ ¼Õ¸ğ¾çÀ¸·Î ¹Ù²ñ */
 
-.hand { cursor:pointer; }	/* cursor:pointer : .handí´ë˜ìŠ¤ê°€ ìˆëŠ” íƒœê·¸ì— ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë ¸ì„ ë•Œ ë§ˆìš°ìŠ¤ëª¨ì–‘ì´ ì†ëª¨ì–‘ìœ¼ë¡œ ë°”ë€œ */
-
-body {
-	font-family:"ë‹ì›€", Dotum, "êµ´ë¦¼", Gulim, sans-serif;
-	font-size:13px;
-}
-
-a:link { color:#4f4f4f; text-decoration:none; }
+a:link { color:#4f4f4f; text-decoration:none; }	/* text-decoration : ¹ØÁÙ ¿©ºÎ */
 a:visited { color:#8a2e91; text-decoration:none; }
 a:hover { color:#f00; text-decoration:underline; }
 a:focus { color:#f00; text-decoration:underline; }
 a:active { color:#f00; text-decoration:none; }
-	
-/*----------------- í•´ë” ì˜ì—­ ----------------- */
 
-#header { position:relative; width:1200px; height:200px; margin:0 auto;  border:0px black solid; }
+#header {
+	position:relative; width:1200px; height:200px; margin:0 auto;
+	border:0px solid black;
+}
 #header h2, legend, .banner h3, .search h3, #slogan h2, #footer h2 { display:none; }
 
-.logo { width:230px; height:130px; }
-#logo { position:absolute; top:15px; left:10px; }
+.logo {
+	width:230px;
+	height:130px; 
+}
+#logo { 
+	position:absolute; top:15px; left:-20px;
+	border:0px solid black;
+}
 
 #infoMenu { position:absolute; top:0; right:0; text-align:right; margin-right:25px; font-size:0.9em; padding:8px 0 7px 0; }
-#infoMenu li { display:inline; padding:0 3px 0 8px; background:url("img/header/topnavi_bar.gif") no-repeat 0 4px;}
+#infoMenu li { display:inline; padding:0 3px 0 8px; background:url("../img/header/topnavi_bar.gif") no-repeat 0 4px;}
 #infoMenu li:first-child { background:none; }
-/* idê°€ 'infoMenu'ì¸ ìš”ì†Œë‚´ì— ìˆëŠ” liìš”ì†Œë“¤ ì¤‘ ì²«ë²ˆì§¸ ìš”ì†Œì˜ ë°°ê²½ì´ë¯¸ì§€ë¥¼ ì‚­ì œ */
+/* id°¡ 'infoMenu'ÀÎ ¿ä¼Ò³»¿¡ ÀÖ´Â li¿ä¼Òµé Áß Ã¹¹øÂ° ¿ä¼ÒÀÇ ¹è°æÀÌ¹ÌÁö¸¦ »èÁ¦ */
 #infoMenu li a { color:#676767; }
 #infoMenu li a:hover, #infoMenu li a:focus { color:#000 }
 
-#searchMain { position:absolute; top:80px; left:480px; }
+#searchMain { position:absolute; top:80px; left:330px; }
 #searchMain li { display:inline; }
+#search_kind {
+	width:100px;
+	height:43px;
+	text-align:center;
+}
+#search_bar {
+	width:450px;
+	height:40px;
+}
 
 #navigation { position:absolute; top:170px; border:0px black solid; margin:0 auto;}
 #navigation li { display:inline; margin:0 77px; }
 
-#sns { position:absolute; top:80px; right:100px; }
-#sns li { display:inline; }
+#sns { position:absolute; top:80px; right:25px; }
+#sns li { display:inline; margin-left:10px; }
 #sns li a img { width:30px; height:30px; display:inline; }
 
-/*----------------- í‘¸í„° ì˜ì—­ ----------------- */
