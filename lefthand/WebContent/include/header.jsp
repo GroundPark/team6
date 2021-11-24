@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- #header 영역 시작 -->
 <div id="header">
-	<div id="logo"><h1 class="logo"><a href="#"><img src="img/logo.png" alt="로고" class="logo" /></a></h1></div>
+	<div id="logo"><h1 class="logo"><a href="mainPage.jsp"><img src="img/logo.png" alt="로고" class="logo" /></a></h1></div>
 	<ul id="infoMenu">
 		<li><a href="#">회원가입</a></li>
 		<li><a href="#">로그인</a></li>
