@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="../../css/base.css" />
-<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
-<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
 <!-- #header 영역 시작 -->
 <div id="header">
-	<div id="logo"><h1 class="logo"><a href="#"><img src="../../img/header/logo.png" alt="로고" class="logo" /></a></h1></div>
+	<div id="logo"><h1 class="logo"><a href="#"><img src="img/logo.png" alt="로고" class="logo" /></a></h1></div>
 	<ul id="infoMenu">
 		<li><a href="#">회원가입</a></li>
 		<li><a href="#">로그인</a></li>
@@ -36,9 +33,9 @@
 	</ul>
 	<h2>SNS</h2>
 	<ul id="sns">
-		<li><a href="#"><img src="../../img/header/instargram.png" alt="인스타" /></a></li>
-		<li><a href="#"><img src="../../img/header/facebook.jpg" alt="페이스북" /></a></li>
-		<li><a href="#"><img src="../../img/header/twitter.png" alt="트위터" /></a></li>
+		<li><a href="#"><img src="img/instargram.png" alt="인스타" /></a></li>
+		<li><a href="#"><img src="img/facebook.jpg" alt="페이스북" /></a></li>
+		<li><a href="#"><img src="img/twitter.png" alt="트위터" /></a></li>
 	</ul>
 </div>
 <!-- div#header 영역 종료 -->
