@@ -40,6 +40,7 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 	<script src="js/mainSlide.js"></script>
 	<script src="js/mainPage_scroll.js"></script>
 </head>
+	
 <style>
 
 .maindiv{
