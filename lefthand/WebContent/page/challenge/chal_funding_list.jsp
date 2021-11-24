@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="challenge.vo.*" %>
-<%@ include file="../../include/header.jsp" %>
 <%
 request.setCharacterEncoding("utf-8");
 
@@ -18,6 +17,21 @@ args = "?cpage=" + challengePageInfo.getCpage() + schargs;
 	
 %>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/mainSlide.css" />
+	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/footer.css" />
+	<script src="js/jquery-3.6.0.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/mainSlide.js"></script>
+	<script src="js/mainPage_scroll.js"></script>
+</head>
 <style>
 
 .chal_funding_contents {
@@ -76,17 +90,19 @@ args = "?cpage=" + challengePageInfo.getCpage() + schargs;
 
 .page_wrapper {
 	position:absolute;
-	left:0%; bottom:0%;
-
+	left:0%; bottom:20%;
+	transform:translate(0%, -20%); 
+	
 	width: 1200px; height: 60px; 
 	padding-top:50px;
-	padding-bottom:150px;
+	padding-bottom:50px;
+	
 }
 
 .btn_chal_funding_write {
 	position:absolute;
 	width:250px; height:50px;
-	background-color:#757575;
+	background-color:#dee2e6;
 	text-align:center;
 	
 	line-height:250%;
@@ -110,9 +126,47 @@ args = "?cpage=" + challengePageInfo.getCpage() + schargs;
 	width:75px; height:175px;
 }
 
+.maindiv{
+	height: 3000px;	width:1200px; margin: 0 auto;
+	background-color:#d3d3d3;
+}	
+
+.pdt_contents {
+	width:1200px;  margin: 0 auto;
+
+	overflow:hidden;
+	height:100%;	
+	
+	padding-bottom:300px;
+	position:relative;
+}
+
+
+.pdt { margin:20px; border:1px black solid; float:left; font-size:1.4em; }
+
+.pdt_price { text-decoration:line-through; color:gray; font-size:0.9em; }
+
+.pdt_real_price { color:red; font-size:1.2em; }
+
+.page_wrapper {
+	position:absolute;
+	left:0%; bottom:4%;
+
+	width: 1200px; height: 60px; 
+	padding-top:50px;
+	padding-bottom:50px;
+}
+
+body {
+	position:relative;
+	padding-bottom:0px;
+}
 </style>
-
-
+<body>
+<header>
+<%@ include file="../../include/header.jsp" %>
+</header>
+<!-- ------------------------------------------------------------------------------------------------ -->
 <div class="chal_funding_contents">
 <div class="btn_chal_funding_write" OnClick="location.href=location.href;" style="cursor:pointer;" >도전펀딩 등록</div>
 <br />
@@ -271,4 +325,8 @@ if (challengeList.size() > 0){
 %>
 
 </div>
+<!-- ------------------------------------------------------------------------------------------------ -->
+</main>
 <%@ include file="../../include/footer.jsp" %>
+</body>
+</html>
