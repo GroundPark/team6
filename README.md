@@ -4,6 +4,3 @@
 
 왼손 잡이용 쇼핑몰 + 펀딩 사이트
 
-경로 
-
-C:\team6\lefthand\WebContent
