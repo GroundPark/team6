@@ -29,7 +29,6 @@ import 한뒤 javaServlet 에러 : https://blog.naver.com/PostView.nhn?blogId=bg
 classpath 충돌 : lefthand 폴더 .classpath 파일안에 
 
 classpathentry kind="lib" path="F:/pjs/web/apache/lib/jsp-api.jar"			    <<--- 이부분을 자기걸로 수정
-
 classpathentry kind="lib" path="F:/pjs/web/apache/lib/servlet-api.jar"   <<--- 이부분을 자기걸로 수정
 
 
