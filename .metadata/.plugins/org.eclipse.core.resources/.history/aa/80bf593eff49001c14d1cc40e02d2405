@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<body>
+<div class="pdt_contents">
+	<div class="item-wrap" style="position: relative; width:500px; height:500px; background-color:gray; ">
+		<a href="#">
+			<img alt="" src="img/b101_info_1.jpg" style="width:250px; height:250px; display: inline;">
+					<div class="item-pay">
+						<div><h2>아이용 왼손잡이 펜</h2>
+								 <p>13,000원</p>
+						</div>
+					</div>
+		</a>
+	</div>
+</div>	
+</body>
+

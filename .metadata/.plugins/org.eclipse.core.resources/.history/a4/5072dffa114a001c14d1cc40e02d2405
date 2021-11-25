@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.maindiv{
+	height: 1500px;	width:1200px; margin: 0 auto;
+	background-color:#d3d3d3;
+}	
+
+
+.pdt_contents {
+	width:1200px; height:1500px;  margin: 0 auto;
+	background-color:#bbbbbb;
+	
+}
+
+

@@ -1,0 +1,14 @@
+
+
+#wrapper { 
+	position: relative;
+	width: 100%;
+	min-width:1400px;
+	min-height :100%
+}
+
+
+
+#contents { 
+
+}

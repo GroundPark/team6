@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="F:\pjs\web" version="1.8.0_181">
+<bootpath>
+<entry path="F:\pjs\web\jre\lib\resources.jar"/>
+<entry path="F:\pjs\web\jre\lib\rt.jar"/>
+<entry path="F:\pjs\web\jre\lib\sunrsasign.jar"/>
+<entry path="F:\pjs\web\jre\lib\jsse.jar"/>
+<entry path="F:\pjs\web\jre\lib\jce.jar"/>
+<entry path="F:\pjs\web\jre\lib\charsets.jar"/>
+<entry path="F:\pjs\web\jre\lib\jfr.jar"/>
+<entry path="F:\pjs\web\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="F:\pjs\web\jre\lib\ext"/>
+<entry path="C:\Windows\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="F:\pjs\web\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

@@ -4,8 +4,11 @@
 	<div id="logo"><h1 class="logo"><a href="mainPage.jsp"><img src="img/logo.png" alt="로고" class="logo" /></a></h1></div>
 	<ul id="infoMenu">
 		<li><a href="#">회원가입</a></li>
-		<li><a href="#">로그인</a></li>
-		<li><a href="#">장바구니</a></li>
+		<li><a href="login_form.jsp">로그인</a></li>
+		<li><a href="login_form.jsp?url=page/order/cart_list.ord">장바구니</a></li>
+		<li><a href="page/member/update_form.jsp">정보수정</a></li>
+		<li><a href="logout.jsp">로그아웃</a></li>
+		<li><a href="cart_list.ord">장바구니</a></li>
 		<li><a href="#">마이페이지</a></li>
 		<li><a href="#">고객센터</a></li>
 	</ul>

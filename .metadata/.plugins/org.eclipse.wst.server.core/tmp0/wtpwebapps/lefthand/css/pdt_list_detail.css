@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* base용 css */
+
+body {
+	font-family:"돋움", Dotum, "굴림", Gulim, sans-serif; font-size:15px;
+	line-height:1.2; height:100%; position:relative; 
+}
+
+a:link { color:#000; text-decoration:none; }
+a:visited { color:#000; text-decoration:underline; }
+a:hover { color:#000; text-decoration:none; }
+a:focous { color:#000; text-decoration:none; }
+a:active { color:#000; text-decoration:none; }
+
+.btn {
+    background: #EADE77;
+    color: #EADE77;
+    padding: 7px 45px;
+    display: inline-block;
+    margin-top: 20px;
+    border:1px solid #d0d0d0;
+    cursor: pointer;
+} 
+
+.pdt_detail_inner { width:1200px; margin:60px auto 0; min-height:100%; padding-bottom:120px; }
+.img_area { width:380px; display:inline-block; margin-left:30px; }
+.img_big_area { width:380px; height:380px; }
+.img_small_area { width:350px; height:110px; margin:5px 0 0 30px; }
+.pdt_thumb_list ul { text-align:left;}
+.pdt_thumb_list li { display:inline-block; }
+.price_area { width:450px; float:right; margin:10px 50px 0 0; }
+.pdt_name { margin-top:10px; font-size:25px; line-height:38px; font-weight:bold;}
+.price { margin-top:10px; min-height:40px; }
+.price1 { font-size:16px; color:gray; 
+	text-decoration:line-through; align-items:center; align-items:center; }
+.price2 { font-size:16px; line-height:16px; }
+.price3 { font-size:28px; color:red;}
+.deli_area { min-height:80px; margin-top:10px; font-size:16px; line-height:30px;}
+.order_cnt { margin-top:10px; border:1px solid #e9e9e9; border-radius:5px; position:relative; }
+.order_cnt_box { background:#efefef; min-height:45px; padding:15px 35px 0 20px; }
+.titl_area { line-height:30px; display:inline-block; }
+.titl_area span { font-weight:bold; }
+
+.cont_area { float:right; }
+.cont_cnt_box { display:block; max-width:121px; margin-top:3px; position:relative; }
+.btnCal_cminus { 
+	background: url( "../img/ico_calculator_minus.png" ) no-repeat;
+    width: 29px;
+    height: 28px;
+    cursor: pointer;
+    border:1px solid #d0d0d0;
+    float:left;
+    background-position: 5px 10px; 
+}
+    
+.btnCalc_cplus{
+	background: url( "../img/ico_calculator_plus.png" ) no-repeat;
+    width: 29px;
+    height: 28px;
+    cursor: pointer;
+    border:1px solid #d0d0d0;
+    float: right;
+    background-position: 3px 3px;
+    position:absolute;      
+}
+
+#cartCnt { width:60px; height:29px; border:1px solid #d0d0d0; text-align:center;}
+.pdt_total_price { margin-top:30px; position:relative;}
+.pdt_total_line { border-bottom:2px solid #d0d0d0; padding:0 5px 15px 5px; }
+.tp_titl{ font-size:18px; line-height:50px; font-weight:bold;  }
+.tp_num { font-size:22px; line-height:50px; float:right; }
+
+.pdt_btn_area { margin-top:15px; min-height:80px; }
+.pdt_btn_area #btn01 { width:165px; height:70px; color:white; margin-right:5px; }
+.pdt_btn_area #btn02 { 
+	background: url( "../img/ico_zzim_new.png" ) no-repeat;
+    width: 85px;
+    height: 70px;
+    background-position: 10px 3px;  
+   }
+.pdt_btn_area  #btn02 span { visibility:hidden; }  
+.star_review_area { min-height:40px; position:relative;  }
+#cuReview{ position:absolute; top:10px; left:10px; }
+#cuReview strong, b{ font-weight:bold; font-size:18px; }
+
+
+.pdt_detail_tab { margin:20px 0 0; height:41px; padding-top:10px; border-bottom:1px #d0d0d0 solid; }
+.pdt_detail_tab ul { text-align:left; }
+.pdt_detail_tab li { display:inline-block; width:33%; font-size:20px; 
+	text-align:center; line-height:40px; cursor: pointer;}
+.content { height:800px; border:1px solid red; overflow:auto;}
+
+.review_area { margin:30px auto 0; width:90%; border:1px solid black; }
+#revcontent { height:70px; margin:10px 0 5px; border:1px solid black;}
+#revimg { display:inline-block; }
+.revbottom_area { position:relative; height:85px; }
+.revbottom_area2 { position:relative; height:35px; }
+#good_report_area { display:inline-block; position:absolute; top:45px; right:45px; }
+#good_report_area2 { display:inline-block; position:absolute; right:45px; }
+#btngood{
+    color: black;
+    display: inline-block;
+    margin:8px 5px 0 0;
+    border:1px solid #d0d0d0;
+    cursor: pointer;	
+}
+
+#btnreport {
+	background: url( "../img/ico_alarm.png" ) no-repeat;
+    width:32px;
+    height:32px;
+    cursor: pointer;
+    border:none;
+    float: right;
+    position:absolute;	
+}
+#btnreport span { visibility:hidden; }
+
