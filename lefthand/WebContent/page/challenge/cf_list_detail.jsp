@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/reset.css" />
 <link rel="stylesheet" type="text/css" href="../../css/base.css" />
 <link rel="stylesheet" type="text/css" href="../../css/footer.css" />
-<link rel="stylesheet" type="text/css" href="../../css/cfListDetail.css" />
+<link rel="stylesheet" type="text/css" href="../../css/chal_funding_detail.css" />
 <script src="../../js/jquery-3.6.0.js"></script>
 <script>
 $(document).ready(function() {
