@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* header 에서 쓰는 CSS */
+/* header 에서 사용 */
 
 .hand { cursor:pointer; }	/* cursor:pointer : .hand클래스가 있는 태그에 마우스를 올렸을 때 마우스모양이 손모양으로 바뀜 */
 
