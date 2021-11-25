@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- include시 글자가 깨지는것을 위의 설정 변경으로 해결함. -->
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>	<!-- include시 글자가 깨지는것을 위의 설정 변경으로 해결함. -->
+<%@ page import="member.vo.*" %>	<!-- 로그인 정보를 담은 MemberInfo 인스턴스를 사용하기 위해 import -->
+<%
+MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
