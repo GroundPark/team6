@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="member.vo.*" %>	<!-- 로그인 정보를 담은 MemberInfo 인스턴스를 사용하기 위해 import -->
 <%
+request.setCharacterEncoding("utf-8");
 MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+boolean isLogin = false;
+if (memberInfo != null)	isLogin = true;
 %>
 <!-- #header 영역 시작 -->
 <div id="header">
