@@ -52,15 +52,7 @@ funding
 member
 
 
-product : 미완 (마지막 수정자 : 박지상)
- 상품 : 수업내용 끝나면 제대로 적용 / 분류별로 나눠야함
- 
- - 프론트 : 목록(검색조건), 상세보기
- - 정보 : ProductInfo, PdtCata
- - 컨트롤러 : ProductCtrl - *.pdt
- - 목록(pdt_list.pdt) : PdtListAct, PdtListSvc, pdt_list.jsp
- - 상세(pdt_view.pdt) : PdtViewAct, PdtViewSvc, pdt_view.jsp
- - DB : ProductDao
+product
 
 
 service
