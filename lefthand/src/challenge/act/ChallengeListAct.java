@@ -10,20 +10,20 @@ import java.net.*;
 public class ChallengeListAct implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		ArrayList<ChallengeInfo> challengeList = new ArrayList<ChallengeInfo>();
+		ArrayList<ChallengeList> challengeList = new ArrayList<ChallengeList>();
 			
 		int cpage = 1, psize = 12, bsize = 10, spage, epage, rcnt, pcnt;		
 		if(request.getParameter("cpage") != null)
 			cpage = Integer.parseInt(request.getParameter("cpage"));
-		if(request.getParameter("psize") != null)
-			psize = Integer.parseInt(request.getParameter("psize"));
+		// if(request.getParameter("psize") != null)
+		//	psize = Integer.parseInt(request.getParameter("psize"));
 		
-		String keyword, cata, sprice, eprice;
-		keyword = request.getParameter("keyword");		
-
-		String where = " where ci_isview = 'y' ";
-		if(!isEmpty(keyword))	where += " and ci_title like '%" + keyword + "%' ";
-		else keyword = "";
+		// String keyword;
+		// keyword = request.getParameter("keyword");		
+		
+		 String where = " where ci_isview = 'y' ";
+		// if(!isEmpty(keyword))	where += " and ci_title like '%" + keyword + "%' ";
+		// else keyword = "";
 		
 		
 		String sort = request.getParameter("sort");
@@ -46,7 +46,8 @@ public class ChallengeListAct implements Action{
 		ChallengePageInfo challengePageInfo = new ChallengePageInfo();
 		challengePageInfo.setCpage(cpage);    challengePageInfo.setPsize(psize);        challengePageInfo.setBsize(bsize);
 		challengePageInfo.setSpage(spage);    challengePageInfo.setEpage(epage);        challengePageInfo.setRcnt(rcnt);
-		challengePageInfo.setPcnt(pcnt);      challengePageInfo.setKeyword(keyword);    challengePageInfo.setSort(sort);
+		challengePageInfo.setPcnt(pcnt);      challengePageInfo.setSort(sort);
+		// challengePageInfo.setKeyword(keyword);
 		
         
         request.setAttribute("challengePageInfo", challengePageInfo);

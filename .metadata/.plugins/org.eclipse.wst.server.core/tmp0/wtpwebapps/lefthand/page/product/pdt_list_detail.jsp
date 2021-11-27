@@ -4,11 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../css/base.css" />
-<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
-<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
-<link rel="stylesheet" type="text/css" href="../../css/pdt_list_detail.css" />
-<script src="../jquery-3.6.0.js"></script>
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/footer.css" />
+<link rel="stylesheet" type="text/css" href="css/pdt_list_detail.css" />
+<script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <%@ include file ="/include/header.jsp" %>

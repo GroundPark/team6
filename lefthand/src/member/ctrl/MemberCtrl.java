@@ -9,7 +9,7 @@ import member.vo.*;
 
 @WebServlet("*.mem")
 public class MemberCtrl extends HttpServlet {
-// È¸¿ø °ü·Ã ÀÛ¾÷(°¡ÀÔ, Á¤º¸¼öÁ¤, Å»Åğ)°ú Á¤º¸ ¼öÁ¤ Æû¿¡ ´ëÇØ ¿¬°áÀ» ´ã´çÇÏ´Â ÄÁÆ®·Ñ·¯
+	// ë§ˆì´í˜ì´ì§€ë¡œ ì—°ê²°
 	private static final long serialVersionUID = 1L;
       
     public MemberCtrl() {
@@ -26,17 +26,17 @@ public class MemberCtrl extends HttpServlet {
 		Action action = null;
 		
 		switch (command) {
-		case "/member/member_proc.mem" :		// È¸¿ø °ü·Ã ÀÛ¾÷(°¡ÀÔ, Á¤º¸¼öÁ¤, Å»Åğ)
-			action = new MemberProcAct();
+		case "/member/member_proc.mem" :		// ?
+		//	action = new MemberProcAct();
 			break;
-		case "/member/mypage.mem" :				// Á¤º¸ ¼öÁ¤ Æû ¿äÃ»
-			action = new MemberProcAct();
+		case "/member/mypage.mem" :				// ì •ë³´ ìˆ˜ì • í¼ ìš”ì²­
+		//	action = new MemberProcAct();
 			break;
 		}
 		
 		try {
 			forward = action.execute(request, response);
-			// Ã³¸® ¹× ½ÇÇà ÈÄ ÀÌµ¿ÇÒ °æ·Î¿Í ¹æ¹ıÀ» ¹Ş¾Æ¿È
+			// ì²˜ë¦¬ ë° ì‹¤í–‰ í›„ ì´ë™í•  ê²½ë¡œì™€ ë°©ë²•ì„ ë°›ì•„ì˜´
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

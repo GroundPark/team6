@@ -1,12 +1,12 @@
 package member.vo;
 
 public class ActionForward {
-// ¿äÃ»À» Ã³¸®ÇÑ ÈÄ ºä ÆäÀÌÁö·Î ÀÌµ¿ÇÒ ¶§ ÀÌµ¿ÇÏ´Â ¹æ½Ä(µğ½ºÆĞÄ¡, ¸®´ÙÀÌ·ºÆ®)À» ÁöÁ¤ÇØÁÖ´Â Å¬·¡½º
-	private String path;		// ÀÌµ¿ÇÒ ºäÆäÀÌÁöÀÇ urlÀ» ÀúÀåÇÒ º¯¼ö
-	private boolean redirect;	// ÀÌµ¿ ¹æ½Ä(true : ¸®´ÙÀÌ·ºÆ®, false : µğ½ºÆĞÄ¡)¸¦ ÀúÀåÇÒ º¯¼ö
-	// booleanº¯¼öÀÌ¹Ç·Î °ªÀ» ÁöÁ¤ÇÏÁö ¾ÊÀ¸¸é ±âº»°ªÀ¸·Î false°¡ µé¾î°¨
+	// ìš”ì²­ì„ ì²˜ë¦¬í•œ í›„ ë·° í˜ì´ì§€ë¡œ ì´ë™í•  ë•Œ ì´ë™í•˜ëŠ” ë°©ì‹(ë””ìŠ¤íŒ¨ì¹˜, ë¦¬ë‹¤ì´ë ‰íŠ¸)ì„ ì§€ì •í•´ì£¼ëŠ” í´ë˜ìŠ¤
+	private String path;		// ì´ë™í•  ë·°í˜ì´ì§€ì˜ urlì„ ì €ì¥í•  ë³€ìˆ˜
+	private boolean redirect;	// ì´ë™ ë°©ì‹(true : ë¦¬ë‹¤ì´ë ‰íŠ¸, false : ë””ìŠ¤íŒ¨ì¹˜)ë¥¼ ì €ì¥í•  ë³€ìˆ˜
+	// booleanë³€ìˆ˜ì´ë¯€ë¡œ ê°’ì„ ì§€ì •í•˜ì§€ ì•Šìœ¼ë©´ ê¸°ë³¸ê°’ìœ¼ë¡œ falseê°€ ë“¤ì–´ê°
 	
-	public ActionForward() {}	// »ı¼ºÀÚ¸¦ µû·Î ¸¸µé¸é ±âº» »ı¼ºÀÚ°¡ »ç¶óÁö±â ¶§¹®¿¡ ÀÌ·¸°Ô ¸¸µé¾î µĞ °Í
+	public ActionForward() {}	// ìƒì„±ìë¥¼ ë”°ë¡œ ë§Œë“¤ë©´ ê¸°ë³¸ ìƒì„±ìê°€ ì‚¬ë¼ì§€ê¸° ë•Œë¬¸ì— ì´ë ‡ê²Œ ë§Œë“¤ì–´ ë‘” ê²ƒ
 	public ActionForward(String path, boolean redirect) {
 		this.path = path;
 		this.redirect = redirect;
@@ -24,4 +24,5 @@ public class ActionForward {
 	public void setRedirect(boolean redirect) {
 		this.redirect = redirect;
 	}
+
 }

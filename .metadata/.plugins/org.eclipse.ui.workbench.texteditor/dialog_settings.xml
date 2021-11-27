@@ -2,12 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="desc" key="selection"/>
+		<item value="fdg_price" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="fdg_price"/>
+			<item value="fdg"/>
+			<item value="fdg_real_price"/>
+			<item value="maindiv"/>
+			<item value="fdg_contents"/>
+			<item value="css"/>
+			<item value="idx"/>
+			<item value="id"/>
+			<item value="sql"/>
+			<item value="getChallengeInfo"/>
+			<item value="/page/challenge/chal_funding_list.jsp"/>
 			<item value="desc"/>
 			<item value="pdt_list"/>
 			<item value="img"/>

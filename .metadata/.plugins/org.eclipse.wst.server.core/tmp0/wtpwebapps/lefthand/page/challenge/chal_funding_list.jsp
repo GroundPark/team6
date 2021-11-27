@@ -5,17 +5,16 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-ArrayList<ChallengeInfo> challengeList = (ArrayList<ChallengeInfo>)request.getAttribute("challengeList");
-
-ChallengePageInfo challengePageInfo = (ChallengePageInfo)request.getAttribute("challengePageInfo");
+ChallengePageInfo challengePageInfo = (ChallengePageInfo)request.getAttribute("challengePageInfo");	
+ArrayList<ChallengeList> challengeList = (ArrayList<ChallengeList>)request.getAttribute("challengeList");
+//ChallengeList challenge = (ChallengeList)request.getAttribute("challenge");		
 
 String args ="", schargs = "";
 // 검색관련 쿼리스트링 
-if(challengePageInfo.getKeyword() != null && !challengePageInfo.getKeyword().equals(""))	
-	schargs += "&keyword=" + challengePageInfo.getKeyword();
+// if(challengePageInfo.getKeyword() != null && !challengePageInfo.getKeyword().equals(""))	
+//	schargs += "&keyword=" + challengePageInfo.getKeyword();
 
-args = "?cpage=" + challengePageInfo.getCpage() + schargs;
-	
+ args = "?cpage=" + challengePageInfo.getCpage() + schargs;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,7 +36,7 @@ args = "?cpage=" + challengePageInfo.getCpage() + schargs;
 
 .chal_funding_contents {
 	width:1200px;  margin: 0 auto;
-	
+
 	overflow:hidden;
 	height:100%;	
 	
@@ -158,6 +157,8 @@ args = "?cpage=" + challengePageInfo.getCpage() + schargs;
 	padding-bottom:50px;
 }
 
+
+
 body {
 	position:relative;
 	padding-bottom:0px;
@@ -187,26 +188,28 @@ body {
 	</ul>
 </div>
 <%
-
-
-if(challengeList.size() > 0){
+	if(challengeList.size() > 0){
 	for(int i=0;i<challengeList.size(); i++){
-		ChallengeInfo ci = challengeList.get(i);
+		ChallengeList ci = challengeList.get(i);
 		String lnk = null;
 		
 		int step = ci.getCi_step(); 
 		String status = ci.getCi_status();
 		
-		if(!ci.getCi_status().equals("a")){		// 도전펀딩이 마감이나 종료된 경우
-			lnk = "<a href=\"challenge_view.chal" + args + "&ciid=" + ci.getCi_idx() + "&sort=" + challengePageInfo.getSort() +
-					"&psize=" +challengePageInfo.getPsize() + "\">";
-		}else{		// 상품의 재고가 없는 품절일 경우
-			lnk = "<a href=\"javascript:alert('품절된 상품입니다.');\">";
+		// a:진행		b:마감		c:펀딩확정
+		// 각각의 경우에 따라 출력. 진행아닌 경우 그냥 보게해도 되는데 만들기 귀찮아서 아예 못들어가게 막음
+		if(ci.getCi_status().equals("a")){		
+	lnk = "<a href=\"chal_view.chal" + args + "&ciidx=" + ci.getCi_idx() + "&sort=" + challengePageInfo.getSort() +
+			"&psize=" +challengePageInfo.getPsize() + "\">";
+		}else if (ci.getCi_status().equals("b")){		
+	lnk = "<a href=\"javascript:alert('마감된 상품입니다.');\">";
+		}else{
+	lnk = "<a href=\"javascript:alert('확정된 상품입니다.');\">";		
 		}
 		
 		if(challengePageInfo.getPsize() == 12) {
 		// 한 페이지에 12개의 상품 목록을 보여줄 경우(한 줄에 3	개씩 보여줌)
-			if(i%3 == 0)		out.println("<div align='center'>");
+	if(i%3 == 0)		out.println("<div align='center'>");
 %>
 <div class="chal">
 	<%=lnk %><img src="page/challenge/userimg/<%=ci.getCi_thum_img() %>" style="width:350px; height:350px; padding-bottom:25px;" /><br />
@@ -236,50 +239,43 @@ if(challengeList.size() > 0){
 
 <!-- 예제 데이터 시작 -->
 
-<div class="chal">
-	<a href="javascript:alert('품절된 상품입니다.');"><img src="page/challenge/userimg/thum_chal_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	<div class="chal_step1"><img src="page/challenge/img/step1.png" style="width:75px; height:75px; " /></div>
-	<div style="text-align:center; font-size:1.3em; "><a href="#">왼손잡이용 숟가락</a></div>
-	<div class="chal_period"> &nbsp;2021-11-17&nbsp;~&nbsp;null-null-null &nbsp; </div>
-	<div class="chal_like"> ♥  0  </div>
-</div>
 
 <div class="chal">
 	<a href="#"><img src="page/challenge/img/chal_info_default.png" style="width:350px; height:350px; padding-bottom:25px;" /></a>
 	<div class="chal_step1"><img src="page/challenge/img/step1.png" style="width:75px; height:75px; " /></div>
-	<div style="text-align:center; font-size:1.3em; "><a href="#">도전 펀딩 이름(이미지 null 일때)</a></div>
+	<div style="text-align:center; font-size:1.3em; "><a href="#">* 도전 펀딩 예제 데이터 (이미지 null)</a></div>
 	<div class="chal_period"> &nbsp; 2021.10.30 &nbsp; ~ &nbsp; 2021.11.05 &nbsp; </div>
 	<div class="chal_like"> ♥  0  </div>
 </div>
 
 <div class="chal">
-	<a href="#"><img src="page/challenge/userimg/thum_chal_info_2.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
+	<a href="#"><img src="page/challenge/userimg/thum_chal_info_3.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
 	<div class="chal_step1"><img src="page/challenge/img/step1.png" style="width:75px; height:75px; " /></div>
-	<div style="text-align:center; font-size:1.3em; "><a href="#">도전 펀딩 이름(1차)</a></div>
+	<div style="text-align:center; font-size:1.3em; "><a href="#">* 도전 펀딩 예제 데이터 (1차)</a></div>
 	<div class="chal_period"> &nbsp; 2021.10.30 &nbsp; ~ &nbsp; 2021.11.05 &nbsp; </div>
 	<div class="chal_like"> ♥  30  </div>
 </div>
 
 <div class="chal">
-	<a href="#"><img src="page/challenge/userimg/thum_chal_info_2.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
+	<a href="#"><img src="page/challenge/userimg/thum_chal_info_4.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
 	<div class="chal_step2"><img src="page/challenge/img/step2.png" style="width:75px; height:75px; " /></div>
-	<div style="text-align:center; font-size:1.3em; "><a href="#">도전 펀딩 이름(2차)</a></div>
+	<div style="text-align:center; font-size:1.3em; "><a href="#">* 도전 펀딩 예제 데이터 (2차)</a></div>
 	<div class="chal_period"> &nbsp; 2021.10.30 &nbsp; ~ &nbsp; 2021.11.05 &nbsp; </div>
 	<div class="chal_like"> ♥  50  </div>
 </div>
 
 <div class="chal">
-	<a href="#"><img src="page/challenge/userimg/thum_chal_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
+	<a href="#"><img src="page/challenge/userimg/thum_chal_info_5.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
 	<div class="chal_ok"> 확 정 </div>
-	<div style="text-align:center; font-size:1.3em; "><a href="#">도전 펀딩 이름(확정)</a></div>
+	<div style="text-align:center; font-size:1.3em; "><a href="#">* 도전 펀딩 예제 데이터 (확정)</a></div>
 	<div class="chal_period"> &nbsp; 2021.10.30 &nbsp; ~ &nbsp; 2021.11.05 &nbsp; </div>
 	<div class="chal_like"> ♥  200  </div>
 </div>
 
 <div class="chal">
-	<a href="#"><img src="page/challenge/userimg/thum_chal_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
+	<a href="#"><img src="page/challenge/userimg/thum_chal_info_2.jpg" style="width:350px; height:350px; padding-bottom:25px;" /></a>
 	<div class="chal_close"> 마 감 </div>
-	<div style="text-align:center; font-size:1.3em; "><a href="#">도전 펀딩 이름(마감)</a></div>
+	<div style="text-align:center; font-size:1.3em; "><a href="#">* 도전 펀딩 예제 데이터 (마감)</a></div>
 	<div class="chal_period"> &nbsp; 2021.10.30 &nbsp; ~ &nbsp; 2021.11.05 &nbsp; </div>
 	<div class="chal_like"> ♥  200  </div>
 </div>

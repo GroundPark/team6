@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%
+
+
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -46,9 +50,9 @@ section #search { width:100px; }
 			<th width="8%">번호</th><th width="15%">카데고리</th><th width="15%">상품ID</th><th width="15%">재고수량</th>
 			<th width="8%">후기수</th><th width="*">등록일</th><th width="10%">게시여부</th><th width="12%">history</th>
 			</tr>
-			<tr align="center" onmouseover="this.style.background='#efefef';" onmouseout="this.style.background='';">
 			<%
 			for (int i = 10 ; i > 0 ; i--) {
+				out.println("<tr align=\"center\" onmouseover=\"this.style.background='#efefef';\" onmouseout=\"this.style.background='';\">");
 				out.println("<td>1</td><td>가위</td><td>A001</td><td>200</td><td>500</td><td>2021-11-10</td><td>Y</td><td><input type='button' id='btn' value='보기' /></td></tr>");
 			}
 			%>

@@ -1,0 +1,44 @@
+package challenge.dao;
+
+import static challenge.db.JdbcUtil.*;		
+import java.util.*;
+import challenge.dao.*;
+import challenge.vo.*;
+import java.sql.*;
+
+public class ChallengePreviewDao {
+	private static ChallengePreviewDao challengePreviewDao;
+	private Connection conn;
+	
+	private ChallengePreviewDao() {}
+	// 외부에서 함부로 인스턴스 생성하지 못하게 private로 생성자를 선언함
+	
+	public static ChallengePreviewDao getInstance() {
+	// 싱글톤 방식
+		if (challengePreviewDao == null)	challengePreviewDao = new ChallengePreviewDao();
+		return challengePreviewDao;
+	}
+	
+	public void setConnection(Connection conn) {
+		this.conn = conn;
+	}
+	
+	public int readcntUpdate(int idx) {
+	// 게시글의 조회수를 1증가 시키는 메소드	
+		Statement stmt = null;		// 쿼리 실행용 인스턴스
+		int result = 0;				// 쿼리 결과 저장용 변수
+		
+		try {
+			stmt = conn.createStatement();
+			String sql = "update t_challenge_info set ci_readcnt = ci_readcnt + 1 where ci_idx = " + idx;
+			result = stmt.executeUpdate(sql);	
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+		
+		return result;
+	}
+}

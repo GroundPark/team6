@@ -8,9 +8,9 @@ import member.vo.*;
 
 public class LoginSvc {
 	public MemberInfo getLoginMember(String uid, String pwd) {
-		Connection conn = getConnection();				// jdbcUtil¿¡ ÀÖ´Â ¸Ş¼Òµå getConnection()
-		LoginDao loginDao = LoginDao.getInstance();		// getInstance()´Â LoginDaoÀÇ public static ¸Ş¼ÒµåÀÓ	
-		loginDao.setConnection(conn);					// Connection ¿¬°á
+		Connection conn = getConnection();				// jdbcUtilì— ìˆëŠ” ë©”ì†Œë“œ getConnection()
+		LoginDao loginDao = LoginDao.getInstance();		// getInstance()ëŠ” LoginDaoì˜ public static ë©”ì†Œë“œì„	
+		loginDao.setConnection(conn);					// Connection ì—°ê²°
 		MemberInfo memberInfo = loginDao.getLoginMember(uid, pwd);
 
 		close(conn);

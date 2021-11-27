@@ -29,7 +29,8 @@ public class ProductCtrl extends HttpServlet {
     	case "/pdt_list.pdt" :			
     		action = new PdtListAct();
 			break;
-		case "/pdt_view.pdt" :		
+		case "/pdt_view.pdt" :			
+    		action = new PdtViewAct();		
 			break;
 		}
 		

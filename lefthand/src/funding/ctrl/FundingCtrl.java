@@ -2,15 +2,16 @@ package funding.ctrl;
 
 import java.io.*;
 import javax.servlet.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-import act.Action;
-import act.PdtListAct;
-import act.PdtViewAct;
 import funding.act.*;
 import funding.vo.*;
-import vo.ActionForward;
+
+import funding.act.Action;
+import funding.act.FdgListAct;
+import funding.act.*;
+import funding.vo.*;
+import funding.vo.ActionForward;
 
 @WebServlet("*.fdg")
 public class FundingCtrl extends HttpServlet {
@@ -29,11 +30,11 @@ public class FundingCtrl extends HttpServlet {
 		Action action = null;
 
 		switch (command) {
-		case "/pdt_list.fdg" :	// 상품 목록 화면 요청
+		case "/fdg_list.fdg" :	// 펀딩 목록 화면 요청
 			action = new FdgListAct();
 			break;
-		case "/pdt_view.fdg" :	// 상품 상세 화면 요청
-			action = new FdgViewAct();
+		case "/fdg_view.fdg" :	// 펀딩 상세 화면 요청
+//			action = new FdgViewAct();
 			break;
 		}
 

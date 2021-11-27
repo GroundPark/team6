@@ -1,0 +1,23 @@
+package challenge.svc;
+
+import static challenge.db.JdbcUtil.*;		
+import java.util.*;
+import challenge.dao.*;
+import challenge.vo.*;
+import java.sql.*;
+
+public class ChallengeViewSvc {
+	public ChallengeInfo getChallengeInfo(int idx) {
+		ChallengeInfo challengeInfo = new ChallengeInfo();
+		Connection conn = getConnection();
+		ChallengeDao challengeDao = ChallengeDao.getInstance();
+		challengeDao.setConnection(conn);
+		challengeInfo = challengeDao.getChallengeInfo(idx);
+		
+		
+		close(conn);
+		
+		return challengeInfo;
+	}
+}
+

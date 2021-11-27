@@ -10,18 +10,15 @@ ArrayList<PdtCata> cataList = (ArrayList<PdtCata>)request.getAttribute("cataList
 
 PdtPageInfo pdtPageInfo = (PdtPageInfo)request.getAttribute("pdtPageInfo");
 
-String args ="", schargs = "";
+ String args ="", schargs = "";
+ 
 // 검색관련 쿼리스트링 
 if(pdtPageInfo.getKeyword() != null && !pdtPageInfo.getKeyword().equals(""))	
 	schargs += "&keyword=" + pdtPageInfo.getKeyword();
 if(pdtPageInfo.getCata() != null && !pdtPageInfo.getCata().equals(""))
 	schargs += "&cata=" + pdtPageInfo.getCata();
-if(pdtPageInfo.getSprice() != null && !pdtPageInfo.getSprice().equals(""))
-	schargs += "&sprice=" + pdtPageInfo.getSprice();
-if(pdtPageInfo.getEprice() != null && !pdtPageInfo.getEprice().equals(""))
-	schargs += "&eprice=" + pdtPageInfo.getEprice();
 
-args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
+args = "?cpage=" + pdtPageInfo.getCpage() + schargs; 
 	
 %>
 
@@ -46,18 +43,18 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 .maindiv{
 	height: 3000px;	width:1200px; margin: 0 auto;
 	background-color:#d3d3d3;
-}	
+}
+
+#align { width:1160px; align:right; }	
 
 .pdt_contents {
 	width:1200px;  margin: 0 auto;
-
 	overflow:hidden;
 	height:100%;	
 	
 	padding-bottom:300px;
 	position:relative;
 }
-
 
 .pdt { margin:20px; border:1px black solid; float:left; font-size:1.4em; }
 
@@ -79,6 +76,7 @@ body {
 	padding-bottom:0px;
 }
 
+.bold { font-weight:bold; }
 </style>
 <body>
 <header>
@@ -87,25 +85,32 @@ body {
 <!-- ------------------------------------------------------------------------------------------------ -->
 <div class="pdt_contents" >
 <br />
-<h2 align="center">mvc 테스트용 </h2>
+<h2 align="center"></h2>
 <br />
-<p align="right" style="padding:15px 75px 15px; "> 인기 | 판매량 | 높은가격| 낮은가격 </p>
+<!-- 상품 정렬 조건 -->
+<p id="align" align="right">
+	<a href="pdt_list.pdt<%=args %>&sort=reviewd" <%=(pdtPageInfo.getSort().equals("reviewd") ? "class='bold'" : "") %>>인기순</a>&nbsp;
+	<a href="pdt_list.pdt<%=args %>&sort=salecntd" <%=(pdtPageInfo.getSort().equals("salecntd") ? "class='bold'" : "") %>>판매량순</a>&nbsp;
+	<a href="pdt_list.pdt<%=args %>&sort=priced" <%=(pdtPageInfo.getSort().equals("priced") ? "class='bold'" : "") %>>높은 가격순</a>&nbsp;
+	<a href="pdt_list.pdt<%=args %>&sort=pricea" <%=(pdtPageInfo.getSort().equals("pricea") ? "class='bold'" : "") %>>낮은 가격순</a>&nbsp;
+</p>
+<!-- 상품 목록 시작  -->
 <%
 if(pdtList.size() > 0){
 // 상품 검색결과가 있으면
-	for(int i=0;i<pdtList.size(); i++){
+	for(int i = 0 ;i < pdtList.size(); i++){
 		ProductInfo pi = pdtList.get(i);
 		String lnk = null;
 		if(pi.getPi_stock() != 0){		// 상품의 재고가 남아있는 경우... 무제한이 -1
-			lnk = "<a href=\"pdt_view.pdt" + args + "&piid=" + pi.getPi_id() + "&sort=" + pdtPageInfo.getSort() +
+			lnk = "<a href=\"/pdt_view.pdt" + args + "&piid=" + pi.getPi_id() + "&sort=" + pdtPageInfo.getSort() +
 					"&psize=" +pdtPageInfo.getPsize() + "\">";
 		}else{		// 상품의 재고가 없는 품절일 경우
 			lnk = "<a href=\"javascript:alert('품절된 상품입니다.');\">";
 		}
 		
 		if(pdtPageInfo.getPsize() == 12) {
-		// 한 페이지에 12개의 상품 목록을 보여줄 경우(한 줄에 3	개씩 보여줌)
-			if(i%3 == 0)		out.println("<div align='center'>");
+		// 한 페이지에 12개의 상품 목록을 보여줄 경우(한 줄에 3개씩 보여줌)
+			if(i % 3 == 0)		out.println("<div align='center'>");
 %>
 <div class="pdt">
 	<%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:350px; height:350px; padding-bottom:25px;" /><br />
@@ -113,7 +118,7 @@ if(pdtList.size() > 0){
 </div>
 
 <%
-			if(i%4 == 3) 	out.println("</div>");
+			if(i % 4 == 3) 	out.println("</div>");
 		}
 	}
 
@@ -121,57 +126,7 @@ if(pdtList.size() > 0){
 	out.println("<div>검색된 상품이 없습니다.</div>");
 }
 %>
-
-<!-- 예제 데이터 시작 -->
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-<div class="pdt">
-	<a href="pdt_view.pdt?cpage=1&piid=a103&sort=idd&psize=12"><img src="page/product/img/a103_info_1.jpg" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	아이용 왼손잡이용 가위</a><br /><span class="pdt_price">3000 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800 원
-</div>
-
-
-<!-- 예제 데이터 끝 -->
-
+ 
 </div>
 
 <%
@@ -217,5 +172,4 @@ if (pdtList.size() > 0){
 <%@ include file="../../include/footer.jsp" %>
 </body>
 </html>
-
 

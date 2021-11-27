@@ -3,8 +3,8 @@ package product.vo;
 public class PdtPageInfo {
 
 		private String keyword, cata, sort;
-		private String sprice, eprice;
 		private int cpage, psize, bsize, spage, epage, rcnt, pcnt;
+		
 		public String getKeyword() {
 			return keyword;
 		}
@@ -22,18 +22,6 @@ public class PdtPageInfo {
 		}
 		public void setSort(String sort) {
 			this.sort = sort;
-		}
-		public String getSprice() {
-			return sprice;
-		}
-		public void setSprice(String sprice) {
-			this.sprice = sprice;
-		}
-		public String getEprice() {
-			return eprice;
-		}
-		public void setEprice(String eprice) {
-			this.eprice = eprice;
 		}
 		public int getCpage() {
 			return cpage;
@@ -76,7 +64,5 @@ public class PdtPageInfo {
 		}
 		public void setPcnt(int pcnt) {
 			this.pcnt = pcnt;
-		}
-		
-		
+		}		
 }

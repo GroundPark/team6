@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import member.vo.*;
 
 public interface Action {
-// ¿©·¯ ¿äÃ»¿¡ ´ëÇÑ Ã³¸®¸¦ µ¿ÀÏÇÑ ¹æ¹ıÀ¸·Î Ã³¸®µÇ°Ô²û implement ½ÃÅ³ ÀÎÅÍÆäÀÌ½º
+	// ì—¬ëŸ¬ ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ë™ì¼í•œ ë°©ë²•ìœ¼ë¡œ ì²˜ë¦¬ë˜ê²Œë” implement ì‹œí‚¬ ì¸í„°í˜ì´ìŠ¤
 	ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	// °¢ ¿äÃ»À» Ã³¸®ÇÏ´Â Action Å¬·¡½ºµéÀÌ °øÅëÀûÀ¸·Î ±¸ÇöÇØ¾ß ÇÏ´Â ¸Ş¼Òµå·Î½á ¼±¾ğµÈ ¸Ş¼Òµå(public abstract)
+	// ê° ìš”ì²­ì„ ì²˜ë¦¬í•˜ëŠ” Action í´ë˜ìŠ¤ë“¤ì´ ê³µí†µì ìœ¼ë¡œ êµ¬í˜„í•´ì•¼ í•˜ëŠ” ë©”ì†Œë“œë¡œì¨ ì„ ì–¸ëœ ë©”ì†Œë“œ(public abstract)
 }

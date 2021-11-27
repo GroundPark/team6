@@ -1,5 +1,0 @@
-package product.db;
-
-public class JdbcUtil {
-
-}

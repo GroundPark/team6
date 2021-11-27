@@ -1,6 +1,8 @@
-.hand { cursor:pointer; }	/* cursor:pointer : .handÅ¬·¡½º°¡ ÀÖ´Â ÅÂ±×¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ ¸¶¿ì½º¸ğ¾çÀÌ ¼Õ¸ğ¾çÀ¸·Î ¹Ù²ñ */
+@charset "UTF-8";
 
-a:link { color:#4f4f4f; text-decoration:none; }	/* text-decoration : ¹ØÁÙ ¿©ºÎ */
+.hand { cursor:pointer; }	/* cursor:pointer : .handí´ë˜ìŠ¤ê°€ ìˆëŠ” íƒœê·¸ì— ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë ¸ì„ ë•Œ ë§ˆìš°ìŠ¤ëª¨ì–‘ì´ ì†ëª¨ì–‘ìœ¼ë¡œ ë°”ë€œ */
+
+a:link { color:#4f4f4f; text-decoration:none; }	/* text-decoration : ë°‘ì¤„ ì—¬ë¶€ */
 a:visited { color:#8a2e91; text-decoration:none; }
 a:hover { color:#f00; text-decoration:underline; }
 a:focus { color:#f00; text-decoration:underline; }

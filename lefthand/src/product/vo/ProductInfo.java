@@ -3,8 +3,7 @@ package product.vo;
 public class ProductInfo {
 	private String pi_id, pi_name, pi_img1, pi_img2, pi_img3, pi_desc, pi_soldout, pi_isview, pi_date, pc_id;
 	private int pi_idx, pi_price, ai_idx, pi_salecnt, pi_good, pi_stock, pi_review;
-	private double pi_discount, pi_score;
-	
+	private double pi_discount, pi_score;	
 	private String pc_name;
 	
 	

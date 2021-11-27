@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .hand { cursor:pointer; }	/* cursor:pointer : .hand클래스가 있는 태그에 마우스를 올렸을 때 마우스모양이 손모양으로 바뀜 */
 
 a:link { color:#4f4f4f; text-decoration:none; }	/* text-decoration : 밑줄 여부 */

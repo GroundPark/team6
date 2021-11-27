@@ -4,8 +4,8 @@ import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import member.svc.*;	// act°¡ Æ÷ÇÔµÈ ÆÄÀÏÀÌ¹Ç·Î
-import member.vo.*;	// ·Î±×ÀÎ ÈÄ È¸¿øÁ¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÔ
+import member.svc.*;	// actê°€ í¬í•¨ëœ íŒŒì¼ì´ë¯€ë¡œ
+import member.vo.*;	// ë¡œê·¸ì¸ í›„ íšŒì›ì •ë³´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•¨
 
 @WebServlet("/login")
 public class LoginCtrl extends HttpServlet {
@@ -20,24 +20,24 @@ public class LoginCtrl extends HttpServlet {
 		String uid = request.getParameter("uid").toLowerCase().trim();
 		String pwd = request.getParameter("pwd").trim();
 		String url = request.getParameter("url").replace("$", "&");
-		// Äõ¸®½ºÆ®¸µÀÌ ÀÖ´Â urlÀÇ °æ¿ì '&'¸¦ '$'·Î º¯°æ½ÃÄÑ ¹Ş¾Æ¿À±â ¶§¹®¿¡ ´Ù½Ã '&'·Î º¯°æ½ÃÄÑ¾ß ÇÔ
-		if (url.equals(""))	url = "mainPage.jsp";	// hiddenÀ¸·Î ¹Ş¾Æ¿À±â ¶§¹®¿¡ nullÀÌ ¾Æ´Ñ ºó ¹®ÀÚ¿­ÀÌ ¿È
-		// ·Î±×ÀÎ ÈÄ ÀÌµ¿ÇÒ °æ·Î°¡ ¾øÀ» °æ¿ì index È­¸éÀ¸·Î ÀÌµ¿ÇÏµµ·Ï ÁÖ¼Ò¸¦ ÁöÁ¤
+		// ì¿¼ë¦¬ìŠ¤íŠ¸ë§ì´ ìˆëŠ” urlì˜ ê²½ìš° '&'ë¥¼ '$'ë¡œ ë³€ê²½ì‹œì¼œ ë°›ì•„ì˜¤ê¸° ë•Œë¬¸ì— ë‹¤ì‹œ '&'ë¡œ ë³€ê²½ì‹œì¼œì•¼ í•¨
+		if (url.equals(""))	url = "mainPage.jsp";	// hiddenï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½
+		// ë¡œê·¸ì¸ í›„ ì´ë™í•  ê²½ë¡œê°€ ì—†ì„ ê²½ìš° index í™”ë©´ìœ¼ë¡œ ì´ë™í•˜ë„ë¡ ì£¼ì†Œë¥¼ ì§€ì •
 		
 		LoginSvc loginSvc = new LoginSvc();
 		MemberInfo memberInfo = loginSvc.getLoginMember(uid, pwd);
 		
 		HttpSession session = request.getSession();
-		// jsp°¡ ¾Æ´Ï¹Ç·Î session °´Ã¼¸¦ »ç¿ëÇÏ·Á¸é Á÷Á¢ httpSession ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇØ¾ß ÇÔ
+		// jspê°€ ì•„ë‹ˆë¯€ë¡œ session ê°ì²´ë¥¼ ì‚¬ìš©í•˜ë ¤ë©´ ì§ì ‘ httpSession ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•´ì•¼ í•¨
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		if (memberInfo != null) {	// ·Î±×ÀÎ ¼º°ø ½Ã
+		if (memberInfo != null) {	// ë¡œê·¸ì¸ ì„±ê³µ ì‹œ
 			session.setAttribute("memberInfo", memberInfo);
 			response.sendRedirect(url);
 		} else {
 			out.println("<script>");
-			out.println("alert('·Î±×ÀÎ¿¡ ½ÇÆĞÇß½À´Ï´Ù.');");
+			out.println("alert('ë¡œê·¸ì¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');");
 			out.println("history.back();");
 			out.println("</script>");
 		}

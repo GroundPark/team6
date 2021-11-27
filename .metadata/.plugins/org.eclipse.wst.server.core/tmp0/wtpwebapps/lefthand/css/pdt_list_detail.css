@@ -9,7 +9,7 @@ body {
 a:link { color:#000; text-decoration:none; }
 a:visited { color:#000; text-decoration:underline; }
 a:hover { color:#000; text-decoration:none; }
-a:focous { color:#000; text-decoration:none; }
+a:focus { color:#000; text-decoration:none; }
 a:active { color:#000; text-decoration:none; }
 
 .btn {
@@ -22,7 +22,7 @@ a:active { color:#000; text-decoration:none; }
     cursor: pointer;
 } 
 
-.pdt_detail_inner { width:1200px; margin:60px auto 0; min-height:100%; padding-bottom:120px; }
+.pdt_detail_inner { width:1200px; margin:60px auto 0; min-height:100%; padding-bottom:200px; }
 .img_area { width:380px; display:inline-block; margin-left:30px; }
 .img_big_area { width:380px; height:380px; }
 .img_small_area { width:350px; height:110px; margin:5px 0 0 30px; }
@@ -64,11 +64,11 @@ a:active { color:#000; text-decoration:none; }
     position:absolute;      
 }
 
-#cartCnt { width:60px; height:29px; border:1px solid #d0d0d0; text-align:center;}
+#cartCnt { width:60px; height:26px; border:1px solid #d0d0d0; text-align:center;}
 .pdt_total_price { margin-top:30px; position:relative;}
 .pdt_total_line { border-bottom:2px solid #d0d0d0; padding:0 5px 15px 5px; }
 .tp_titl{ font-size:18px; line-height:50px; font-weight:bold;  }
-.tp_num { font-size:22px; line-height:50px; float:right; }
+.total { font-size:22px; line-height:50px; float:right; }
 
 .pdt_btn_area { margin-top:15px; min-height:80px; }
 .pdt_btn_area #btn01 { width:165px; height:70px; color:white; margin-right:5px; }
@@ -88,9 +88,12 @@ a:active { color:#000; text-decoration:none; }
 .pdt_detail_tab ul { text-align:left; }
 .pdt_detail_tab li { display:inline-block; width:33%; font-size:20px; 
 	text-align:center; line-height:40px; cursor: pointer;}
-.content { height:800px; border:1px solid red; overflow:auto;}
+.content1, .content2, .content3 { margin:30px 0 0 30px;}
+.content1 { height: 4680px; } 
+.content2 {  height: 800px; }
+.content3 {  height: 600px; }
 
-.review_area { margin:30px auto 0; width:90%; border:1px solid black; }
+.review_area { margin:10px auto 0; width:90%; background:#efefef; border-radius:4px;}
 #revcontent { height:70px; margin:10px 0 5px; border:1px solid black;}
 #revimg { display:inline-block; }
 .revbottom_area { position:relative; height:85px; }

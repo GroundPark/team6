@@ -1,5 +1,6 @@
 package product.dao;
 
+
 import static product.db.JdbcUtil.*;	
 import java.util.*;
 import java.sql.*;
@@ -87,6 +88,43 @@ public class ProductDao {
 				close(rs);	close(stmt);
 			}
 		return pdtList;
+	}
+	
+	public ProductInfo getPdtInfo(String piid){ 
+		Statement stmt = null;
+		ResultSet rs = null;
+		ProductInfo pdt = null;
+		// pdtList에 저장할 ProductInfo형 인스턴스
+		
+		try {
+			String sql ="select * from t_product_info " +
+					" where pi_stock <> 0 and pi_isview = 'y' and pi_id = '" + piid + "' ";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);			
+			if (rs.next()) {
+				pdt = new ProductInfo();
+				
+				pdt.setPi_idx(rs.getInt("pi_idx"));				pdt.setPi_id(rs.getString("pi_id"));
+				pdt.setPc_id(rs.getString("pc_id"));			pdt.setPi_name(rs.getString("pi_name"));		
+				pdt.setPi_price(rs.getInt("pi_price"));			pdt.setPi_discount(rs.getDouble("pi_discount"));
+				pdt.setPi_img1(rs.getString("pi_img1"));		pdt.setPi_img2(rs.getString("pi_img2"));		
+				pdt.setPi_img3(rs.getString("pi_img3"));		pdt.setPi_desc(rs.getString("pi_desc"));		
+				pdt.setPi_stock(rs.getInt("pi_stock"));
+				pdt.setPi_good(rs.getInt("pi_good"));			pdt.setPi_salecnt(rs.getInt("pi_salecnt"));
+				pdt.setPi_review(rs.getInt("pi_review"));		pdt.setPi_score(rs.getDouble("pi_score"));
+				pdt.setPi_soldout(rs.getString("pi_soldout"));	pdt.setPi_isview(rs.getString("pi_isview"));
+				pdt.setPi_date(rs.getString("pi_date"));		pdt.setAi_idx(rs.getInt("ai_idx"));
+			}
+						
+		} catch(Exception e) {
+			System.out.println("ProductDao 클래스의 getPdtInfo() 메소드 오류");
+			e. printStackTrace();
+		}  finally {
+			close(rs);	close(stmt);
+		}
+		
+		return pdt;
+		
 	}
 	
 	public ArrayList<PdtCata> getCataList(){

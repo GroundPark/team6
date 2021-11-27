@@ -11,7 +11,7 @@ public class ChallengeListSvc {
 		int rcnt = 0;		
 		
 		Connection conn = getConnection();
-		ChallengeDao challengeDao = ChallengeDao.getInstance();
+		ChallengeListDao challengeDao = ChallengeListDao.getInstance();
 		challengeDao.setConnection(conn);
 		rcnt = challengeDao.getChallengeCount(where);
 			
@@ -20,10 +20,10 @@ public class ChallengeListSvc {
 		return rcnt;
 	}
 	
-	public ArrayList<ChallengeInfo> getChallengeList(String where, String order, int cpage, int psize){
-		ArrayList<ChallengeInfo> challengeList = new ArrayList<ChallengeInfo>();
+	public ArrayList<ChallengeList> getChallengeList(String where, String order, int cpage, int psize){
+		ArrayList<ChallengeList> challengeList = new ArrayList<ChallengeList>();
 		Connection conn = getConnection();
-		ChallengeDao challengeDao = ChallengeDao.getInstance();
+		ChallengeListDao challengeDao = ChallengeListDao.getInstance();
 		challengeDao.setConnection(conn);
 		challengeList = challengeDao.getChallengeList(where, order, cpage, psize);
 			

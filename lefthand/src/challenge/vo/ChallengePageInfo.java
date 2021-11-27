@@ -1,7 +1,7 @@
 package challenge.vo;
 
 public class ChallengePageInfo {
-
+// 페이징에 필요한 데이터들을 저장할 클래스	
 	private String keyword, sort;
 	private int cpage, psize, bsize, spage, epage, rcnt, pcnt;
 	

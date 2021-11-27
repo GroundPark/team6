@@ -22,17 +22,17 @@ public class LoginDao {
 	}
 
 	public MemberInfo getLoginMember(String uid, String pwd) {
-	// ÁöÁ¤ÇÑ ¾ÆÀÌµğ(uid)¿Í ¾ÏÈ£(pwd)·Î ·Î±×ÀÎ ÀÛ¾÷À» Ã³¸®ÇÑ ÈÄ È¸¿øÁ¤º¸¸¦ MemberInfoÇü ÀÎ½ºÅÏ½º¿¡ ´ã¾Æ ¸®ÅÏÇÏ´Â ¸Ş¼Òµå
+		// ì§€ì •í•œ ì•„ì´ë””(uid)ì™€ ì•”í˜¸(pwd)ë¡œ ë¡œê·¸ì¸ ì‘ì—…ì„ ì²˜ë¦¬í•œ í›„ íšŒì›ì •ë³´ë¥¼ MemberInfoí˜• ì¸ìŠ¤í„´ìŠ¤ì— ë‹´ì•„ ë¦¬í„´í•˜ëŠ” ë©”ì†Œë“œ
 		Statement stmt = null;
 		ResultSet rs = null;
-		MemberInfo memberInfo = null;	// µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì nullÀ» ¸®ÅÏÇÏ°Ô ÇÔ
+		MemberInfo memberInfo = null;	// ë°ì´í„°ê°€ ì—†ì„ ê²½ìš° nullì„ ë¦¬í„´í•˜ê²Œ í•¨
 
 		try {
 			stmt = conn.createStatement();
 			String sql = "select * from t_member_info where mi_id = '" + uid + "' and mi_pw ='" + pwd + "' and mi_isact = 'y' ";
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				memberInfo = new MemberInfo();	// rs¿¡ ´ã±ä µ¥ÀÌÅÍµéÀ» ÀúÀåÇÒ ÀÎ½ºÅÏ½º »ı¼º
+				memberInfo = new MemberInfo();	// rsì— ë‹´ê¸´ ë°ì´í„°ë“¤ì„ ì €ì¥í•  ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
 				memberInfo.setMi_idx(rs.getInt("mi_idx"));
 				memberInfo.setMi_id(rs.getString("mi_id"));
 				memberInfo.setMi_pw(rs.getString("mi_pw"));
@@ -47,10 +47,10 @@ public class LoginDao {
 				memberInfo.setMi_date(rs.getString("mi_date"));
 				memberInfo.setMi_isact(rs.getString("mi_isact"));
 				memberInfo.setMi_hand(rs.getString("mi_hand"));
-			}	// rs°¡ ºñ¾úÀ¸¸é else ¾øÀÌ ±×³É memberInfo¿¡ nullÀÌ µé¾îÀÖ´Â »óÅÂ·Î ¸®ÅÏÇÔ
+			}	// rsê°€ ë¹„ì—ˆìœ¼ë©´ else ì—†ì´ ê·¸ëƒ¥ memberInfoì— nullì´ ë“¤ì–´ìˆëŠ” ìƒíƒœë¡œ ë¦¬í„´í•¨
 
 		} catch(Exception e) {
-			System.out.println("LoginDao Å¬·¡½ºÀÇ getLoginMember() ¸Ş¼Òµå ¿À·ù");
+			System.out.println("LoginDao í´ë˜ìŠ¤ì˜ getLoginMember() ë©”ì†Œë“œ ì˜¤ë¥˜");
 			e.printStackTrace();
 		}
 

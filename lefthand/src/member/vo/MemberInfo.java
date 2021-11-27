@@ -1,7 +1,7 @@
 package member.vo;
 
 public class MemberInfo {
-// ÇÑ ¸íÀÇ È¸¿ø Á¤º¸¸¦ ÀúÀåÇÒ Å¬·¡½º
+	// í•œ ëª…ì˜ íšŒì› ì •ë³´ë¥¼ ì €ì¥í•  í´ë˜ìŠ¤
 	private int mi_idx, mi_point;
 	private String mi_id, mi_pw, mi_name, mi_gender, mi_birth, mi_phone, mi_email, mi_grade, mi_recommend, mi_date, mi_isact, mi_hand;
 	public int getMi_idx() {

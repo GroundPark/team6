@@ -19,29 +19,20 @@ public class PdtListAct implements Action{
 			psize = Integer.parseInt(request.getParameter("psize"));
 		
 		
-		// 시작 가격, 종료가격으로 검색 있으면 좋을듯? 
-		String keyword, cata, sprice, eprice;
+		String keyword, cata;
 		keyword = request.getParameter("keyword");		
 		cata = request.getParameter("cata");			
-		sprice = request.getParameter("sprice");	
-		eprice = request.getParameter("eprice");		
-		
+					
 		String where = " where a.pc_id = b.pc_id and a.pi_isview = 'y' ";
 		if(!isEmpty(keyword))	where += " and a.pi_name like '%" + keyword + "%' ";
 		else keyword = "";
 		
 		if(!isEmpty(cata))		where += " and b.pc_id = '" + cata + "' ";
 		else cata = "";
-		
-		if(!isEmpty(sprice))	where += " and a.pi_price >= '" + sprice + "' ";
-		else sprice = "";
-		
-		if(!isEmpty(eprice))	where += " and a.pi_price <= '" + eprice + "' ";
-		else eprice = "";
-		
+	
 		
 		String sort = request.getParameter("sort");
-		if(sort == null || sort.equals(""))		sort = "idd";		
+		if(sort == null || sort.equals(""))		sort = "ida";		
 		
 		String order = " order by pi_" + sort.substring(0, sort.length() - 1) 
 			+ (sort.charAt(sort.length() - 1) == 'a' ? " asc" : " desc");
@@ -61,7 +52,7 @@ public class PdtListAct implements Action{
 		pdtPageInfo.setCpage(cpage);    pdtPageInfo.setPsize(psize);        pdtPageInfo.setBsize(bsize);
         pdtPageInfo.setSpage(spage);    pdtPageInfo.setEpage(epage);        pdtPageInfo.setRcnt(rcnt);
         pdtPageInfo.setPcnt(pcnt);      pdtPageInfo.setKeyword(keyword);    pdtPageInfo.setCata(cata);
-        pdtPageInfo.setSprice(sprice);  pdtPageInfo.setEprice(eprice);    	pdtPageInfo.setSort(sort);
+        pdtPageInfo.setSort(sort);
 		
         ArrayList<PdtCata> cataList = pdtListSvc.getCataList();
         
