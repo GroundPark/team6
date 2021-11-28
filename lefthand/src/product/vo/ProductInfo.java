@@ -3,10 +3,8 @@ package product.vo;
 public class ProductInfo {
 	private String pi_id, pi_name, pi_img1, pi_img2, pi_img3, pi_desc, pi_soldout, pi_isview, pi_date, pc_id;
 	private int pi_idx, pi_price, ai_idx, pi_salecnt, pi_good, pi_stock, pi_review;
-	private double pi_discount, pi_score;	
+	private float pi_discount, pi_score;	
 	private String pc_name;
-	
-	
 	public String getPi_id() {
 		return pi_id;
 	}
@@ -109,16 +107,16 @@ public class ProductInfo {
 	public void setPi_review(int pi_review) {
 		this.pi_review = pi_review;
 	}
-	public double getPi_discount() {
+	public float getPi_discount() {
 		return pi_discount;
 	}
-	public void setPi_discount(double pi_discount) {
+	public void setPi_discount(float pi_discount) {
 		this.pi_discount = pi_discount;
 	}
-	public double getPi_score() {
+	public float getPi_score() {
 		return pi_score;
 	}
-	public void setPi_score(double pi_score) {
+	public void setPi_score(float pi_score) {
 		this.pi_score = pi_score;
 	}
 	public String getPc_name() {
@@ -127,7 +125,9 @@ public class ProductInfo {
 	public void setPc_name(String pc_name) {
 		this.pc_name = pc_name;
 	}
-
+	
+	
+	
 	
 	
 	
