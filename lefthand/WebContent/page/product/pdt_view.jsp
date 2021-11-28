@@ -1,6 +1,9 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="product.vo.*" %>
 <%
+request.setCharacterEncoding("utf-8");
+
 ProductInfo pdt =(ProductInfo)request.getAttribute("pdtInfo");
 if (pdt == null){
 	out.println("<script>");
@@ -12,6 +15,11 @@ if (pdt == null){
 PdtPageInfo pageInfo = (PdtPageInfo)request.getAttribute("pdtPageInfo");
 // 검색 조건 등의 정보를 저장하고 있는 인스턴스
 
+//숫자에 콤마 찍기위한 인스턴스
+
+DecimalFormat decFormat = new DecimalFormat("###,###");
+int price = pdt.getPi_price();
+int panmega = Math.round(price - (price * pdt.getPi_discount()));		// 할인 적용된 상품금액
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,9 +30,25 @@ PdtPageInfo pageInfo = (PdtPageInfo)request.getAttribute("pdtPageInfo");
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/footer.css" />
 <link rel="stylesheet" type="text/css" href="css/pdt_list_detail.css" />
+<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
 <script src="js/jquery-3.6.0.js"></script>
 <script>
-function cartBuy(chk) {
+var cartCnt = 1;	// 상품 개수를 저장한 변수
+var total = <%=panmega %>;	// 상품 가격을 저장한 변수
+function changeCnt(op) {
+	var obj1 = document.getElementById("cartCnt");
+	var obj2 = document.getElementById("total");
+	if (op == "+") {
+		cartCnt = cartCnt + 1;
+	} else {
+		if (cartCnt > 1)	cartCnt = cartCnt - 1;
+	}
+	obj1.value = cartCnt;
+	obj2.innerHTML = cartCnt * total;	
+	document.frmPdt.occnt.value = cartCnt;
+}
+
+<%-- function cartBuy(chk) {
 	// 장바구니나 바로 구매로 이동시키는 함수로 비로그인 시 로그인 폼으로 이동시켜야 함
 	<%
 	if (!isLogin) {	 %>
@@ -38,11 +62,13 @@ function cartBuy(chk) {
 		var frm = document.frmPdt;
 		frm.action = lnk;
 		frm.submit();
-	<% } %>
+	<% } %> --%>
 </script>
 </head>
 <body>
-<%@ include file ="/include/header.jsp" %>
+<header>
+<%@ include file ="../../include/header.jsp" %>
+</header>
 <!-- 상품 상세보기 영역 시작 -->
 <article class ="pdt_detail">
 	<div class ="pdt_detail_inner">
@@ -52,13 +78,13 @@ function cartBuy(chk) {
 			<!-- 상품 이미지 영역 시작 -->
 			<div class="img_area">
 				<div class="img_big_area">
-					<img src="img/<%=pdt.getPi_img1() %>" id="bigImg" width="380px" height="380px" alt="상품이미지"/>
+					<img src="page/product/img/<%=pdt.getPi_img1() %>" id="bigImg" width="380px" height="380px" alt="상품이미지"/>
 				</div>
 				<div class="img_small_area">
 					<ul class="pdt_thumb_list">
-						<li><a href="#"><img src="<%=pdt.getPi_img1() %>" width="100px" height="100px" alt="상품이미지1" onclick="chImg('1');"/></a></li>
-						<li><a href="#"><img src="<%=pdt.getPi_img2() %>" width="100px" height="100px" alt="상품이미지2" onclick="chImg('2');"/></a></li>
-						<li><a href="#"><img src="<%=pdt.getPi_img3() %>" width="100px" height="100px" alt="상품이미지3" onclick="chImg('3');"/></a></li>
+						<li><a href="#"><img src="page/product/img/<%=pdt.getPi_img1() %>" width="100px" height="100px" alt="상품이미지1" onclick="chImg('<%=pdt.getPi_img1()%>');"/></a></li>
+						<li><a href="#"><img src="page/product/img/<%=pdt.getPi_img2() %>" width="100px" height="100px" alt="상품이미지2" onclick="chImg('<%=pdt.getPi_img2()%>');"/></a></li>
+						<li><a href="#"><img src="page/product/img/<%=pdt.getPi_img3() %>" width="100px" height="100px" alt="상품이미지3" onclick="chImg('<%=pdt.getPi_img3()%>');"/></a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,9 +94,9 @@ function cartBuy(chk) {
 			<div class="price_area_inner">			
 				<p class="pdt_name"><%=pdt.getPi_name() %></p>			
 				<p class="price">
-					<span class="price1"><%=pdt.getPi_price() %></span>
-					<span class="price2"><%=pdt.getPi_discount() * 100 %>%</span>
-					<span class="price3"><%=pdt.getPi_price() - (pdt.getPi_price() * pdt.getPi_discount()) %></span>
+					<span class="price1"><%=decFormat.format(price) %></span>
+					<span class="price2"><%=Math.round(pdt.getPi_discount() * 100) %>%</span>
+					<span class="price3" id="price3"><%=decFormat.format(panmega) %></span>
 				</p>
 				<div class="deli_area">
 					<p class="deli1">배송정보</p>			
@@ -83,9 +109,9 @@ function cartBuy(chk) {
 						</div>
 						<div class="cont_area">
 							<span class="cont_cnt_box">
-								<button class="btnCal_cminus" name="cminus" id="cminus" value="-" onclick="changeCnt(this.value)"></button>
-								<input type="text" id="cartCnt" name="cartCnt" value="1" onkeyup="onlyNum(this);"/>
-								<button class="btnCalc_cplus" name="cplus" id="cplus" value="+" onclick="changeCnt(this.value)"></button>
+								<button type="button" class="btnCal_cminus" name="cminus" id="cminus" value="-" onclick="changeCnt(this.value)" ></button>
+								<input type="text" name="cartCnt" id="cartCnt" value="1" onkeyup="onlyNum(this);" />
+								<button type="button" class="btnCalc_cplus" name="cplus" id="cplus" value="+" onclick="changeCnt(this.value)" ></button>
 							</span>
 						</div>
 					</div>					
@@ -102,7 +128,7 @@ function cartBuy(chk) {
 				<div class="pdt_total_price">
 					<div class="pdt_total_line">
 						<span class="tp_titl">상품금액 합계</span>					
-						<span class="total"><%=pdt.getPi_price() %></span>
+						<span id="total"><%=decFormat.format(panmega) %>원</span>
 					</div>
 				</div>
 				<div class="pdt_btn_area">
@@ -139,7 +165,7 @@ function cartBuy(chk) {
 				<!-- 상품 상세 설명 영역 시작  -->
 				<div class="tab_cont_area">
 					<div class="content1">
-						<img src="img/a101_desc.jpg" width="1100px" height="4670px" alt="상품설명이미지" />
+						<img src="page/product/img/<%=pdt.getPi_desc() %>" width="1100px" height="4670px" alt="상품설명이미지" />
 					</div>
 					<!-- 상품 상세 리뷰 영역 시작 -->
 					<div class="content2">
@@ -176,7 +202,7 @@ function cartBuy(chk) {
 					 <!-- 상품 상세 리뷰 영역 종료 -->					
 					</div>
 					<div class="content3">
-						<img src="../../img/refund_info.png" width="1100px" height="600px"  alt="교환/환불 안내"/>					
+						<img src="page/product/img/refund_info.png" width="1100px" height="600px"  alt="교환/환불 안내"/>					
 					</div>
 				</div>
 			</div>
@@ -184,8 +210,8 @@ function cartBuy(chk) {
 		</section>			
 	</div>	
 </article>
-<%@ include file ="/include/footer.jsp" %>
+<%@ include file ="../../include/footer.jsp" %>
 <!-- list_detail js 연결  -->
-<script type="text/javascript" src="../../js/list_detail.js"></script>
+<script type="text/javascript" src="js/pdt_view.js"></script>
 </body>
 </html>
