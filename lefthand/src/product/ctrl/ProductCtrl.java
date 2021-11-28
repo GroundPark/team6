@@ -9,9 +9,7 @@ import product.vo.*;
 
 @WebServlet("*.pdt")
 public class ProductCtrl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    
+	private static final long serialVersionUID = 1L;   
     public ProductCtrl() {
         super();
     }
@@ -37,14 +35,14 @@ public class ProductCtrl extends HttpServlet {
     	
     	try {
     		forward = action.execute(request, response);
-    	}catch(Exception e) {
+    	} catch(Exception e) {
     		e.printStackTrace();
     	}
     	
     	if(forward != null) {
     		if(forward.isRedirect()) {
     			response.sendRedirect(forward.getPath());
-    		}else {
+    		} else {
     			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
     			dispatcher.forward(request, response);
     		}
@@ -56,7 +54,6 @@ public class ProductCtrl extends HttpServlet {
 		doProcess(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
