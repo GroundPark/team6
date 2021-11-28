@@ -18,7 +18,7 @@ a:active { color:#000; text-decoration:none; }
 
 .chg_titl_area { display:inline-block; width:1000px; }
 .title_area {  font-size:40px; padding-top:5px; font-weight:bold; }
-.sym_cnt, .period_area { color:#5A5A5A; font-weight:bold; }
+.sym_cnt, .period_area { color:#5A5A5A; font-weight:bold; font-size:1.2em; }
 .sym_cnt{ padding-top:30px; padding-bottom:5px; }
 .sym_button { border:0; background:#fff; float:right; margin-top:30px; font-size:0.8em; }
 

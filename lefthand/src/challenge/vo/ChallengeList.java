@@ -1,7 +1,7 @@
 package challenge.vo;
 
 public class ChallengeList {
-// 도전펀딩에서 하나의 게시글을 저장할 클래스
+// 도전펀딩에서 하나의 게시글을 저장할 클래스 (목록에서 사용)
 	private String mi_id, ci_title, ci_content, ci_img, ci_thum_img, ci_sdate, ci_edate, ci_status, ci_isview;
 	private int ci_idx, ci_step, ci_good;
 	//마감일 js hidden 처리

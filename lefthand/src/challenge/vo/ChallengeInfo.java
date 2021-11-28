@@ -1,7 +1,7 @@
 package challenge.vo;
 
 public class ChallengeInfo {
-// 하나의 상품 정보들을 저장할 클래스, 귀찮아서 다가져옴 나중에 뺌
+// 하나의 상품 정보들을 저장할 클래스 (상세보기에서 사용)
 	private String mi_id, ci_title, ci_content, ci_img, ci_thum_img, ci_sdate, ci_edate, ci_status, ci_isview;
 	private int ci_idx, ci_step, ci_good;
 	

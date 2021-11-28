@@ -64,21 +64,21 @@ public class ChallengeListDao {
 		rs = stmt.executeQuery(sql);
 		
 		while (rs.next()) {				
-			challenge = new ChallengeList();	
-			challenge.setCi_idx(rs.getInt("ci_idx"));
-			challenge.setMi_id(rs.getString("mi_id"));
-			challenge.setCi_title(rs.getString("ci_title"));
-			challenge.setCi_img(rs.getString("ci_img"));
-			challenge.setCi_thum_img(rs.getString("ci_thum_img"));
-			challenge.setCi_good(rs.getInt("ci_good"));
-			challenge.setCi_sdate(rs.getString("ci_sdate"));
-			challenge.setCi_edate(rs.getString("ci_edate"));
-			challenge.setCi_step(rs.getInt("ci_step"));
-			challenge.setCi_status(rs.getString("ci_status"));
-			challenge.setCi_isview(rs.getString("ci_isview"));
-			
-            challengeList.add(challenge);
-			}
+					challenge = new ChallengeList();	
+					challenge.setCi_idx(rs.getInt("ci_idx"));
+					challenge.setMi_id(rs.getString("mi_id"));
+					challenge.setCi_title(rs.getString("ci_title"));
+					challenge.setCi_img(rs.getString("ci_img"));
+					challenge.setCi_thum_img(rs.getString("ci_thum_img"));
+					challenge.setCi_good(rs.getInt("ci_good"));
+					challenge.setCi_sdate(rs.getString("ci_sdate"));
+					challenge.setCi_edate(rs.getString("ci_edate"));
+					challenge.setCi_step(rs.getInt("ci_step"));
+					challenge.setCi_status(rs.getString("ci_status"));
+					challenge.setCi_isview(rs.getString("ci_isview"));
+					
+		            challengeList.add(challenge);
+				}
 			}catch(Exception e) {
 				System.out.println("challengeListDao : getChallengeList() 에서 에러남");			
 				e.printStackTrace();

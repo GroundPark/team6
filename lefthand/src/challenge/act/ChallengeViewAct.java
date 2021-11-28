@@ -15,7 +15,7 @@ public class ChallengeViewAct implements Action{
 		int idx = Integer.parseInt(request.getParameter("ciidx"));		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		
-		
+		 ArrayList<ChallengeReplyList> challengeReplyList = new ArrayList<ChallengeReplyList>();
 		
 		// String schtype = request.getParameter("schtype");	// 검색조건
 		// String keyword = request.getParameter("keyword");	// 검색어
@@ -31,12 +31,10 @@ public class ChallengeViewAct implements Action{
 		// 300페이지에서 보고있다던가 검색하고 몇개 보는데, 리스트 다시 갔는데 1페이지로 가면 사용자가 빡치니까 가져옴
 		
 		ChallengeViewSvc challengeViewSvc = new ChallengeViewSvc();
-		ChallengeList challenge = challengeViewSvc.getChallengeInfo(idx);
+		//ChallengeList challenge = challengeViewSvc.getChallengeInfo(idx);
 		// ChallengeInfo challenge = challengeViewSvc.getChallengeDetail(idx);
-		
-					ChallengeInfo challengeDetail = challengeViewSvc.getChallengeDetail(idx);
-		
-		if(challenge == null) {		// 해당 게시글이 없으면
+		ChallengeInfo challengeDetail = challengeViewSvc.getChallengeDetail(idx);
+		if(challengeDetail == null) {		// 해당 게시글이 없으면
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();  			// jsp엔 자동으로 있는데 여기선 없음
 			out.println("<script>");
@@ -45,16 +43,21 @@ public class ChallengeViewAct implements Action{
 			out.println("</script>");
 		}
 		
+		challengeReplyList = challengeViewSvc.getChallengeDetailReplyList(idx);
+		
+		//ChallengeReplyList challengeReply = challengeViewSvc.getChallengeDetailReplyList(idx);
+		
+		
 		challengePageInfo.setCpage(cpage);                    
 		challengePageInfo.setSort(sort);
 		// challengePageInfo.setPsize(psize); 	
 		
-		request.setAttribute("challenge", challenge);
+		// request.setAttribute("challenge", challenge);
 		request.setAttribute("challengePageInfo", challengePageInfo);
-		// view 파일로 가져갈 2개의 인스턴스를 request 객체의 attribute)으로 저장함
-		
-					request.setAttribute("challengeDetail", challengeDetail);
-		
+		request.setAttribute("challengeDetail", challengeDetail);
+		// request.setAttribute("challengeReply", challengeReply);
+		request.setAttribute("challengeReplyList", challengeReplyList);
+		// view로 가져갈 인스턴스를 request 객체의 attribute으로 저장함
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/page/challenge/chal_funding_view.jsp");
