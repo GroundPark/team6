@@ -50,7 +50,7 @@ a:active { color:#000; text-decoration:none; }
     cursor: pointer;
     border:1px solid #d0d0d0;
     float:left;
-    background-position: 5px 10px; 
+    background-position: 5px 10px;   
 }
     
 .btnCalc_cplus{
@@ -68,7 +68,7 @@ a:active { color:#000; text-decoration:none; }
 .pdt_total_price { margin-top:30px; position:relative;}
 .pdt_total_line { border-bottom:2px solid #d0d0d0; padding:0 5px 15px 5px; }
 .tp_titl{ font-size:18px; line-height:50px; font-weight:bold;  }
-.total { font-size:22px; line-height:50px; float:right; }
+#total { font-size:22px; line-height:50px; float:right; }
 
 .pdt_btn_area { margin-top:15px; min-height:80px; }
 .pdt_btn_area #btn01 { width:165px; height:70px; color:white; margin-right:5px; }
