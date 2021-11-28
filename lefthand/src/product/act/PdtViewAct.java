@@ -10,10 +10,10 @@ public class PdtViewAct implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");		
 		int cpage = Integer.parseInt(request.getParameter("cpage"));
-		int psize = Integer.parseInt(request.getParameter("psize"));		
-		// 상품보기에서 필수로 있어야 하는 값들이므로 검사없이 바로 int형으로 형변환 시킴	
+		int psize = Integer.parseInt(request.getParameter("psize"));
 		
-		String piid = request.getParameter("piid");		// 상품 id
+		String piid = request.getParameter("piid");
+		String miid = request.getParameter("miid");	
 
 		String keyword	= request.getParameter("keyword");	if (keyword == null)	keyword = "";
 		String cata		= request.getParameter("cata");		if (cata == null)		cata = "";
@@ -22,10 +22,12 @@ public class PdtViewAct implements Action {
 	
 		PdtViewSvc pdtViewSvc = new PdtViewSvc();
 		ProductInfo pdtInfo = pdtViewSvc.getPdtInfo(piid);
+				
+		ReviewInfo revInfo = pdtViewSvc.getRevInfo(miid, piid);	// 후기에 필요한 정보들
 
-		PdtPageInfo pdtPageInfo = new PdtPageInfo();	// 페이징에 필요한 정보들을 저장할 인스턴스
+		PdtPageInfo pdtPageInfo = new PdtPageInfo();// 페이징에 필요한 정보들을 저장할 인스턴스
 		pdtPageInfo.setCpage(cpage);		pdtPageInfo.setPsize(psize);	pdtPageInfo.setKeyword(keyword);	
-		pdtPageInfo.setCata(cata);			pdtPageInfo.setSort(sort);
+		pdtPageInfo.setSort(sort);
 
 		request.setAttribute("pdtPageInfo", pdtPageInfo);
 		request.setAttribute("pdtInfo", pdtInfo);
@@ -42,4 +44,5 @@ public class PdtViewAct implements Action {
 		if (str != null && !str.equals(""))	empty = false;
 		return empty;
 	}
+
 }
