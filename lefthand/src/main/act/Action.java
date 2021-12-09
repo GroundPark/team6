@@ -1,7 +1,7 @@
 package main.act;
 
 import javax.servlet.http.*;
-import main.vo.*;
+import vo.*;
 
 public interface Action {
 	// 여러 요청에 대한 처리를 동일한 방법으로 처리되게끔 implements 시킬 인터페이스

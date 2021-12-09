@@ -22,11 +22,23 @@ a:active { color:#000; text-decoration:none; }
 /* -------------------- 아코디언 메뉴 -------------------- */
 nav { display:flex; justify-content: center; height:100vh; float:left; font-size:14px; }
 #ac { width: 200px; }
-#ac li a { display:block; width:100%; text-align:left; padding-left:10px; height:50px; line-height:50px; border-top:1px solid #eee; border-bottom:1px solid #eee; }
-#ac .menu1 a { background-color: #fff; color:#000; }
-#ac .menu1 > a:after { content: "\002B"; float:right; padding-right:20px; }
-#ac .menu1 > a.special:after { content: "\002D"; float:right; padding-right:20px; }	/* 이걸로 +를 -로 바꾸고 싶었는데 안되네,,, */
+#ac li a { 
+display:block; width:100%; text-align:left; 
+height:50px; line-height:50px; border-top:1px solid #eee; border-bottom:1px solid #eee; 
+}
+
+
+#ac .menu1 a { background-color: #fff; color:#000;  }
+#ac .menu1 > a:before { content: "\00A0\00A0\00A0" }
+
+
+#ac .menu1 > a:after { content: "\002B"; float:right; padding-right:20px;  }
+#ac .menu1 > a.special:after { content: "\002D"; float:right; padding-right:20px; }	
+/* 이걸로 +를 -로 바꾸고 싶었는데 안되네 (마지막 수정자 : 이민지) */
+
+
 #ac .menu2 { display:none; }
+
 #ac .menu2 a { background-color:#ddd; color:#000; }
 #ac .menu2 a:hover { background-color:#ccc; }
 

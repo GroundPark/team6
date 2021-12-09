@@ -5,13 +5,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import funding.act.*;
-import funding.vo.*;
-
-import funding.act.Action;
-import funding.act.FdgListAct;
-import funding.act.*;
-import funding.vo.*;
-import funding.vo.ActionForward;
+import vo.*;
 
 @WebServlet("*.fdg")
 public class FundingCtrl extends HttpServlet {
@@ -34,7 +28,7 @@ public class FundingCtrl extends HttpServlet {
 			action = new FdgListAct();
 			break;
 		case "/fdg_view.fdg" :	// 펀딩 상세 화면 요청
-//			action = new FdgViewAct();
+			action = new FdgViewAct();
 			break;
 		}
 

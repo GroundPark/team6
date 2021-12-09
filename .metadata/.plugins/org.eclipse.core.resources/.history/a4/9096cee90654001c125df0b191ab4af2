@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+
+
+
+
+
+
+.chal_funding_contents {
+	width:1200px;  margin: 0 auto;
+
+	overflow:hidden;
+	height:100%;	
+	
+	padding-bottom:300px;
+	position:relative;
+}
+
+.chal_period { 
+	text-align:center; padding-bottom:45px; font-size:1.1em; 
+}
+
+.chal_like { 
+	padding:5px; 
+	position:absolute;	 
+	top:93%; left:68%;
+	width:100px; height:20px;
+	background-color:#98ddde;
+	
+	text-align:center;
+}
+
+.chal_ok { 
+	position:absolute;	
+	top:50%; left:50%;
+	transform:translate(-50%, -75%); 
+	width:200px; height:200px; background-color:rgba(158, 158, 158, 0.5);  
+	z-index: 0;
+	text-align:center;
+	font-size:1.5em;
+	line-height:200px;
+	cursor: pointer;
+}
+
+.chal_close{
+	position:absolute;	
+	top:50%; left:50%;
+	transform:translate(-50%, -75%); 
+	width:200px; height:200px; background-color:rgba(158, 158, 158, 0.5);  
+	z-index: 0;
+	text-align:center;
+	font-size:1.5em;
+	line-height:200px;
+	cursor: pointer;
+}
+
+
+.chal{
+	border:1px black solid; position:relative; margin:20px; 
+	float:left; font-size:1.2em;
+}
+
+.challenge_sort {
+	text-align:right; padding-left:1000px;
+
+}
+
+.challenge_classify{
+}
+
+.page_wrapper {
+	position:absolute;
+	left:0%; bottom:5%;
+	transform:translate(0%, -5%); 
+	width: 1200px; height: 60px; 
+	padding-top:50px;
+	padding-bottom:50px;
+	
+}
+
+
+
+.btn_chal_funding_write {
+	position:absolute;
+	width:250px; height:50px;
+	background-color:#dee2e6;
+	text-align:center;
+	
+	line-height:250%;
+	
+	font-size:1.5em;
+	
+	top:30px; left:20px;
+}
+
+
+.chal_step1{
+	padding:5px; 
+	position:absolute;	 
+	top:1%; left:1%;
+	width:75px; height:75px;
+}
+
+.chal_step2{
+	padding:5px; 
+	position:absolute;	 
+	top:1%; left:1%;
+	width:75px; height:175px;
+}
+
+a {text-decoration:none; }
+/* css 꼬였을때 a태그 밑줄 계속 안사라져서 걍 날림 */
+

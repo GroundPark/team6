@@ -1,0 +1,25 @@
+package challenge.dao;
+
+import static challenge.db.JdbcUtil.*;	
+import java.util.*;
+import java.sql.*;
+import challenge.dao.*;
+import vo.*;
+
+public class ChallengeGoodableDao {
+	private static ChallengeGoodableDao challengeGoodableDao;
+	private Connection conn;
+	
+	private ChallengeGoodableDao() {}
+	public static ChallengeGoodableDao getInstance() {
+	// singleton
+		if(challengeGoodableDao == null)		challengeGoodableDao = new ChallengeGoodableDao();
+		return challengeGoodableDao;
+	}
+	
+	public void setConnection(Connection conn) {
+		this.conn = conn;
+	}
+	
+	
+}

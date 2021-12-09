@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import challenge.act.*;
-import challenge.vo.*;
+import vo.*;
 
 @WebServlet("*.chal")		// 도전 펀딩관련 모든 요청 처리하는 서블릿 클래스
 public class ChallengeCtrl extends HttpServlet {
@@ -25,29 +25,34 @@ public class ChallengeCtrl extends HttpServlet {
     	ActionForward forward = null;
     	Action action = null;
     	
-    	// 평범한 게시판 CRUD 구현, 포폴용 기능 구현으로 게시판 기능에 중점을 둠
     	switch (command) {
-    	case "/chal_list.chal" :			
+    	case "/chal_list.chal" :		// 게시글 목록 요청	
     		action = new ChallengeListAct();
 			break;
 		case "/chal_in_form.chal" :		// 게시글 등록 폼 요청
-		//	action = new ChallengeInAct();
+			action = new ChallengeInAct();
 			break;
 		case "/chal_in_proc.chal" :		// 게시글 등록 처리 요청
-		//	action = new ChallengeInProcAct();
+		    action = new ChallengeInProcAct();
 			break;
 		case "/chal_view.chal" :		// 게시글 보기 화면 요청
 			action = new ChallengeViewAct();
 			break;
-		case "/chal_up_form.chal" :		// 게시글 수정 폼 요청
-		//	action = new ChallengeUpAct();
+		case "/chal_view_good.chal" :		// 게시글 보기 좋아요
+			action = new ChallengeViewGoodAct();
 			break;
-		case "/chal_up_proc.chal" :		// 게시글 수정 처리 요청
-		//	action = new ChallengeUpProcAct();
+		case "/chal_view_good_cancel.chal" :		// 게시글 보기 취소 : ChallengeViewGoodCancelAct 인데 잘못썻음
+			action = new ChallengeViewCancelAct();
 			break;
 		case "/chal_del_proc.chal" :	// 게시글 삭제 처리 요청
-		//	action = new ChallengeDelProcAct();
+			action = new ChallengeDelProcAct();
 			break;
+		case "/chal_reply_in.chal" :	// 게시글 댓글 입력
+			action = new ChallengeReplyInAct();
+			break;
+		//case "/chal_reply_del.chal" :	// 게시글 댓글 삭제
+		//	action = new ChallengeReplyDelAct();
+		//	break;
 		}
 		
     	

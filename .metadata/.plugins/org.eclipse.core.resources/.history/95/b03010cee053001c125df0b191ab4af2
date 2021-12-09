@@ -1,0 +1,90 @@
+base.css
+액세스 권한이 있는 사용자
+
+M
+o
+윤
+
+시스템 속성
+유형
+스타일 시트
+크기
+2KB
+사용한 용량
+2KB
+위치
+21.12.02 변경점
+소유자
+윤무
+수정 날짜
+2021. 12. 1.에 윤무님이 수정
+열어 본 날짜
+오전 11:25에 내가 열어 봄
+생성 날짜
+2021. 12. 2.
+설명 추가
+뷰어가 다운로드할 수 있음
+.hand { cursor:pointer; }	/* cursor:pointer : .hand클래스가 있는 태그에 마우스를 올렸을 때 마우스모양이 손모양으로 바뀜 */
+
+#navigation a:link { color:#fff; text-decoration:none; }	/* text-decoration : 밑줄 여부 */
+#navigation a:visited { color:#fff; text-decoration:none; }
+#navigation a:hover { color:#fff; text-decoration:none; font-weight:bold; }
+#navigation a:focus { color:#f00; text-decoration:none; }
+#navigation a:active { color:#f00; text-decoration:none; }
+
+
+header {	
+	width:100%;	
+	margin:0 auto;
+	background:#F4EEE0;
+}
+
+#header {
+	position:relative; width:1200px; height:200px; margin:0 auto;
+	border:0px solid blue;
+}
+#header h2, legend, .banner h3, .search h3, #slogan h2, #footer h2 { display:none; }
+
+.logo {
+	width:230px;
+	height:130px; 
+}
+#logo { 
+	position:absolute; top:15px; left:-20px;
+	border:0px solid black;
+}
+
+#infoMenu { position:absolute; top:0; right:0; text-align:right; margin-right:25px; font-size:0.9em; padding:8px 0 7px 0; }
+#infoMenu li { display:inline; padding:0 3px 0 8px; background:url("../img/topnavi_bar.gif") no-repeat 0 4px;}
+#infoMenu li:first-child { background:none; }
+/* id가 'infoMenu'인 요소내에 있는 li요소들 중 첫번째 요소의 배경이미지를 삭제 */
+#infoMenu li a { color:#676767; }
+#infoMenu li a:hover, #infoMenu li a:focus { color:#000 }
+
+#searchMain { position:absolute; top:80px; left:330px;}
+#searchMain li { display:inline; }
+#search_kind {
+	width:100px;
+	height:43px;
+	text-align:center;
+}
+#search_bar {
+	width:450px;
+	height:40px;
+}
+#goSch {
+	width:40px;
+	height:40px;
+}
+
+#navigation {
+	position:absolute; top:170px; border:0px black solid; margin:0 auto; background:#BC1131;  width:100%;
+	height:30px; 
+
+}
+
+#navigation li { display:inline; margin:0 77px; border:0px solid blue; position:relative; top:7px;}
+
+#sns { position:absolute; top:80px; right:25px; }
+#sns li { display:inline; margin-left:10px; }
+#sns li a img { width:30px; height:30px; display:inline; }

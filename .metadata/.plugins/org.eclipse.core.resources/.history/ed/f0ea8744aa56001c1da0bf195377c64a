@@ -1,0 +1,24 @@
+package challenge.svc;
+
+import static challenge.db.JdbcUtil.*;	
+import java.util.*;
+import java.sql.*;
+import challenge.dao.*;
+import vo.*;
+
+public class ChallengeGoodableSvc {
+	public int getChallengeGoodable(int idx) {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		ChallengeGoodableDao challengeGoodableDao = ChallengeGoodableDao.getInstance();
+		challengeGoodableDao.setConnection(conn);
+		result = challengeGoodableDao.getChallengeGoodable(idx);
+		
+		// if(result >= 1) 	commit(conn);		
+		// else				rollback(conn);
+		
+		close(conn);
+		return result;
+	}
+}

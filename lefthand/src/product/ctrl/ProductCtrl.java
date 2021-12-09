@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import product.act.*;
-import product.vo.*;
+import vo.*;
 
 @WebServlet("*.pdt")
 public class ProductCtrl extends HttpServlet {
@@ -28,7 +28,7 @@ public class ProductCtrl extends HttpServlet {
     		action = new PdtListAct();
 			break;
 		case "/pdt_view.pdt" :			
-    		action = new PdtViewAct();		
+    		action = new PdtViewAct();
 			break;
 		}
 		

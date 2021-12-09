@@ -1,0 +1,16 @@
+package member.act;
+
+import javax.servlet.http.*;
+import java.util.*;
+import java.io.*;
+import member.vo.ActionForward;	// 추후에 vo.*로 통합 예정 *****************************************
+
+public class MypageAct implements Action {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward = new ActionForward();
+		forward.setPath("/page/member/mypage.jsp");
+
+		return forward;
+	}
+
+}

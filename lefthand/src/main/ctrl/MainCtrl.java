@@ -4,29 +4,29 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import main.act.*;	import main.vo.*;
+import main.act.*;	
+import vo.*;
 
 
-@WebServlet("/m")
+@WebServlet("/mainPage.go")
 public class MainCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public MainCtrl() {   super();    }
 
     
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-    	request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		String requestUri = request.getRequestURI();		
 		String contextPath = request.getContextPath();
 		String command = requestUri.substring(contextPath.length());
-		// 인덱스에서 보낸 것들을 받음!		
-		
+		// 인덱스에서 보낸 것들을 받음!
+
 		ActionForward forward = null;		// AF 이동방식을 저장하는 클래스
 		Action action = null;				// AF가 구현해야 할 인터페이스
-			
+
 		switch (command) {
-		 case "/m" :	
-			action = new MainAct();			// AF형 인스턴스스를 만들어야 함
+		case "/mainPage.go" :				// 메인 페이지 요청 
+			action = new MainAct();			
 			break;
 		}
 		

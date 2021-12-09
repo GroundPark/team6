@@ -4,7 +4,7 @@ import static member.db.JdbcUtil.*;
 import java.util.*;
 import java.sql.*;
 import member.dao.*;
-import member.vo.*;
+import vo.*;
 
 public class LoginSvc {
 	public MemberInfo getLoginMember(String uid, String pwd) {

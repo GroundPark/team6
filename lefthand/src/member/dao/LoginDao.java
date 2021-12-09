@@ -4,7 +4,7 @@ import static member.db.JdbcUtil.*;
 import java.util.*;
 import javax.sql.*;
 import java.sql.*;
-import member.vo.*;
+import vo.*;
 
 public class LoginDao {
 	private static LoginDao loginDao;

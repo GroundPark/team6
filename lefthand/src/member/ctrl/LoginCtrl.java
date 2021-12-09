@@ -5,7 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import member.svc.*;	// act가 포함된 파일이므로
-import member.vo.*;	// 로그인 후 회원정보를 저장하기 위함
+import vo.*;	// 로그인 후 회원정보를 저장하기 위함
 
 @WebServlet("/login")
 public class LoginCtrl extends HttpServlet {
@@ -21,7 +21,8 @@ public class LoginCtrl extends HttpServlet {
 		String pwd = request.getParameter("pwd").trim();
 		String url = request.getParameter("url").replace("$", "&");
 		// 쿼리스트링이 있는 url의 경우 '&'를 '$'로 변경시켜 받아오기 때문에 다시 '&'로 변경시켜야 함
-		if (url.equals(""))	url = "mainPage.jsp";	// hidden���� �޾ƿ��� ������ null�� �ƴ� �� ���ڿ��� ��
+		// if (url.equals(""))	url = "mainPage.jsp";	// index.jsp로 변경됨
+		 if (url.equals(""))	url = "index.jsp";	
 		// 로그인 후 이동할 경로가 없을 경우 index 화면으로 이동하도록 주소를 지정
 		
 		LoginSvc loginSvc = new LoginSvc();

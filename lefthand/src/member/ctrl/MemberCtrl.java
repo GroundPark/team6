@@ -5,11 +5,11 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import member.act.*;
-import member.vo.*;
+import vo.*;	
 
 @WebServlet("*.mem")
 public class MemberCtrl extends HttpServlet {
-	// 마이페이지로 연결
+// (일단은) 마이페이지로 연결해주는 컨트롤러
 	private static final long serialVersionUID = 1L;
       
     public MemberCtrl() {
@@ -26,11 +26,8 @@ public class MemberCtrl extends HttpServlet {
 		Action action = null;
 		
 		switch (command) {
-		case "/member/member_proc.mem" :		// ?
-		//	action = new MemberProcAct();
-			break;
-		case "/member/mypage.mem" :				// 정보 수정 폼 요청
-		//	action = new MemberProcAct();
+		case "/mypage.mem" :	// 마이페이지로 이동
+			action = new MypageAct();
 			break;
 		}
 		
@@ -50,10 +47,10 @@ public class MemberCtrl extends HttpServlet {
 			}
 		}
     }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}

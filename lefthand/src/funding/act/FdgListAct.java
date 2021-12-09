@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.io.*;
 import funding.svc.*;
-import funding.vo.*;
+import vo.*;
 
 import java.net.*;
 
@@ -22,8 +22,8 @@ public class FdgListAct implements Action {
 		keyword = request.getParameter("keyword");
 		
 		String where = " where fi_isview = 'y' ";
-//		if(!isEmpty(keyword))	where += " and a.pi_name like '%" + keyword + "%' ";
-//		else keyword = "";
+		if(!isEmpty(keyword))	where += " and fi_name like '%" + keyword + "%' ";
+		else keyword = "";
 		
 		String sort = request.getParameter("sort");
 		if(sort == null || sort.equals(""))		sort = "idd";		
@@ -46,7 +46,7 @@ public class FdgListAct implements Action {
 		fdgPageInfo.setCpage(cpage);    fdgPageInfo.setPsize(psize);        fdgPageInfo.setBsize(bsize);
 		fdgPageInfo.setSpage(spage);    fdgPageInfo.setEpage(epage);        fdgPageInfo.setRcnt(rcnt);
 		fdgPageInfo.setPcnt(pcnt);     	fdgPageInfo.setSort(sort);
-//		fdgPageInfo.setKeyword(keyword);
+		fdgPageInfo.setKeyword(keyword);
         
         request.setAttribute("fdgPageInfo", fdgPageInfo);
         request.setAttribute("fdgList", fdgList);

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* schedule.jsp에서 쓸 css */
+
+
+#sch table, #sch th, #sch td {border:1px solid black; text-align:center;}
+#sch {border-collapse:collapse; margin:0 auto; }
+#sch th {height:40px; background:#585858; color:white;}
+#sch td {height:100px; text-align:left;}
+.txtRed a:link{color:red;}
+.txtBlue a:link{color:blue;}
+#today {background:#efefef; font-weight:bold;}
+#ymd {margin:10px auto;}
+#dd {
+	margin-left:-30px;
+}

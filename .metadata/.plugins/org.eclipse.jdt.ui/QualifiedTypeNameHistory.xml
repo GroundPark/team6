@@ -3,4 +3,11 @@
 <fullyQualifiedTypeName name="product.vo.ProductInfo"/>
 <fullyQualifiedTypeName name="challenge.vo.ChallengeInfo"/>
 <fullyQualifiedTypeName name="funding.vo.FundingInfo"/>
+<fullyQualifiedTypeName name="member.vo.MemberInfo"/>
+<fullyQualifiedTypeName name="challenge.vo.ChallengeList"/>
+<fullyQualifiedTypeName name="admin.vo.ActionForward"/>
+<fullyQualifiedTypeName name="admin.act.Action"/>
+<fullyQualifiedTypeName name="admin.act.AdminChallengeListAct"/>
+<fullyQualifiedTypeName name="admin.vo.AdminChallengeList"/>
+<fullyQualifiedTypeName name="vo.ChallengeReplyList"/>
 </qualifiedTypeNameHistroy>

@@ -4,7 +4,7 @@ import static product.db.JdbcUtil.*;
 import java.util.*;
 import java.sql.*;
 import javax.sql.*;
-import product.vo.*;
+import vo.*;
 
 public class ProductDao {
 	private static ProductDao productDao;
@@ -130,41 +130,7 @@ public class ProductDao {
 		return pdt;
 		
 	}
-	
-	public ReviewInfo getRevInfo(String miid, String piid){ 
-	// 후기 정보 가져오는 메소드
-			Statement stmt = null;
-			ResultSet rs = null;
-			ReviewInfo rev = null;
-						
-			try {
-				String sql ="select a.mi_id, b.pi_id, c.rl_content, c.rl_img, c.rl_score, c.rl_good, c.rl_date " + 
-						" from t_member_info a, t_product_info b, t_review_list c , t_product_order_info d" +
-						" where a.mi_id = c.mi_id and b.pi_id = c.pi_id and c.poi_id = d.poi_id and b.pi_isview = 'y'";
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql);			
-				if (rs.next()) {
-					rev = new ReviewInfo();
-					
-					rev.setMi_id(rs.getString("mi_id"));
-					rev.setPoi_id(rs.getString("poi_id"));				rev.setPi_id(rs.getString("pi_id"));
-					rev.setRl_content(rs.getString("rl_content"));		rev.setRl_img(rs.getString("rl_img"));
-					rev.setRl_score(rs.getInt("rl_score"));				rev.setRl_good(rs.getInt("rl_good"));
-					rev.setRl_point(rs.getInt("rl_point"));				rev.setRl_isview(rs.getString("rl_isview"));	
-					rev.setRl_date(rs.getString("rl_date"));					
-				}
-							
-			} catch(Exception e) {
-				System.out.println("productDao : getRevInfo() 에서 에러남");
-				e. printStackTrace();
-			}  finally {
-				close(rs);	close(stmt);
-			}
-			
-			return rev;			
-		}
-	
-	
+		
 	public ArrayList<PdtCata> getCataList(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -193,5 +159,71 @@ public class ProductDao {
 			return cataList;
 		}
 		
+	
+// 후기정보-----------------------------------------------------------------------------------------------------------
+	
+	public int getReviewCount(String piid) {
+		// 해당 상품 리뷰의 총 개수를 리턴하는 메소드
+			Statement stmt = null;
+			ResultSet rs = null;
+			int rrcnt = 0;	
+			
+			try {
+				stmt = conn.createStatement();
+
+				String sql ="select count(*) from t_review_list where pi_id = '" + piid + "' ";
+				rs= stmt.executeQuery(sql);
+				
+				rs.next();	rrcnt = rs.getInt(1);
+				
+			} catch(Exception e) {
+				System.out.println("ProductDao 클래스의 getReviewCount() 메소드 오류");
+				e. printStackTrace();
+			} finally {
+				close(rs);	close(stmt);
+			}
+			
+			return rrcnt;
+			
+		}
+		
+		public ArrayList<ReviewList> getReviewList(String piid, int cpage, int psize){
+		// 목록에서 보여줄 후기목록을 ArrayList<ReviewList>로 리턴하는 메소드
+			Statement stmt = null;	
+			ResultSet rs = null;	
+			ArrayList<ReviewList> reviewList = new ArrayList<ReviewList>();
+			ReviewList review = null;	
+			
+			try {
+				stmt = conn.createStatement();
+				int snum = (cpage - 1) * psize;
+				String sql ="select * from t_review_list " + 
+						" where rl_isview = 'y' and pi_id = '" + piid + "' " +
+						" order by rl_idx desc limit " + snum +", "+ psize;
+				rs= stmt.executeQuery(sql);
+				
+				while (rs.next()) {
+					review = new ReviewList();	
+					
+					review.setRl_idx(rs.getInt("rl_idx"));
+					review.setMi_id(rs.getString("mi_id"));
+					review.setRl_content(rs.getString("rl_content"));
+					review.setRl_img(rs.getString("rl_img"));
+					review.setRl_score(rs.getInt("rl_score"));
+					review.setRl_good(rs.getInt("rl_good"));
+					review.setRl_isview(rs.getString("rl_isview"));
+					review.setRl_date(rs.getString("rl_date"));
+					
+					reviewList.add(review);
+				}	
+				
+			} catch(Exception e) {
+				System.out.println("ProductDao 클래스의 getReviewList() 메소드 오류");
+				e. printStackTrace();
+			} 
+			
+			return reviewList;
+					
+		}
 	
 }

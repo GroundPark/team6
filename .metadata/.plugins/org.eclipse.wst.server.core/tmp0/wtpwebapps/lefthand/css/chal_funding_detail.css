@@ -3,27 +3,38 @@
 * { box-sizing:border-box; }
 
 
-a:link { color:#000; text-decoration:none; }
-a:visited { color:#000; text-decoration:none; }
-a:hover { color:#000; text-decoration:none }
-a:focous { color:#000; text-decoration:none; }
-a:active { color:#000; text-decoration:none; }
+header {	
+	width:100%;	
+	margin:0 auto;
+	background:#F4EEE0;
+}
 
 /* ------------------------ 도전펀딩 상세보기 ------------------------ */
 /* 게시글 */
-.chalfunding_detail { width:1200px; margin:150px auto;}
+.chalfunding_detail { width:1200px; margin:100px auto;}
 .chg_top_area { height:200px; border-bottom:1px solid #ddd; position:; margin-bottom:40px; }
-.chg_info { margin-top:10px; border:0px solid black; padding:50px 0; text-align:center; }
+.chg_info { margin-top:10px; border:0px solid black; padding:50px 0; text-align:left; }
 .chg_chat { margin-top:10px; border:1px solid #ddd; }
 
 .chg_titl_area { display:inline-block; width:1000px; }
 .title_area {  font-size:40px; padding-top:5px; font-weight:bold; }
-.sym_cnt, .period_area { color:#5A5A5A; font-weight:bold; font-size:1.2em; }
+.sym_cnt, .period_area { color:#5A5A5A; font-weight:bold; font-size:18px; }
 .sym_cnt{ padding-top:30px; padding-bottom:5px; }
 .sym_button { border:0; background:#fff; float:right; margin-top:30px; font-size:0.8em; }
 
 .info_desc_area { border:0px solid black; width:100%; margin-top:30px; letter-spacing:0.1em; line-height:1.4em; text-align:left; }
 .chg_chat_area { background:#ddd; width:100%; line-height:50px; font-weight:bold; }
+
+.chal_info_content{ 
+	font-size:20px; width:70%; 
+	margin:0 auto; 
+	margin-top:24px;
+	margin-bottom:36px;
+	}
+
+.info_img_area{
+	text-align:center;
+}
 
 /* 댓글창 구현 */
 .outerBox { margin:20px; }
@@ -42,3 +53,6 @@ a:active { color:#000; text-decoration:none; }
 #writeBox { display:flex; }
 #writeBox #write { font-size:25px; padding:10px; height:170px; }
 #writeBox #btn { margin-left:10px; width:140px; height:170px; font-size:20px;}
+
+a {text-decoration:none; }
+/* css 꼬였을때 a태그 밑줄 계속 안사라져서 걍 날림 */

@@ -1,0 +1,36 @@
+package challenge.act;
+
+import javax.servlet.http.*;
+import vo.*;
+import java.util.*;
+import challenge.svc.*;
+import java.io.*;
+
+public class ChallengeReplyInAct implements Action{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+	
+		HttpSession session = request.getSession();
+		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
+		
+		String miid = memberInfo.getMi_id();
+		String cridx = request.getParameter("cridx");
+		String crcontent = request.getParameter("crcontent");
+		String ciidx = request.getParameter("ciidx");
+	
+		
+		ChallengeReplySvc challengeReplySvc = new ChallengeReplySvc();		
+		// 댓글 관련 삽입삭제 하기 전 검사는 귀찮아서 안함
+		ChallengeReplyList challengeReplyList = new ChallengeReplyList();
+		challengeReplyList.setCr_idx(Integer.parseInt(cridx));
+		challengeReplyList.setCi_idx(Integer.parseInt(ciidx));
+		
+		
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("/page/challenge/chal_funding_view.jsp");
+
+		
+		return forward;
+	}
+}

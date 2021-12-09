@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="admin.vo.*" %>
+<%@ page import="vo.*" %>
 <%
-MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
-if (memberInfo != null) {
+AdminInfo adminInfo = (AdminInfo)session.getAttribute("adminInfo");
+if (adminInfo != null) {
 	out.println("<script>");
 	out.println("alert('잘못된 경로로 들어오셨습니다.');");
 	out.println("history.back();");
@@ -33,7 +33,7 @@ label { font-size:13px; }
 </style>
 </head>
 <body>
-<form name="loginFrm" action="../backLogin" method="post">
+<form name="loginFrm" action="../adminLogin" method="post">
 	<fieldset id="fldset">
 		<h2>관리자<br />로그인</h2>
 		<div class="col" id="col1">

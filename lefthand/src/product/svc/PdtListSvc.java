@@ -4,7 +4,7 @@ import static product.db.JdbcUtil.*;
 import java.util.*;
 import java.sql.*;
 import product.dao.*;
-import product.vo.*;
+import vo.*;
 
 public class PdtListSvc {
 	public int getPdtCount(String where) {

@@ -1,0 +1,152 @@
+package challenge.act;
+
+import javax.servlet.http.*;
+import vo.*;
+import java.util.*;
+import challenge.svc.*;
+import java.io.*;
+import java.net.*;
+
+public class ChallengeListAct implements Action{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		ArrayList<ChallengeList> challengeList = new ArrayList<ChallengeList>();
+			
+		int cpage = 1, psize = 12, bsize = 10, spage, epage, rcnt, pcnt;		
+		if(request.getParameter("cpage") != null)
+			cpage = Integer.parseInt(request.getParameter("cpage"));
+		
+		 if(request.getParameter("psize") != null)
+			psize = Integer.parseInt(request.getParameter("psize"));
+		
+		 String keyword;
+		 keyword = request.getParameter("keyword");		
+		 String schtype = request.getParameter("schtype");
+		 String sort = request.getParameter("sort");
+		 
+		 String where = " where ci_isview = 'y' ";
+		 if(!isEmpty(keyword))	where += " and ci_title like '%" + keyword + "%' ";
+		 else keyword = "";
+		 
+		String sort2 = "";
+
+		if(sort == null || sort.equals("") || sort.equals("chal_idxd")) {
+			sort = " ci_idx desc ";
+			sort2 = "chal_idxd";
+		}else if(sort.equals("chal_goodd")) {
+			sort = " ci_good desc ";
+			sort2 = "chal_goodd";
+		}else if(sort.equals("chal_edated")) {
+			sort = " ci_edate desc ";
+			sort2 = "chal_edated";
+		}
+
+		String order = " order by " + sort;
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 String step = request.getParameter("step");		//0 전체, 1 1차, 2 2차
+		 String status = request.getParameter("status");	// c확정		b마감
+ 
+		 
+		
+		 if(step == null || step.equals("0")) {
+			 where += " ";
+			 request.setAttribute("chalsearch", "0");
+		 }else if(step.equals("1")) {
+			 where = " where ci_step = 1 ";
+			 request.setAttribute("chalsearch", "1");
+		 }else if(step.equals("2")) {
+			 where = " where ci_step = 2 ";
+			 request.setAttribute("chalsearch", "2");
+		 }
+		 
+
+		 if(status == null) {
+			 where += " ";
+		 }else if(status.equals("c")) {
+			 where = " where ci_status = 'c' ";
+			 request.setAttribute("chalsearch", "c");
+		 }else if(status.equals("b")) {
+			 where = " where ci_status = 'b' ";
+			 request.setAttribute("chalsearch", "b");
+		 }
+		 
+		
+		 
+		 
+		 
+		 
+		 
+		
+		
+		//String order = " order by ci_" + sort.substring(0, sort.length() - 1) 
+		// + (sort.charAt(sort.length() - 1) == 'a' ? " asc" : " desc");
+		String order = "";
+		
+		if(sort == null || sort.equals("")) {		// 기본 sort.. 딱히 안건드림
+			sort = "idx";				// idx로 수정함!
+			order = " order by ci_" + sort.substring(0, sort.length() - 1) 
+			+ (sort.charAt(sort.length() - 1) == 'a' ? " asc" : " desc");
+			// order = " order by ci_idx desc ";
+			request.setAttribute("chalsort", "idx");
+		}
+		
+		if(sort.equals("idx") ) {
+			order = " order by ci_idx desc ";		// 최신순
+			request.setAttribute("chalsort", "idx");
+		}
+		
+		if(sort.equals("good") ) {					// 인기
+			order = " order by ci_good desc ";
+			request.setAttribute("chalsort", "good");
+		}
+		
+		if(sort.equals("edate")) {					// 마감임박에서 마감일 순으로 바꿈... 마감임박은 검색 + 정렬해야됨		
+			// order = " order by CURDATE() - ci_edate ";
+			order = " order by ci_edate desc ";
+			request.setAttribute("chalsort", "edate");
+		}
+		
+		// 다 만들고보니 select값 주는걸 깜빡해서 대충 request에 담아서 줬음 
+		
+		
+		ChallengeListSvc challengeListSvc = new ChallengeListSvc();
+		rcnt = challengeListSvc.getChallengeCount(where);		
+		
+		challengeList = challengeListSvc.getChallengeList(where, order, cpage, psize);
+		
+		pcnt = rcnt / psize;
+		if(rcnt % psize > 0)	pcnt++;				
+		spage = (cpage - 1) / bsize * bsize + 1;	
+		epage = spage + bsize - 1;
+		if(epage > pcnt)	epage = pcnt;			
+		
+		ChallengePageInfo challengePageInfo = new ChallengePageInfo();
+		challengePageInfo.setCpage(cpage);    challengePageInfo.setPsize(psize);        challengePageInfo.setBsize(bsize);
+		challengePageInfo.setSpage(spage);    challengePageInfo.setEpage(epage);        challengePageInfo.setRcnt(rcnt);
+		challengePageInfo.setPcnt(pcnt);      challengePageInfo.setSort(sort2);
+		challengePageInfo.setKeyword(keyword);
+		    
+        request.setAttribute("challengePageInfo", challengePageInfo);
+        request.setAttribute("challengeList", challengeList);
+        
+        ActionForward forward = new ActionForward();
+		forward.setPath("/page/challenge/chal_funding_list.jsp");
+		
+		return forward;
+	}
+	
+	private boolean isEmpty(String str) {		
+		boolean empty = true;
+		if(str != null && !str.equals("")) empty = false;
+		return empty;
+	}
+	
+}

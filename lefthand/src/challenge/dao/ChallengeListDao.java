@@ -4,7 +4,7 @@ import static challenge.db.JdbcUtil.*;
 import java.util.*;
 import java.sql.*;
 import challenge.dao.*;
-import challenge.vo.*;
+import vo.*;
 
 public class ChallengeListDao {
 	private static ChallengeListDao challengeDao;
@@ -35,7 +35,7 @@ public class ChallengeListDao {
 			rcnt = rs.getInt(1);
 			
 		}catch(Exception e) {
-			System.out.println("challengeDao : getChallengeCount() 에서 에러남");			
+			System.out.println("challengeListDao : getChallengeCount() 에서 에러남");			
 			e.printStackTrace();
 		}finally {
 			close(rs);	close(stmt);
@@ -51,15 +51,13 @@ public class ChallengeListDao {
 		ChallengeList challenge = null;
 		
 		try {
-		//	String sql = "select * from t_challenge_info " +
-		//					where + order + " limit " + ((cpage - 1) * psize) + ", " + psize;
 			int snum = (cpage - 1) * psize;
 
 			String sql = "select * " + 
 					" from t_challenge_info " + 
-					where +
-					" order by ci_idx desc " + 
+					where + order +
 					" limit " + snum + ", " + psize;
+		// System.out.println("리스트 search&sort : " +sql);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -77,6 +75,7 @@ public class ChallengeListDao {
 					challenge.setCi_status(rs.getString("ci_status"));
 					challenge.setCi_isview(rs.getString("ci_isview"));
 					
+
 		            challengeList.add(challenge);
 				}
 			}catch(Exception e) {

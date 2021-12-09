@@ -1,1 +1,10 @@
 1638074775052	Rename type 'ChallengeReply'
+1638088368955	Delete element
+1638088798737	Move 'chal_funding_in_form.jsp' to 'challenge'
+1638088816473	Move 'chal_funding_up_form.jsp' to 'challenge'
+1638171528587	Delete element
+1638171534610	Delete element
+1638177330196	Delete element
+1638186557479	Delete element
+1638241277775	Rename type 'Admin_ChallengeCtrl'
+1638260681565	Rename type 'ChallengeList'

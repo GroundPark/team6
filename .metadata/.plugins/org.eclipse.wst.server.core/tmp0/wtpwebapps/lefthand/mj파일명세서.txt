@@ -1,0 +1,48 @@
+lefthand 파일 명세서
+
+[프론트]
+
+(완)로그인 및 로그아웃 : login_form.jsp, logout.jsp
+ - 정보 : MemberInfo
+ - 로그인 : LoginCtrl, LoginSvc - /login(맵핑을 의미)
+ - 마이페이지(mypage.mem)
+ - DB : LoginDao 
+
+
+(완)마이 페이지 : /page/member/mypage.jsp
+- 컨트롤러 : MemberCtrl - *.mem
+- 마이페이지로 연결 : MypageAct
+
+
+(미완)주문 : 장바구니(입력, 수정, 삭제, 화면), 결제화면(배송지, 결제 정보, 구매할 상품 정보들), 결제처리(입력처리)
+  - 정보 : ProductInfo, CartInfo
+  - 컨트롤러 : OrderCtrl - *.ord
+  - 장바구니 화면(cart_list.ord) : CartListAct, CartListSvc, cart_list.jsp
+  - 장바구니 담기, 수정, 삭제(cart_proc.ord) : CartProcAct, CartProcSvc
+  - 결제화면(order_form.ord) : OrderFormAct, OrderFormSvc, order_form.jsp
+  - 결제처리(order_proc.ord) : OrderProcAct, OrderProcSvc
+  - DB : OrderDao 
+
+
+[장바구니 기능 체크리스트] ; args 일단 빼고 만듦
+1. 장바구니에 담긴 총 상품 개수 출력 O
+2. 체크박스 O
+3. 상품 이미지 클릭 시 상세보기(view) 페이지로 이동 X(미해결ㅠㅠ)
+4. 수량변경 O
+5. 총 구매가격 30,000이상 시 무료배송, 아니면 배송비 2,500원 O
+6. 상품 개별 삭제 및 선택 삭제 O
+7. 선택 상품 구매 및 전체 구매 클릭 시 주문 페이지로 이동 -(지금 주문창 구현 중)
+8. 계속 쇼핑 클릭 시 상품 리스트 화면으로 이동 O
+
+
+
+
+[어드민] - (예정)
+
+상품 주문관리 : 주문 리스트, 주문 상세(주문상태 수정)
+ - 정보 : OrderInfo, OrderDetail
+ - 컨트롤러 : backOrderCtrl - *.ordb
+ - 주문 목록 화면(order_list.ordb) : OrderListAct, OrderListSvc, OrderListDao
+ - 주문 상세 보기, 수정 (order_proc.ordb) : OrderProcAct, OrderProcSvc, OrderProcDao
+
+펀딩 주문관리

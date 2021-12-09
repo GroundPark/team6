@@ -4,7 +4,7 @@ import static funding.db.JdbcUtil.*;
 import java.util.*;
 import java.sql.*;
 import funding.dao.*;
-import funding.vo.*;
+import vo.*;
 
 public class FdgListSvc {
 	public int getFdgCount(String where) {

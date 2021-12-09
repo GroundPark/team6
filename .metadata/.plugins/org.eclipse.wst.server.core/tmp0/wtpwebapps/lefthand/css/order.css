@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* 주문 폼 관련 CSS */
+#orderFrmBox { border:0px solid black; width:1000px; margin:30px auto; }
+#orderFrmBox h2 { font-weight:bold; font-size:1.7em; margin-bottom:30px; padding-bottom:20px; border-bottom:5px solid black; }
+#orderFrmBox h3 { font-weight:bold; font-size:1.1em; margin-bottom:10px; padding-bottom:10px; }
+
+#cartTable { margin-bottom:30px; }
+#cartTable th { border-top:2px #efefef solid; border-bottom:2px #efefef solid; text-align:center; 
+				font-weight:bold; padding:10px 0; background-color:#f5f5f5; }
+#cartTable td { border-bottom:1px #efefef solid; padding:15px 0; }
+.highlight2 { color:red; font-weight:bold; font-size:1em; }
+
+#deliTable { margin-bottom:30px; }
+#deliTable tr:first-child td { border-top:2px solid #efefef;  }
+#deliTable th { font-weight:bold; padding:20px 0 20px 20px; background-color:#f5f5f5; 
+				border-top:2px solid #efefef; border-bottom:1px solid #efefef; }
+#deliTable td { padding:20px 0 20px 20px; border-bottom:1px solid #efefef; }
+#deliTable input, select { padding:3px; border:1px solid #c1c1c1; }
+#poi_zip { margin-bottom:5px; }
+#poi_addr1, #poi_addr2 { width:400px; margin-bottom:5px; }
+#use_pnt { width:80px; margin-top:5px; margin-bottom:5px; }
+#left_pnt { color:red; font-weight:bold; }
+#totalPay { font-weight:bold; font-size:1.3em; } 
+#highlight { color:red; font-size:1.3em; }
+.btn { border:1px solid #aaa; padding:5px; width:100px; }
+
+#caution { margin-top:10px; color:red; font-size:0.9em; }
+
+/* 주문 성공 관련 CSS */
+#orderSuccessBox { border:0px solid black; width:1000px; margin:30px auto; }
+#orderSuccessBox h2 { font-weight:bold; text-align:center; font-size:2em; margin-bottom:20px; padding-bottom:20px; border-bottom:2px dotted #c1c1c1; }
+#orderSuccessBox h3 { font-weight:bold; font-size:1.1em; margin-bottom:5px; padding-bottom:10px; }
+#orderSuccessBox #orderNum { font-weight:bold; font-size:1.5em; margin-bottom:30px; }
+
+#successTable { margin-bottom:30px; }
+#successTable th { border-top:2px #efefef solid; border-bottom:2px #efefef solid; text-align:center; 
+				font-weight:bold; padding:5px 0; background-color:#f5f5f5; }
+#successTable td { border-bottom:1px #efefef solid; padding:10px 0; }
+
+#orderSuccessBox .box { border:1px dotted #c1c1c1; width:100%; padding:10px; margin-bottom:20px; line-height:1.5em; }

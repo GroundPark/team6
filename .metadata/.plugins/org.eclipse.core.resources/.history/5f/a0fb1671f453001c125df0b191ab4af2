@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+* { box-sizing:border-box; }
+
+
+
+/* ------------------------ 도전펀딩 상세보기 ------------------------ */
+/* 게시글 */
+.chalfunding_detail { width:1200px; margin:100px auto;}
+.chg_top_area { height:200px; border-bottom:1px solid #ddd; position:; margin-bottom:40px; }
+.chg_info { margin-top:10px; border:0px solid black; padding:50px 0; text-align:left; }
+.chg_chat { margin-top:10px; border:1px solid #ddd; }
+
+.chg_titl_area { display:inline-block; width:1000px; }
+.title_area {  font-size:40px; padding-top:5px; font-weight:bold; }
+.sym_cnt, .period_area { color:#5A5A5A; font-weight:bold; font-size:18px; }
+.sym_cnt{ padding-top:30px; padding-bottom:5px; }
+.sym_button { border:0; background:#fff; float:right; margin-top:30px; font-size:0.8em; }
+
+.info_desc_area { border:0px solid black; width:100%; margin-top:30px; letter-spacing:0.1em; line-height:1.4em; text-align:left; }
+.chg_chat_area { background:#ddd; width:100%; line-height:50px; font-weight:bold; }
+
+.chal_info_content{ 
+	font-size:20px; width:70%; 
+	margin:0 auto; 
+	margin-top:24px;
+	margin-bottom:36px;
+	}
+
+.info_img_area{
+	text-align:center;
+}
+
+/* 댓글창 구현 */
+.outerBox { margin:20px; }
+.innerBox { display:flex; }
+.innerBox #init { font-weight:bold; font-size:50px; position:absolute; margin-left:35px; margin-top:17px; }
+.innerBox #txtBox1 { width:450px; margin:10px 0 0 30px ; }
+.chat_txt { line-height:1.5em; }
+#txtBox1 #txt1 { background:#eee; width:440px; margin-left:10px; padding:10px 20px; }
+#txtBox1 #txt1 p:first-child, #txtBox2 #txt2 p:first-child { color:#5A5A5A; font-size:17px; }
+
+.innerBox2 { margin:10px 0; display:flex; justify-content:flex-end; }
+.innerBox2 #init2 { font-weight:bold; font-size:50px; position:absolute; margin-right:30px; margin-top:20px; }
+.innerBox2 #txtBox2 { width:450px; margin:10px 30px 0 0; }
+#txtBox2 #txt2 { background:#ffc000; width:437px; margin-left:0px; padding:10px 20px; }
+
+#writeBox { display:flex; }
+#writeBox #write { font-size:25px; padding:10px; height:170px; }
+#writeBox #btn { margin-left:10px; width:140px; height:170px; font-size:20px;}
+
+a {text-decoration:none; }
+/* css 꼬였을때 a태그 밑줄 계속 안사라져서 걍 날림 */

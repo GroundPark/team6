@@ -1,6 +1,7 @@
+<%@ page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="product.vo.*" %>
+<%@ page import="vo.*" %>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -27,11 +28,8 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/mainSlide.css" />
 	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/footer.css" />
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="js/mainSlide.js"></script>
@@ -40,27 +38,42 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 	
 <style>
 
-.maindiv{
-	height: 3000px;	width:1200px; margin: 0 auto;
-	background-color:#d3d3d3;
-}
-
 #align { width:1160px; align:right; }	
 
 .pdt_contents {
 	width:1200px;  margin: 0 auto;
 	overflow:hidden;
-	height:100%;	
-	
+	height:100%;		
 	padding-bottom:300px;
 	position:relative;
 }
 
-.pdt { margin:20px; border:1px black solid; float:left; font-size:1.4em; }
+.pdt { margin:30px 20px 0 20px; float:left; font-size:1.4em; }
 
-.pdt_price { text-decoration:line-through; color:gray; font-size:0.9em; }
+#pdt_img_box { position:relative; }
+#pdt_img { border:1px solid black; }
+#pdt_zzim {
+	position:absolute;
+	background:none;
+	border:1px solid #d1d1d1;
+	outline:none;
+	top:90%;
+	left:87%;
+	width:35px;
+	height:30px;
+	padding:0;
+    cursor: pointer;
+}
+.pdt_title { margin-top:15px; }
+#pdt_name { font-weight:bold; display:inline-block; margin-bottom:6px; text-align:right; }
 
-.pdt_real_price { color:red; font-size:1.2em; }
+
+#pdt_price1 { 
+	text-decoration:line-through; color:gray; font-size:0.9em; display:inline-block; margin:0 10px 0 -30px; 
+}
+#pdt_price2	{ color:red; font-size:1.2em; display:inline-block; }
+
+.pdt_real_price { color:red; font-size:1.1em; }
 
 .page_wrapper {
 	position:absolute;
@@ -101,33 +114,45 @@ if(pdtList.size() > 0){
 	for(int i = 0 ;i < pdtList.size(); i++){
 		ProductInfo pi = pdtList.get(i);
 		String lnk = null;
-		if(pi.getPi_stock() != 0){		// 상품의 재고가 남아있는 경우... 무제한이 -1
-			lnk = "<a href=\"/pdt_view.pdt" + args + "&piid=" + pi.getPi_id() + "&sort=" + pdtPageInfo.getSort() +
+		if(pi.getPi_stock() != 0){		
+			lnk = "<a href=\"pdt_view.pdt" + args + "&piid=" + pi.getPi_id() + "&sort=" + pdtPageInfo.getSort() +
 					"&psize=" +pdtPageInfo.getPsize() + "\">";
-		}else{		// 상품의 재고가 없는 품절일 경우
+		}else{		
 			lnk = "<a href=\"javascript:alert('품절된 상품입니다.');\">";
 		}
 		
 		if(pdtPageInfo.getPsize() == 12) {
-		// 한 페이지에 12개의 상품 목록을 보여줄 경우(한 줄에 3개씩 보여줌)
+		
 			if(i % 3 == 0)		out.println("<div align='center'>");
+		
+		// 숫자에 콤마 찍기위한 인스턴스
+		DecimalFormat decFormat = new DecimalFormat("###,###");
+		int price = pi.getPi_price();
 %>
+
 <div class="pdt">
-	<%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:350px; height:350px; padding-bottom:25px;" /><br />
-	<%=pi.getPi_name() %></a><br /><span class="pdt_price"><%=pi.getPi_price() %> 원</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=(int)(pi.getPi_price() * (1-pi.getPi_discount()))  %> 원
+	<div id="pdt_img_box">
+		<div id="pdt_img"><%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:350px; height:350px; padding-bottom:10px;" /></div>
+		<button type="button" id="pdt_zzim" value="하트"><img src="img/pdt_heart_empty.png " width="28px" height="24px"/></button>
+	</div>
+	<div class="pdt_title"><span id="pdt_name"><%=pi.getPi_name() %></span></a><br />
+	<span id="pdt_price1"><%=decFormat.format(price) %>원</span>  
+	<span id="pdt_price2"><%=decFormat.format((int)(pi.getPi_price() * (1-pi.getPi_discount()))) %>원</span></div>
 </div>
 
 <%
 			if(i % 4 == 3) 	out.println("</div>");
-		}
+			if(i == pdtList.size() - 1 && i % 4 != 3){	
+				// 현재 출력하는 데이터가 pdtList의 마지막 데이터이면서 3칸을 모두 채우지 못했을 경우
+				out.println("</div>");
+	}
+	}
 	}
 
 }else{
 	out.println("<div>검색된 상품이 없습니다.</div>");
 }
 %>
- 
-</div>
 
 <%
 if (pdtList.size() > 0){
@@ -165,7 +190,7 @@ if (pdtList.size() > 0){
 	out.println("</div>");
 }
 %>
-
+</div>
 </div>
 <!-- ------------------------------------------------------------------------------------------------ -->
 </main>

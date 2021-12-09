@@ -4,7 +4,7 @@ import static challenge.db.JdbcUtil.*;
 import java.util.*;
 import java.sql.*;
 import challenge.dao.*;
-import challenge.vo.*;
+import vo.*;
 
 public class ChallengeListSvc {
 	public int getChallengeCount(String where) {

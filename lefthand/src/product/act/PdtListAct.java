@@ -1,7 +1,7 @@
 package product.act;
 
 import javax.servlet.http.*;
-import product.vo.*;
+import vo.*;
 import java.util.*;
 import product.svc.*;
 import java.io.*;

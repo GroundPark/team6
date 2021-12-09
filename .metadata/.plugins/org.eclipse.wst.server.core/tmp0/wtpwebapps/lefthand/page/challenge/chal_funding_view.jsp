@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="challenge.vo.*" %>
+<%@ page import="vo.*" %>
 <%@ page import="java.util.*" %>
 <%
 request.setCharacterEncoding("utf-8");
 ChallengePageInfo challengePageInfo = (ChallengePageInfo)request.getAttribute("challengePageInfo");	// 페이징 정보
-// ChallengeInfo challenge = (ChallengeInfo)request.getAttribute("challengeInfo");
-// ChallengeList challenge = (ChallengeList)request.getAttribute("challenge");		// 게시글 정보가 들어있는 인스턴스
 
 ChallengeInfo challengeDetail = (ChallengeInfo)request.getAttribute("challengeDetail");		// 게시글 정보가 들어있는 인스턴스
 if(challengeDetail == null){
@@ -17,81 +15,178 @@ if(challengeDetail == null){
 }
 ArrayList<ChallengeReplyList> challengeReplyList = (ArrayList<ChallengeReplyList>)request.getAttribute("challengeReplyList"); // 댓글 정보
 
+ChallengeGoodable goodable = (ChallengeGoodable)request.getAttribute("goodable");
+
 //String args = "?cpage=" + challengePageInfo.getCpage();		
 // if(challengepageInfo.getKeyword() != null && !challengepageInfo.getKeyword().equals("")){
 // 	args += "&schtype=" + challengepageInfo.getSchtype() + "&keyword=" + challengepageInfo.getKeyword();
 // }	// 검색 조건이 있을 경우에만 쿼리스트링으로 만들어 줌
 
-// String kind = "단순공지";
-// if (notice.getNl_kind().equals("b"))			kind="이벤트";
-// else if (notice.getNl_kind().equals("c"))		kind="상품관련";
-// else if (notice.getNl_kind().equals("d"))		kind="보도자료";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/footer.css" />
-<link rel="stylesheet" type="text/css" href="css/chal_funding_detail.css" />
-<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
+	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
+	<link rel="stylesheet" type="text/css" href="css/chal_funding_detail.css" />
 
-<style>
-body {
-	position:relative;
-	padding-bottom:80px;
-}
-</style>
 <script src="js/jquery-3.6.0.js"></script>
-<script>
-/* 댓글 300자 제한 */
-$(document).ready(function() {
-    $('#write').on('keyup', function() {
-        $('#write_cnt').html("("+$(this).val().length+" / 300)");
- 
-        if($(this).val().length > 300) {
-            $(this).val($(this).val().substring(0, 300));
-            $('#write_cnt').html("(300 / 300)");
-        }
-    });   
-});
 
-function reg_reply(){
-	// 댓글을 update하고 이 페이지를 새로고침하여 표시하는게 쉬운가? 좀 걸려도 ajax같은 걸 써서 해야하는가? 보류...
-	alert("버튼 테스트");
-	location.reload();
-}
-</script>
 </head>
 <body>
+<header>
 <%@ include file="../../include/header.jsp" %>
+</header>
+<script>
+/* 댓글 300자 제한 */
+ <%
+ int myCridx = ( challengeReplyList.size() == 0 ) ? 
+		 						-1 : challengeReplyList.get(challengeReplyList.size() - 1).getCr_idx();
+
+ %>	
+ $(document).ready(function() {
+	    $('#write').on('keyup', function() {
+	        $('#write_cnt').html("("+$(this).val().length+" / 300)");
+	 
+	        if($(this).val().length > 300) {
+	            $(this).val($(this).val().substring(0, 300));
+	            $('#write_cnt').html("(300 / 300)");
+	        }
+	    });  
+	    
+	    
+	});
+
+ 
+function replyreg(){
+	<%
+    if (!isLogin) {
+    %>
+    alert("로그인 후 사용하세요.");
+	location.href="login_form.jsp";
+	<%
+	} else {
+	%>
+    var getReplyContent = $("#write").val();
+    $.ajax({
+    	type : "POST",
+		url: "chal_reply_in.chal",
+		data : { 
+			"ciidx" : "<%=challengeDetail.getCi_idx() %>",	
+			"cridx" : "<%=myCridx %>",
+			"crcontent" : getReplyContent 
+			},
+		success: function() {
+			location.reload();
+		}
+	});
+    <% } %>
+}
+
+
+function callDel(){
+	if(confirm("정말 삭제하시겠습니까?")){
+		location.href="chal_del_proc.chal?ciidx=<%=challengeDetail.getCi_idx() %>";
+	}
+}
+
+
+<%
+int isgood = 0;
+
+System.out.println("도전펀딩 ajax용 검사값 " + goodable.getCg_history());
+
+isgood = goodable.getCg_history();
+%>	
+
+
+// 실력딸려서 걍 다 나누고 작업함!
+function heartFlag(obj, idx) {		
+	var flag = false;
+	flag = !flag;
+	
+	if (flag) { 		// 좋아요 하트 누르면
+		obj.src="img/chal_heart_full.png";	
+		$.ajax({
+			type : "POST",									
+			url : "chal_view_good.chal",				
+			data : {
+				"ci_idx" : idx,	
+				"cg_history" : "1"				// 누르면 1
+					},										
+			success : function(chkRs) {					
+				if (chkRs == 0)	 	alert("좋아요 추가 실패");
+				else 				location.reload();
+			}
+		});
+	}
+}
+
+function heartFlag2(obj, idx) {	
+	var flag2 = false;
+	flag2 = !flag2;
+	if (flag2) {				// 좋아요 하트 취소하면
+		obj.src="img/chal_heart_empty.png";	
+		$.ajax({
+			type : "POST",								
+			url : "chal_view_good_cancel.chal",				
+			data : {
+				"ci_idx" : idx,	
+				"cg_history" : "0"				// 취소하면 0
+			},										
+			success : function(chkRs) {						
+				if (chkRs == 0)	 	alert("좋아요 없애기 실패");
+				else 				location.reload();
+			}
+		});
+	}
+}
+
+
+
+</script>
 <!-- 도전펀딩 영역 시작  -->
-<article class="chalfunding_detail">
-	<div class="chalfunding_detail_inner">
+<article class="chalfunding_detail" >
+	<div class="chalfunding_detail_inner" >
 		<!-- 도전펀딩 제목 영역 시작  -->
 		<section class="chg_top">
 			<div class="chg_top_area">
 				<div class="chg_titl_area">
 					<p class="period_area">[ 차수 : <%=challengeDetail.getCi_step() %>차 ] </p>
-					<p class="period_area"><%=challengeDetail.getCi_sdate() %> ~ <%=challengeDetail.getCi_edate() %></p>
+					<p class="period_area"><%=challengeDetail.getCi_sdate().substring(0 , 10) %> ~ <%=challengeDetail.getCi_edate().substring(0 , 10) %></p>
 					<!-- TODO null 해결하고 .substring(0 , 10) 뒤에 붙일것 -->
 					<p class="title_area"><%=challengeDetail.getCi_title() %></p>
 					<p class="sym_cnt"> 작성자 : <%=challengeDetail.getMi_id() %></p>
 				</div>
-				<button class="sym_button"><img src="img/heart_empty.png" width="100" height="90" /><br /><br /><p style="font-size:20px">공감( <%=challengeDetail.getCi_good() %> )</p></button>
+				<button class="sym_button" style=" margin-right:30px; ">		
+				<% if( isgood == 0) { %>
+				<img src="img/chal_heart_empty.png" width="100" height="90" 
+				onclick="heartFlag(this, <%=challengeDetail.getCi_idx() %>);" style="cursor:pointer;" /><br /><br />
+				<% } else { %>
+				<img src="img/chal_heart_full.png" width="100" height="90" 
+				onclick="heartFlag2(this, <%=challengeDetail.getCi_idx() %>);" style="cursor:pointer;" /><br /><br />
+				<% } %>
+				<p style="font-size:20px">공감( <%=challengeDetail.getCi_good() %> )</p></button>			
 			</div>
 		</section>
 		<!-- 도전펀딩 제목 영역 종료  -->
 		<!-- 도전펀딩  설명 영역 시작 -->
 		<section class="chg_info">
-			<div class="info_img_area"><img src="page/challenge/userimg/<%=challengeDetail.getCi_img() %>" width="500" height="500" style="margin-bottom: 30px;" />
+			<% if(!challengeDetail.getCi_img().equals("null")) { %>
+			<div class="info_img_area">
+			<img src="page/challenge/userimg/<%=challengeDetail.getCi_img() %>" width="500" height="500" style="margin-bottom: 30px;" />
+			</div>
+			<% } %>
 			<div class="chal_info_content"><%=challengeDetail.getCi_content().replace("\r\n", "<br />") %>
-			<!-- TODO 더미데이터 작성할때 우리 평범하게 게시판 글싸는것처럼 한다음 스타일 어떻게 할지 생각 : 지금은 그냥 가운데 정렬됨 -->
 			</div>
-			</div>
+			
 		</section>
+		<% if (challengeDetail.getMi_id().equals(memberInfo.getMi_id())) { %>
+		<div class="btn_chal_callDel" style="text-align:right;"><input type="button" value="글 삭제" onclick="callDel();" style="padding:20px 30px; margin:0 30px; "/></div>
+		<% } else { %>
+		<div class="btn_chal_callDel" style="text-align:right;"></div>
+		<% } %>
 		<!-- 도전펀딩  설명 영역 종료 -->
 		<!-- 도전펀딩 채팅 영역 시작 -->
 		<section class="chg_chat">
@@ -137,12 +232,12 @@ for(int i=0;i<challengeReplyList.size(); i++){
 	}
 
 }else{
-	out.println("<div>댓글이 없습니다.</div>");
+	out.println("<div style='padding:32px 0 48px 0; text-align:center; font-size:1.3em;'>댓글이 없습니다.</div>");
 }
 %>			
 				<div id="writeBox">
 					<textarea id="write" name="write" cols="77" rows="6"></textarea>
-					<input type="button" value="등록" id="btn" onclick="reg_reply();" /><br />
+					<button id="btn" onclick="replyreg()">등록</button><br />
 				</div>
 					<div id="write_cnt">(0 / 300)</div>
 			</div>

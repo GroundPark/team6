@@ -1,0 +1,12 @@
+package admin.act;
+
+import javax.servlet.http.*;
+import vo.*;
+import java.util.*;
+import admin.svc.*;
+import java.io.*;
+import java.net.*;
+
+public class AdminChallengeManageReplyAct {
+
+}

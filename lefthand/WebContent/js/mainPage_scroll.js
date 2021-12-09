@@ -18,7 +18,7 @@ function scrollableElement(elements){
 			if (scrollable) {
 				return el;
 			}
-			// 인위적으로 $el의 scrollTop값을 조절하여 리터
+			// 인위적으로 $el의 scrollTop값을 조절하여 리턴
 		}
 	}
 	return [];

@@ -4,7 +4,7 @@ import static funding.db.JdbcUtil.*;
 import java.util.*;
 import javax.sql.*;
 import java.sql.*;
-import funding.vo.*;
+import vo.*;
 
 public class FundingDao {
 	private static FundingDao fundingDao;
@@ -86,22 +86,22 @@ public class FundingDao {
 		return fdgList;
 	}
 
-/*
-	public FundingInfo getFdgInfo(String fiid) {
+
+	public FundingInfo getFdgInfo(int fiidx, int ocnum) {
 	// 검색된 상품의 정보를 FundingInfo 형 인스턴스에 담아 리턴하는 메소드
 		Statement stmt = null;
 		ResultSet rs = null;
 		FundingInfo fdg = null;
-
+System.out.println(ocnum);
 		try {
-			String sql = "select * from t_funding_info where fi_isview = 'y' and fi_id = '" + fiid + "' ";
+			String sql = "select * from t_funding_info where fi_isview = 'y' and fi_idx = '" + fiidx + "' ";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
 				fdg = new FundingInfo();
 
 				fdg.setFi_idx(rs.getInt("fi_idx"));				fdg.setFi_id(rs.getString("fi_id"));
-				fdg.setFi_name(rs.getString("fi_name"));		fdg.setFi_img1(rs.getString("pi_img1"));		
+				fdg.setFi_name(rs.getString("fi_name"));		fdg.setFi_img1(rs.getString("fi_img1"));		
 				fdg.setFi_img2(rs.getString("fi_img2"));		fdg.setFi_img3(rs.getString("fi_img3"));
 				fdg.setFi_desc(rs.getString("fi_desc"));		fdg.setFi_price(rs.getInt("fi_price"));	
 				fdg.setFi_ordercnt(rs.getInt("fi_ordercnt"));	fdg.setFi_goal(rs.getInt("fi_goal"));	
@@ -110,6 +110,7 @@ public class FundingDao {
 				fdg.setFi_sdate(rs.getString("fi_sdate"));		fdg.setFi_edate(rs.getString("fi_edate"));
 				fdg.setFi_status(rs.getString("fi_status"));	fdg.setFi_isview(rs.getString("fi_isview"));
 				fdg.setFi_date(rs.getString("fi_date"));		fdg.setAi_idx(rs.getInt("ai_idx"));
+				fdg.setOcnum(ocnum);
 				}
 
 		} catch(Exception e) {
@@ -121,5 +122,4 @@ public class FundingDao {
 
 		return fdg;
 	}
-*/
 }
