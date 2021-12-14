@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="idx" key="selection"/>
+		<item value="장바구니" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="장바구니"/>
+			<item value="article"/>
+			<item value="section"/>
+			<item value="navbar"/>
+			<item value="전체"/>
+			<item value="fundingsearch"/>
+			<item value="login"/>
+			<item value="log"/>
+			<item value="detail"/>
+			<item value="searchSort"/>
+			<item value="등록"/>
+			<item value="ciidx"/>
 			<item value="idx"/>
 			<item value="삭제"/>
 			<item value="myCridx"/>
-			<item value="challengeDetail"/>
-			<item value="heartFlag"/>
-			<item value="aci"/>
-			<item value="order"/>
-			<item value="support"/>
-			<item value="keyword"/>
-			<item value="sch_kind"/>
-			<item value="btn_reply"/>
-			<item value="form"/>
-			<item value="notice"/>
-			<item value="+"/>
-			<item value="bold"/>
 		</list>
 		<list key="replacehistory">
 		</list>

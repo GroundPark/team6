@@ -75,6 +75,7 @@ public class ProductDao {
             pdt.setPi_salecnt(rs.getInt("pi_salecnt"));
             pdt.setPi_review(rs.getInt("pi_review"));
             pdt.setPi_score(rs.getFloat("pi_score"));
+            pdt.setPi_soldout(rs.getString("pi_soldout"));
             pdt.setPi_isview(rs.getString("pi_isview"));
             pdt.setPi_date(rs.getString("pi_date"));
             pdt.setAi_idx(rs.getInt("ai_idx"));

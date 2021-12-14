@@ -43,4 +43,17 @@ public class MainSvc {
 		return fundingList;
 	}
 	
+	public ArrayList<ReviewInfo> getReviewList() {
+	// 검색된 상품 목록을 ArrayList<ReviewInfo>에 담아 리턴하는 메소드
+		ArrayList<ReviewInfo> reviewList = new ArrayList<ReviewInfo>();
+		Connection conn = getConnection();					
+		MainDao mainDao = MainDao.getInstance();		
+		mainDao.setConnection(conn);					
+		reviewList = mainDao.getReviewList();
+		close(conn);
+		
+		return reviewList;
+	}
+	
+	
 }

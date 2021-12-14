@@ -1,4 +1,4 @@
-package admin.svc;
+﻿package admin.svc;
 
 import static main.db.JdbcUtil.*;
 import java.sql.*;
@@ -8,7 +8,7 @@ import vo.*;
 public class AdminMemberStatSvc {
 	public AdminMemStatsInfo getMemStatsData() {
 		AdminMemStatsInfo mstat = new AdminMemStatsInfo();
-		// ȸ���� ��� ���� ������ ��� �� �ν��Ͻ� ����
+		// 회원별 통계 관련 정보를 담아 올 인스턴스 생성
 		
 		Connection conn = getConnection();
 		

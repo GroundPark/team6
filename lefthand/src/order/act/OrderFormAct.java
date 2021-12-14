@@ -28,17 +28,36 @@ public class OrderFormAct implements Action {
 		String where = " and a.mi_id = '" + memberInfo.getMi_id() + "' ";
 		String pocidx = request.getParameter("pocidx");
 		// 구매하려는 상품의 장바구니 인덱스 번호들(pocidx의 값이 빈 문자열일 경우[전체 구매]로 취급하면 됨)
-		if (!pocidx.equals("")) {	// pocidx가 빈 문자열이 아니면(구매하려는 상품을 선택했으면)			
+		
+		String lnk = "";	// 이동할 경로
+		OrderFormSvc orderFormSvc = new OrderFormSvc();
+		
+		if (!pocidx.equals("") && !pocidx.equals("0")) {	// pocidx가 빈 문자열이 아니면(장바구니에서 구매하려는 상품을 선택했으면)			
 			String[] arrPocidx = pocidx.split(",");
 			String tmp = "";
 			for (int i = 0; i < arrPocidx.length ; i++) {
 				tmp += " or a.poc_idx = " + arrPocidx[i];
 			}
 			where += " and (" + tmp.substring(4) + ") " ;	// 장바구니에서 선택한 상품들만 추출하기 위한 where절
-		}
+
+			orderPdtList = orderFormSvc.getOrderPdtList(where);
+			
+			lnk = "/page/order/pdt_order_form.jsp";
+			
+		} else if (pocidx.equals("0")) {	// 상품 바로 구매 시
+			String piid = request.getParameter("piid");						// 선택한 상품 아이디
+			int poccnt = Integer.parseInt(request.getParameter("poccnt"));	// 선택한 수량
+			
+			orderPdtList = orderFormSvc.getDirectOrderPdtList(piid, poccnt, memberInfo.getMi_id());	
+			
+			lnk = "/page/order/direct_pdt_order_form.jsp";		
+		}else if (pocidx.equals("")) {      // 상품 전체 구매 시
+	         orderPdtList = orderFormSvc.getOrderPdtList(where);
+	         
+	         lnk = "/page/order/pdt_order_form.jsp";
+	         
+	      }
 		
-		OrderFormSvc orderFormSvc = new OrderFormSvc();
-		orderPdtList = orderFormSvc.getOrderPdtList(where);
 		addrList = orderFormSvc.getAddrList(memberInfo.getMi_id());
 	
 		request.setAttribute("orderPdtList", orderPdtList);
@@ -46,7 +65,7 @@ public class OrderFormAct implements Action {
 				
 		// 작업 후 이동할 위치와 방법에 대해 지정하는 ActionForward 인스턴스 생성
 		ActionForward forward = new ActionForward();
-		forward.setPath("/page/order/pdt_order_form.jsp");	// 디스패치로 이동
+		forward.setPath(lnk);	// 디스패치로 이동
 				
 		return forward;
 	}

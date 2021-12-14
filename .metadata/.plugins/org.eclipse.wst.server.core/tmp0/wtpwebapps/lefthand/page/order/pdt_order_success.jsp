@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.DecimalFormat" %>	<!-- 돈 표기 -->
 <%@ page import="java.util.*" %>
-<%@ page import="vo.*" %>	<!-- ----------- 나중에 vo.* 로 통합할 예정 ----------- -->
+<%@ page import="vo.*" %>
 <%
 request.setCharacterEncoding("utf-8");
 OrderInfo ord = (OrderInfo)request.getAttribute("ord");	// 보낸 거 받아오기
@@ -17,9 +17,6 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/footer.css" />
 	<link rel="stylesheet" type="text/css" href="css/order.css" />
 	<script src="js/jquery-3.6.0.js"></script>
 </head>
@@ -39,7 +36,7 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 </tr>
 <%for (OrderDetail detail : detailList) {%>
 <tr align="center">
-<td><img src="/page/product/img/<%=detail.getPod_pimg() %>" width="60" height="60" align="absmiddle" /></td>
+<td><img src="page/product/img/<%=detail.getPod_pimg() %>" width="60" height="60" align="absmiddle" /></td>
 <td><%=detail.getPod_pname() %></td>
 <td><%=detail.getPod_cnt() %></td>
 <td><%=formatter.format(detail.getPod_pprice()) %>원</td>
@@ -59,8 +56,8 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 <h3>결제 정보</h3>
 <div class="box">
 	결제수단 : <%=payment %><br />
-	총결제액 : <%=ord.getPoi_pay() %> 원<br />
-	사용포인트 : <%=ord.getPoi_point() %> p
+	총결제액 : <%=formatter.format(ord.getPoi_pay()) %> 원<br />
+	사용포인트 : <%=formatter.format(ord.getPoi_point()) %> p
 </div>
 <div style="width:100%; margin:20px; text-align:center;">
 	<input type="submit" value="계속 쇼핑" class="btn" onclick="location.href='index.jsp'" />&nbsp;&nbsp;

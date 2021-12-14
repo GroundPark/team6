@@ -15,18 +15,17 @@
 		<img src="img/logo_long.png" width="191px" height="59px" alt="Logo" class="footerLogo"/>
 			<div class="ci_area">
 				<ul class="company_info">
-					<li><a href="#">회사명</a></li> |
-					<li><a href="#">대표이사</a></li> |
-					<li><a href="#">회사 주소</a></li>
+					<li>회사명&nbsp;(주)왼손잡상점</li>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<li>대표이사&nbsp;이지윤</li>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<li>주소&nbsp;서울특별시 강남구 강남대로 428 만이빌딩 5, 10층</li>
 				</ul>
 			</div>
 		</div>
 		<div class="ci_area">
 			<ul class="company_info">
-				<li><a href="#">사업자 등록번호</a></li> |
-				<li><a href="#">사업자 정보</a></li> |
-				<li><a href="#">고객센터 전화번호</a></li> |
-				<li><a href="#">회사 이메일</a></li>
+				<li>사업자 등록번호&nbsp;112-39-54678</li>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<li>고객센터 전화번호&nbsp;1546-6557</li>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<li>회사 이메일&nbsp;leftystore@lefty.com</li>
 			</ul>
 		</div>
 	</div>

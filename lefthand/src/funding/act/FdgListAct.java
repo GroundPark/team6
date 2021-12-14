@@ -17,14 +17,30 @@ public class FdgListAct implements Action {
 		if(request.getParameter("cpage") != null)	cpage = Integer.parseInt(request.getParameter("cpage"));
 		if(request.getParameter("psize") != null)	psize = Integer.parseInt(request.getParameter("psize"));
 		
+		String endate = request.getParameter("endate");
+
+		String sedate = "";
 		
+		String where = " where fi_isview = 'y' ";
+		
+		if (endate == null || endate.equals("")) {
+			 // sedate = "";
+			where = " where fi_isview = 'y' ";
+		} else if (endate == "y") {
+			sedate = " and fi_status = 'a' ";
+			where = " where fi_isview = 'y' " + sedate;
+		} else {
+			sedate = " and (fi_status = 'b' or fi_status = 'c') ";
+			where = " where fi_isview = 'y' " + sedate;
+		}
+		
+/*
 		String keyword;
 		keyword = request.getParameter("keyword");
 		
-		String where = " where fi_isview = 'y' ";
 		if(!isEmpty(keyword))	where += " and fi_name like '%" + keyword + "%' ";
 		else keyword = "";
-		
+*/
 		String sort = request.getParameter("sort");
 		if(sort == null || sort.equals(""))		sort = "idd";		
 		
@@ -46,7 +62,6 @@ public class FdgListAct implements Action {
 		fdgPageInfo.setCpage(cpage);    fdgPageInfo.setPsize(psize);        fdgPageInfo.setBsize(bsize);
 		fdgPageInfo.setSpage(spage);    fdgPageInfo.setEpage(epage);        fdgPageInfo.setRcnt(rcnt);
 		fdgPageInfo.setPcnt(pcnt);     	fdgPageInfo.setSort(sort);
-		fdgPageInfo.setKeyword(keyword);
         
         request.setAttribute("fdgPageInfo", fdgPageInfo);
         request.setAttribute("fdgList", fdgList);

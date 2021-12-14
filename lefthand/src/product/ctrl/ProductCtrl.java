@@ -22,7 +22,6 @@ public class ProductCtrl extends HttpServlet {
     	
     	ActionForward forward = null;
     	Action action = null;
-    	
     	switch (command) {
     	case "/pdt_list.pdt" :			
     		action = new PdtListAct();
@@ -31,8 +30,7 @@ public class ProductCtrl extends HttpServlet {
     		action = new PdtViewAct();
 			break;
 		}
-		
-    	
+		    	
     	try {
     		forward = action.execute(request, response);
     	} catch(Exception e) {

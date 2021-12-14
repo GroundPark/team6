@@ -1,0 +1,14 @@
+package admin.act;
+
+import javax.servlet.http.*;
+import vo.*;
+import java.util.*;
+import admin.svc.*;
+import java.io.*;
+import java.net.*;
+
+public class AdminChallengeReplyUpProcAct implements Action{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+	}
+}

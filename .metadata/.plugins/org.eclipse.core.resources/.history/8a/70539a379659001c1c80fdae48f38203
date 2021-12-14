@@ -1,0 +1,30 @@
+package admin.act;
+
+import javax.servlet.http.*;
+import vo.*;
+import java.util.*;
+import admin.svc.*;
+import java.io.*;
+import java.net.*;
+
+public class AdminChallengeReplyUpProcAct implements Action{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+
+		int rlidx = Integer.parseInt(request.getParameter("rlidx"));
+		String piid = request.getParameter("piid");
+		String miid = request.getParameter("miid");
+		String view = request.getParameter("view");
+		
+			AdminChallengeReplyListUpSvc adminChallengeReplyListUpSvc = new AdminChallengeReplyListUpSvc();
+			int vcnt = adminChallengeReplyListUpSvc.setReply(rlidx, piid, miid, view);
+		
+		
+		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);			// sendredirect로... dispatch로 가면 새로고침하면 또 실행되니까 
+		forward.setPath("../admin/chal_manage_reply.admin");
+		
+		return forward;
+	}
+}

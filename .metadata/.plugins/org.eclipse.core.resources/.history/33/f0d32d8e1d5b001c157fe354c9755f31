@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<footer>
+	<!-- footerInner영역 시작 -->
+	<div class="footerInner">
+		<div class="corp_area">
+			<ul class="corp_list">
+				<li><a href="#">이용 약관</a></li> |
+				<li><a href="#">개인정보 처리방침</a></li> |
+				<li><a href="#">고객센터</a></li>
+			</ul>
+		</div>
+		<div class="company_info_area">
+		<img src="img/logo_long.png" width="191px" height="59px" alt="Logo" class="footerLogo"/>
+			<div class="ci_area">
+				<ul class="company_info">
+					<li>왼손잡상점(주)</li> |
+					<li>대표자</li> |
+					<li>서울특별시 강남구 강남대로 428 만이빌딩 </li>
+				</ul>
+			</div>
+		</div>
+		<div class="ci_area">
+			<ul class="company_info">
+				<li>021-12-75422</li> |
+				<li>왼손잡이용 상품 판매 및 펀딩</li> |
+				<li>02-666-6666</li> |
+				<li>lefthand@lefthand.com</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</div>
+</body>
+</html>

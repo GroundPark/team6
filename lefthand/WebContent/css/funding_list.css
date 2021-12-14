@@ -71,5 +71,6 @@ color:black; text-decoration:none;
 .progress {
 	width:325px;
 }
-.fundingsearch { text-align:right; }
+.fundingsearch { text-align:right; padding-right:40px; }
 .fundingsearch li { display:inline; margin:0 5px; }
+

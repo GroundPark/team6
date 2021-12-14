@@ -18,7 +18,7 @@ public class AdminFundingUpAct implements Action {
 		
 		PageInfo pageInfo = new PageInfo();		// 페이징에 필요한 정보
 		pageInfo.setCpage(cpage);
-		// pageInfo.setSchtype(schtype);
+//		pageInfo.setSchtype(schtype);
 		pageInfo.setKeyword(keyword);
 		
 		AdminFundingUpSvc adminFundingUpSvc = new AdminFundingUpSvc();

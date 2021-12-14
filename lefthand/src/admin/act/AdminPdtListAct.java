@@ -15,9 +15,10 @@ public class AdminPdtListAct implements Action{
 		
 		if (request.getParameter("cpage") != null)	cpage = Integer.parseInt(request.getParameter("cpage"));
 		if (request.getParameter("psize") != null)	psize = Integer.parseInt(request.getParameter("psize"));
+				
 		
 		String schtype = request.getParameter("schtype");		
-		String cata = request.getParameter("cate");
+//		String cata = request.getParameter("cate");
 		String keyword = request.getParameter("keyword");	// 검색어(카테고리,상품ID,상품명,게시여부)
 		
 		
@@ -37,9 +38,9 @@ public class AdminPdtListAct implements Action{
 			where += " and a.pi_isview like '%" + keyword + "%' ";
 		}
 	}	
-		
+				
 		String sort = request.getParameter("sort");
-		if(sort == null || sort.equals(""))		sort = "ida";		
+		if(sort == null || sort.equals(""))		sort = "datea";		
 		
 		String order = " order by pi_" + sort.substring(0, sort.length() - 1) 
 			+ (sort.charAt(sort.length() - 1) == 'a' ? " asc" : " desc");
@@ -54,17 +55,17 @@ public class AdminPdtListAct implements Action{
 		epage = spage + bsize - 1;
 		if(epage > pcnt) 	epage = pcnt;			
 		
-		AdminPdtPageInfo adminpdtPageInfo = new AdminPdtPageInfo();
-		adminpdtPageInfo.setCpage(cpage);	adminpdtPageInfo.setBsize(bsize);
-		adminpdtPageInfo.setEpage(epage);	adminpdtPageInfo.setPcnt(pcnt);
-		adminpdtPageInfo.setPsize(psize);	adminpdtPageInfo.setRcnt(rcnt);
-		adminpdtPageInfo.setSpage(spage);	adminpdtPageInfo.setKeyword(keyword);
-		adminpdtPageInfo.setCata(cata);			
-		adminpdtPageInfo.setSort(sort);		adminpdtPageInfo.setSchtype(schtype);
+		AdminPdtPageInfo adminPdtPageInfo = new AdminPdtPageInfo();
+		adminPdtPageInfo.setCpage(cpage);	adminPdtPageInfo.setBsize(bsize);
+		adminPdtPageInfo.setEpage(epage);	adminPdtPageInfo.setPcnt(pcnt);
+		adminPdtPageInfo.setPsize(psize);	adminPdtPageInfo.setRcnt(rcnt);
+		adminPdtPageInfo.setSpage(spage);	adminPdtPageInfo.setKeyword(keyword);
+//		adminPdtPageInfo.setCata(cata);			
+		adminPdtPageInfo.setSort(sort);		adminPdtPageInfo.setSchtype(schtype);
 		
 		ArrayList<PdtCata> cataList = adminPdtListSvc.getCataList();
 		
-		request.setAttribute("adminpdtPageInfo", adminpdtPageInfo);
+		request.setAttribute("adminPdtPageInfo", adminPdtPageInfo);
 		request.setAttribute("pdtList", pdtList);
         request.setAttribute("cataList", cataList);
 		

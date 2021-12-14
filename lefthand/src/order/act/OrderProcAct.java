@@ -24,7 +24,10 @@ public class OrderProcAct implements Action {
 		}
 
 		int poi_pay = Integer.parseInt(request.getParameter("poipay"));		// 총 결제금액
-		int poi_pnt = Integer.parseInt(request.getParameter("use_pnt"));	// 사용포인트
+		int poi_pnt = 0;
+		if (request.getParameter("use_pnt") != null || !request.getParameter("use_pnt").equals(""))	
+		poi_pnt = Integer.parseInt(request.getParameter("use_pnt"));	// 사용포인트
+		
 //		int savePnt = Integer.parseInt(request.getParameter("savePnt"));	// 구매포인트 - DB에 컬럼이 없어서 일단 제외
 		int poi_delipay = Integer.parseInt(request.getParameter("delipay"));	// 배송비
 		String poi_name = request.getParameter("poi_name");
@@ -45,18 +48,28 @@ public class OrderProcAct implements Action {
 		
 		String where = " and a.mi_id = '" + memberInfo.getMi_id() + "' ";	
 		String pocidx = request.getParameter("pocidx");
-		// 구매하려는 상품의 장바구니 인덱스 번호들
-		if (!pocidx.equals("")) {	// pocidx가 빈 문자열이 아니면(구매하려는 상품을 선택했으면)			
+		// 구매하려는 상품의 장바구니 인덱스 번호들		
+
+		OrderProcSvc orderProcSvc = new OrderProcSvc();
+		String result = "";
+		
+		if (!pocidx.equals("") && !pocidx.equals("0")) {	// pocidx가 빈 문자열이 아니면(구매하려는 상품을 선택했으면)			
 			String[] arrPocidx = pocidx.split(",");
 			String tmp = "";
 			for (int i = 0; i < arrPocidx.length ; i++) {
 				tmp += " or a.poc_idx = " + arrPocidx[i];
 			}
+			
 			where += " and (" + tmp.substring(4) + ") " ;	// 장바구니에서 선택한 상품들만 추출하기 위한 where절
+
+			result =  orderProcSvc.orderInsert(ord, where);
+			
+		} else if (pocidx.equals("0")) {					// 상품 바로 구매 시
+			String piid = request.getParameter("piid");						// 선택한 상품 아이디
+			int poccnt = Integer.parseInt(request.getParameter("poccnt"));	// 선택한 수량
+			result =  orderProcSvc.directOrderInsert(ord, piid, poccnt);
 		}
 		
-		OrderProcSvc orderProcSvc = new OrderProcSvc();
-		String result =  orderProcSvc.orderInsert(ord, where);
 				
 		// 작업 후 이동할 위치와 방법에 대해 지정하는 ActionForward 인스턴스 생성
 		ActionForward forward = new ActionForward();

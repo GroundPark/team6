@@ -53,6 +53,7 @@ public class AdminFundingUpDao {
 					adminFunding.setFi_edate(rs.getString("fi_edate"));
 					adminFunding.setFi_status(rs.getString("fi_status"));
 					adminFunding.setFi_isview(rs.getString("fi_isview"));
+					adminFunding.setAi_idx(rs.getString("ai_idx"));
 				}	
 			}catch(Exception e) {
 				System.out.println("AdminFundingUpDao : getAdminFundingInfo() 메소드 오류");	

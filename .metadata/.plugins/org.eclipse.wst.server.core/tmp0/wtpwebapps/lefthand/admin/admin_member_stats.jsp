@@ -33,7 +33,6 @@ canvas {
 <link rel="stylesheet" href="../css/admin_base.css" />
 <link rel="stylesheet" href="../css/admin_layout.css" />
 <script src="../js/jquery-3.6.0.js"></script>
-<script src="../js/admin.js"></script>
 <script src="../js/Chart.min.js"></script>
 <script src="../js/utils.js"></script>
 <script>

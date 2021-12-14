@@ -10,13 +10,13 @@ public class AdminPdtViewAct implements Action {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");	// 상품 아이디
 		int cpage= Integer.parseInt(request.getParameter("cpage"));	// 페이지 번호
-		int psize= Integer.parseInt(request.getParameter("psize"));
+//		int psize= Integer.parseInt(request.getParameter("psize"));
 		
 		String schtype = request.getParameter("schtype");	if (schtype == null)	schtype = "";	
 		String keyword	= request.getParameter("keyword");	if (keyword == null)	keyword = "";
-		String cata		= request.getParameter("cata");		if (cata == null)		cata = "";
+//		String cata		= request.getParameter("cata");		if (cata == null)		cata = "";
 		String sort 	= request.getParameter("sort");		if (sort == null)		sort ="idd";
-
+		
 		AdminPdtViewSvc adminPdtViewSvc = new AdminPdtViewSvc();
 		ProductInfo pdtInfo = adminPdtViewSvc.getPdtInfo(piid);
 		
@@ -24,9 +24,9 @@ public class AdminPdtViewAct implements Action {
 				
 		AdminPdtPageInfo adminPdtPageInfo = new AdminPdtPageInfo();// 페이징에 필요한 정보들을 저장할 인스턴스
 		adminPdtPageInfo.setCpage(cpage);		adminPdtPageInfo.setKeyword(keyword);	
-		adminPdtPageInfo.setSort(sort);			adminPdtPageInfo.setCata(cata);
-		adminPdtPageInfo.setSchtype(schtype);	adminPdtPageInfo.setPcnt(psize);
-				
+		adminPdtPageInfo.setSort(sort);			
+		adminPdtPageInfo.setSchtype(schtype);	
+		
 		request.setAttribute("adminPdtPageInfo", adminPdtPageInfo);
 		request.setAttribute("pdtInfo", pdtInfo);
 //		request.setAttribute("cataList", cataList);

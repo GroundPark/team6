@@ -22,25 +22,27 @@
 
 #fundinginquiry { position:absolute; top:340px; right:0; width:195px; height:50px; border:0px black solid; text-align:center; line-height:50px; color:black; }
 
-#fundingprice { position:absolute; top:395px; right:200px; width:195px; height:50px; border:1px black solid; margin-right:5px; text-align:right; line-height:50px; }
+#fundingprice { position:absolute; top:345px; right:200px; width:195px; height:50px; border:1px black solid; margin-right:5px; text-align:right; line-height:50px; }
 
-#fundingnum { position:absolute; top:395px; right:0px; width:195px; height:50px; border:1px black solid; text-align:center; padding-top:10px; }
+#fundingnum { position:absolute; top:345px; right:0px; width:195px; height:50px; border:1px black solid; text-align:center; padding-top:10px; }
 .plusminus { width:30px; height:30px; }
 .num { width:30px; height:30px; }
-#fundingtotalprice { position:absolute; top:450px; right:0px; width:400px; height:50px; border:1px black solid; text-align:center; line-height:50px; }
+#fundingtotalprice { position:absolute; top:400px; right:0px; width:400px; height:50px; border:1px black solid; text-align:center; line-height:50px; }
 
-#funding { position:absolute; top:505px; right:0px; width:400px; height:50px; border:0px black solid; text-align:center; line-height:50px; }
+#funding { position:absolute; top:455px; right:0px; width:400px; height:50px; border:0px black solid; text-align:center; line-height:50px; }
 
 #fundingbtn { width:400px; }
 
-#fundingdescimg { position:absolute; top:650px; border:0px black solid; }
+#fundingdescimg { position:absolute; top:600px; border:0px black solid; }
 #fundingdescimg img { width:900px; }
 
-#desc { position:absolute; top:150px; }
-#plicy { position:absolute; top:300px; }
-#qna { position:absolute; top:1000px; }
+#desc { position:absolute; top:600px; }
+#plicy { position:absolute; top:4290px; }
+#qna { position:absolute; top:4925px; }
 
-#fundingdesclink { position:absolute; top:650px; left:230px; backgound-color:#000; }
+/* 통합전 수정함 */
+
+#fundingdesclink { position:absolute; top:600px; left:230px; backgound-color:#000; }
 #fundingdesclink li { display:inline; margin:0 50px; }
 
 .fundingbtn { width:400px; height:50px; }
@@ -50,3 +52,9 @@
 #img1 { border:1px solid black; }
 #img2 { border:1px solid black; }
 #img3 { border:1px solid black; }
+
+#fundingdesclink li a:link { color:black; text-decoration:none; }	/* text-decoration : 밑줄 여부 */
+#fundingdesclink li a:visited { color:black; text-decoration:none; }
+#fundingdesclink li a:hover { color:black; text-decoration:none; }
+#fundingdesclink li a:focus { color:black; text-decoration:none; }
+#fundingdesclink li a:active { color:black; text-decoration:none; }

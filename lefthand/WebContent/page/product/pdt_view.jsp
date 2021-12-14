@@ -2,25 +2,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*" %>
 <%@page import="java.text.DecimalFormat"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" href="css/footer.css" />
-<link rel="stylesheet" type="text/css" href="css/pdt_view.css" />
-<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
-<script src="js/jquery-3.6.0.js"></script>	
-<script src="js/heartFlag.js"></script>
-</head>
-
-<body>
-<header>
-<%@ include file="../../include/header.jsp" %>
-</header>
 <%
 request.setCharacterEncoding("utf-8");
 
@@ -55,8 +36,24 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;  */
 DecimalFormat decFormat = new DecimalFormat("###,###");
 int price = pdt.getPi_price();
 int panmega = Math.round(price - (price * pdt.getPi_discount()));		// 할인 적용된 상품금액
-
 %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/footer.css" />
+<link rel="stylesheet" type="text/css" href="css/pdt_view.css" />
+<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
+<script src="js/jquery-3.6.0.js"></script>	
+<script src="js/heartFlag.js"></script>
+</head>
+<body>
+<header>
+<%@ include file="../../include/header.jsp" %>
+</header>
 <script>
 //숫자에 콤마
 function priceToString(price) {
@@ -78,7 +75,7 @@ function changeCnt(op) {
 	document.frmPdt.poccnt.value = cartCnt;
 }
 
-/* //상품 수량 숫자만 입력 & 1부터 99까지 범위 지정
+//상품 수량 숫자만 입력 & 1부터 99까지 범위 지정
 function onlyNum(obj) {
 	var obj1 = document.getElementById("cartCnt");
 	var obj2 = document.getElementById("total");
@@ -92,32 +89,36 @@ function onlyNum(obj) {
 		obj2.innerHTML = priceToString(cartCnt * total);
 	}	
 }
- */
 
-function plusLike(rlidx, rlgood) {
-	$.ajax({
-		type : "POST", 
-		url : "/lefthand/like_plus.pdt", 
-		data : {"rlidx" : rlidx, "rlgood" : rlidx}, 
-		success : function(data) {
-				alert("성공" + data);
-		},
-		error : function(data) {
-			alert("실패" + data);
-		}
-	});	
-}
+ function plusLike(rlidx, good) {
+ // 좋아요 클릭시 숫자 증가
+		$.ajax({
+			type : "POST", 
+			url : "/lefthand/likeplus", 
+			data : {"rlidx" : rlidx}, 
+			success : function(data) {
+				if (data == 1) {
+					document.getElementById("good" + rlidx).innerHTML = good + 1;
+				}
+			}, 
+			error : function(data) {
+				alert("실패  rlidx: " + rlidx);
+				alert("실패 good: " + good);
+			}
+		});	
+	}
 
 function cartBuy(chk) {
 	// 장바구니나 바로 구매로 이동시키는 함수로 비로그인 시 로그인 폼으로 이동시켜야 함
 	<%
 	if (!isLogin) {	 %>
-		location.href = "../../login_form.jsp?url=pdt_view.pdt?<%=request.getQueryString().replace("&", "$") %>";
+		alert("로그인 후 이용해 주세요.");
+		location.href = "login_form.jsp?url=pdt_view.pdt?<%=request.getQueryString().replace("&", "$") %>";
 
 	<% } else {	// 로그인 상태면 해당 위치로 전송시킴 %>
 		var lnk = "";
 		if (chk == 'c')	lnk = "cart_proc.ord";	// 장바구니 담기일 경우 이동할 경로
-		else			lnk = "order_form.brd";	// 바로 구매일 경우 이동할 경로
+		else			lnk = "order_form.ord";	// 바로 구매일 경우 이동할 경로
 
 		var frm = document.frmPdt;
 		frm.action = lnk;
@@ -150,8 +151,8 @@ function cartBuy(chk) {
 			<div class="price_area_inner">			
 				<p class="pdt_name"><%=pdt.getPi_name() %></p>			
 				<p class="price">
-					<span class="price1" ><%=decFormat.format(price) %></span>&nbsp;
-					<span class="price2"><%=Math.round(pdt.getPi_discount() * 100) %>%</span>&nbsp;
+					<% if(pdt.getPi_discount() != 0){ %><span class="price1" ><%=decFormat.format(price) %></span><% } %>&nbsp;
+					<% if(pdt.getPi_discount() != 0){ %><span class="price2"><%=Math.round(pdt.getPi_discount() * 100) %>%</span><% } %>&nbsp;
 					<span class="price3" id="price3"><%=decFormat.format(Math.round(price * (1 - pdt.getPi_discount()))) %>원</span>
 				</p>
 				<div class="deli_area">
@@ -173,12 +174,13 @@ function cartBuy(chk) {
 					</div>					
 				</div>
 				<form name="frmPdt" method="post">
-		 		<input type="hidden" name="piid" value="<%=pdt.getPi_id() %>" />
-				<input type="hidden" name="cpage" value="<%=pageInfo.getCpage() %>" />
-				<input type="hidden" name="psize" value="<%=pageInfo.getPsize() %>" />
-				<input type="hidden" name="keyword" value="<%=pageInfo.getKeyword() %>" />
-				<input type="hidden" name="cata" value="<%=pageInfo.getCata() %>" />
-				<input type="hidden" name="sort" value="<%=pageInfo.getSort() %>" /> 
+				<input type="hidden" name="pocidx" value="0" />
+		 		<input type="hidden" name="piid" value="<%=pdt.getPi_id() %>" />		 		
+				<input type="hidden" name="cpage" value="<%=pdtPageInfo.getCpage() %>" />
+				<input type="hidden" name="psize" value="<%=pdtPageInfo.getPsize() %>" />
+				<input type="hidden" name="keyword" value="<%=pdtPageInfo.getKeyword() %>" />
+				<input type="hidden" name="cata" value="<%=pdtPageInfo.getCata() %>" />
+				<input type="hidden" name="sort" value="<%=pdtPageInfo.getSort() %>" /> 
 				<input type="hidden" name="poccnt" value="1" />
 				<input type="hidden" name="wtype" value="in" />
 				<div class="pdt_total_price">
@@ -211,7 +213,7 @@ function cartBuy(chk) {
  						<p style="WIDTH:<%=pdt.getPi_score() / 5.0 * 100 %>%;">
  						</p>
 					</div>
-					<div id="cuReview_3">평점(<%= pdt.getPi_score() %>)</div> 
+					<div id="cuReview_3">평점(<%=String.format("%.2f", pdt.getPi_score()) %>)</div> 
 				</div>									
 			</div>
 			<!-- 상품 고객리뷰 별점 영역 종료  -->
@@ -232,7 +234,7 @@ function cartBuy(chk) {
 					<div class="content2">
 					<h2>리뷰</h2>
 <%
-if(reviewList.size() > 0 && revPageInfo.getRrcnt() > 0){	// 보여줄 게시글 목록이 있으면
+if(reviewList.size() > 0 && revPageInfo.getRrcnt() > 0){	// 보여줄 후기 목록이 있으면
 	int num = revPageInfo.getRrcnt() - (revPageInfo.getRpsize() * (revPageInfo.getRcpage() - 1));
 	for (int i = 0; i < reviewList.size(); i++){		
 		ReviewList rl = reviewList.get(i);						 	
@@ -248,8 +250,9 @@ if(reviewList.size() > 0 && revPageInfo.getRrcnt() > 0){	// 보여줄 게시글 
 							<p id="revcontent"><%=rl.getRl_content() %></p>							
 							<div class="revbottom_area">
 								<div id="good_report_area">
-									<input type="button" id="btngood" value="<%=rl.getRl_good() %>" onclick="plusLike(<%=rl.getRl_idx() %>, this.value);"  />
-									<button id="btnreport">&nbsp;<span>신고</span></button>						
+									<a href="javascript:plusLike(<%=rl.getRl_idx() %>, <%=rl.getRl_good() %>);">
+									<img src="img/free-icon-thumb-up-20664.png" width="30px" height="30px"/></a>
+									<span id="good<%=rl.getRl_idx() %>" style='font-weight:bold; padding-bottom:px;'><%=rl.getRl_good() %></span>			
 								</div>
 								</div>
 						</div>
@@ -263,46 +266,10 @@ if(rl.getRl_img() != null) {
 		num--;
 	}	
 } else {
-	out.println("<div>작성된 후기가 없습니다.</div>");
+	out.println("<div style ='margin:10px 0 0 30px; font-size:15px; font-weight:bold; '>작성된 후기가 없습니다.</div>");
 }
 
 %>
-<%-- <%
-if (reviewList.size() > 0){
-// 후기가 있으면 후기 출력
-	out.println("<div class='page_wrapper'>");
-	out.println("<p style='width:100%;' align='center' cursor='pointer'>");
-	
-	args = "?sort=" + pdtPageInfo.getSort() + "&psize=" + pdtPageInfo.getPsize() + schargs;
-	
- 		if(revPageInfo.getRcpage() == 1){				
-			out.println("[&lt;&lt;]&nbsp;&nbsp;[&lt;]&nbsp;&nbsp;");
-		}else{
-			out.print("<a href='pdt_list.pdt" + args + "&cpage=1&rcpage=1'>[&lt;&lt;]</a>&nbsp;&nbsp;");
-			out.println("<a href='pdt_list.pdt" + args + "&cpage=" + (pdtPageInfo.getCpage() - 1) + "&rcpage=" + (revPageInfo.getRcpage() - 1) + "'>[&lt;]</a>&nbsp;&nbsp;");
-		}
-		 */
- 		for(int i=1, j=revPageInfo.getRspage(); i<= revPageInfo.getRbsize() && j <= revPageInfo.getRepage(); i++, j++){
-		// i : 루프 돌릴 횟수 검사하는 용도의 변수, j : 페이지 번호 출력용 변수
-			if(revPageInfo.getRcpage() == j){
-				out.print("&nbsp;<strong>" + j + "</strong>&nbsp;");
-			}else{
-				out.print("&nbsp;<a href='pdt_view.pdt" +args + "&rcpage=" +j + "'>" + j + "</a>&nbsp;");
-				System.out.println("revPageInfo.getRcpage() :: " + revPageInfo.getRcpage());
-			}
-		} 
-				 
- 		if(revPageInfo.getRcpage() == revPageInfo.getRpcnt()){
-			out.println("&nbsp;&nbsp;[&gt;]&nbsp;&nbsp;[&gt;&gt;]");
-		}else{
-			out.print("&nbsp;&nbsp;<a href='pdt_list.pdt&cpage=" + (revPageInfo.getRcpage() + 1 ) + "'>[&gt;]</a>");
-			out.println("&nbsp;&nbsp;<a href='pdt_list.pdt&cpage=" + (revPageInfo.getRpcnt()) + "'>[&gt;&gt;]</a>");
-		} 
-
-	out.println("</p>");
-	out.println("</div>");
-}
-%> --%>
 					 <!-- 상품 상세 리뷰 영역 종료 -->					
 					</div>
 					<div class="content3">

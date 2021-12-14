@@ -21,5 +21,20 @@ public class OrderProcSvc {
 
 		return result;
 	}
+	
+	public String directOrderInsert(OrderInfo ord, String piid, int poccnt) {
+		Connection conn = getConnection();			// jdbcUtil에 있는 메소드 getConnection()
+		OrderDao orderDao = OrderDao.getInstance();	// getInstance()는 LoginDao의 public static 메소드임	
+		orderDao.setConnection(conn);				// Connection 연결
+		
+		String result = orderDao.directOrderInsert(ord, piid, poccnt);	
+		
+		if (Integer.parseInt(result.substring(13)) >= 1)	commit(conn);
+		else												rollback(conn);						
+
+		close(conn);
+
+		return result;
+	}
 
 }

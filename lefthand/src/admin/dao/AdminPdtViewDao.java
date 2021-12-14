@@ -47,6 +47,7 @@ public class AdminPdtViewDao {
 					pdt.setPi_score(rs.getFloat("pi_score"));		pdt.setPi_soldout(rs.getString("pi_soldout"));
 					pdt.setPi_isview(rs.getString("pi_isview"));	pdt.setPi_date(rs.getString("pi_date"));
 					pdt.setAi_idx(rs.getInt("ai_idx"));				pdt.setPc_name(rs.getString("pc_name"));
+					
 				}
 							
 			} catch(Exception e) {
@@ -56,7 +57,7 @@ public class AdminPdtViewDao {
 				close(rs);	close(stmt);
 			}
 			
-			return pdt;
+			return pdt;			
 			
 		}
 			

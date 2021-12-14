@@ -3,16 +3,12 @@
 
 body {
 	position:relative;
+	background:;
 }
 #mainClareSpace {
 	width:1200px;
 	height:100px;
 	border:0px solid black;
-}
-header {	
-	width:100%;	
-	margin:0 auto;
-	background:#F4EEE0;
 }
 main {	
 	width:1200px;	
@@ -48,12 +44,12 @@ main {
 
 /* ù��° ���� ���� */
 #section_1 {		
-	border:5px solid #4E8572;
+	border:0px solid #4E8572;
 	width:1200px;
 	height:640px;
 	position:relative;
-	margin-top:20px;
-	background:#F4EEE0;
+	margin-top:50px;
+	background:#fff;
 }
 #section_1 a:link 		{ color:#000; text-decoration:none; }
 #section_1 a:visited 	{ color:#000; text-decoration:none; }
@@ -61,15 +57,18 @@ main {
 #section_1 a:focous 	{ color:#000; text-decoration:underline; }
 #section_1 a:active 	{ color:#000; text-decoration:none; }
 
+#vline { border-left:1px solid #ddd; height:670px; position:absolute; top:0px; left:600px; }
+#hline { border-top:1px solid #ddd; width:570px; position:absolute; top:330px; left:20px; }
 
 #best_title {		/* BEST ��ǰ ���� */
-	width:300px;
+	width:540px;
 	height:40px;
 	postion:absolute;
-	font-size:1.2em;
-	font-weight:bold;
-	padding-left:30px;
 	font-size:1.5em;
+	font-weight:bold;
+	padding-left:0px;
+	border:0px solid #a1a1a1;
+	margin:0 0 0px 30px;
 }
 #section_1_best{		
 	width:600px; 
@@ -109,7 +108,8 @@ main {
 }
 
 .obj_content_1row {
-	border-bottom:3px solid #4E8572;
+	border-bottom:3px solid #a1a1a1;
+	margin:5px; 
 }
 #pdtDP {
 	color:red;
@@ -117,27 +117,28 @@ main {
 }
 .heart {
 	position:relative;
-	left:220px;
-	top:-60px;
+	left:210px;
+	top:-80px;
 	cursor:pointer;
 }
 .sympathy{
 	position:relative;
-	left:210px;
-	top:-60px;
+	left:200px;
+	top:-75px;
 	cursor:pointer;
 	
 }
 /* BEST ��ǰ ���� */
 					
 #funding_title {	/* �ǽð� HOT�ݵ� ���� */
-	width:300px;
+	width:540px;
 	height:40px;
 	postion:absolute;
-	font-size:1.2em;
-	font-weight:bold;
-	padding-left:30px;
 	font-size:1.5em;
+	font-weight:bold;
+	padding-left:0px;
+	border:0px solid #a1a1a1;
+	margin:0 0 0px 30px;
 }
 #section_1_funding{
 	width:600px; 
@@ -178,13 +179,14 @@ main {
 	/* �ǽð� HOT�ݵ� ���� */
 
 #challenge_title {	/* �����ݵ� ���� */
-	width:300px;
+	width:540px;
 	height:40px;
 	postion:absolute;
-	font-size:1.2em;
-	font-weight:bold;
-	padding-left:30px;
 	font-size:1.5em;
+	font-weight:bold;
+	padding-left:0px;
+	border:0px solid #a1a1a1;
+	margin:30px 0 0px 30px;
 }
 #section_1_challenge{
 	width:600px; 
@@ -213,19 +215,19 @@ main {
 
 /* �ι�° ���� ���� */
 #section_2 {
-	border:5px solid #4E8572;
+	border:0px solid #4E8572;
 	width:1200px;
 	height:400px;
 	position:relative;
 	margin-top:80px;		/* section1�� ������ ���� ���� */
 }
 #video{		
-	border-right:5px solid #4E8572;
+	border-right:0px solid #4E8572;
 	width:800px;
 	height:400px;
 }
 #videoExplain{
-	border:0px solid black;
+	border:0px solid red;
 	width:400px;
 	height:400px;
 	position:absolute;
@@ -234,13 +236,17 @@ main {
 }
 #explain {
 	border:0px solid black;
-	width:400px;
+	margin-left:30px;
+	width:370px;
 	height:400px;
-	text-align:center;
-	background:#F4EEE0;
-	
-/*	white-space:pre; */ 			
+	text-align:left;
+	background:#fff;
+	font-size:105%;
+	line-height:20px;
+			
 }
+
+#videoTitle { font-weight:bold; font-size:1.5em; margin-bottom:20px; line-height:30px;}
 /* �ι�° ���� ���� */
 
 
@@ -248,27 +254,28 @@ main {
 /* ����° ���� ���� */
 #section_3 {		
 	border:0px solid black;
-	width:1200px;				/* �� �� 100���� �� ������ main���� ���°͹ۿ� ����� ����? */
+	width:100%;				/* �� �� 100���� �� ������ main���� ���°͹ۿ� ����� ����? */
 	height:300px;
 	position:relative;
-	margin-top:70px;			
+	margin-top:70px;		
 }
 #section_3_title {
-	width:300px;
+	width:100%;
 	height:40px;
 	postion:absolute;
 	font-size:1.5em;
 	font-weight:bold;
-	border:0px solid black;
+	border-bottom:1px solid #ddd;
+	text-align:center;
 }
 #section_3_review{
 	width:1200px;
 	height:240px;
 	position:absolute;
-	top:40px;
+	top:60px;
 }
 .review_obj {		/* ��� ������ �ؾ��ϴµ� �̰� �������� ����� ������ ����� �𸣰��� */
-	border:3px solid #4E8572;
+	border:1px solid #c1c1c1;
 	width:250px;
 	height:200px;
 	display:inline-block;
@@ -278,18 +285,32 @@ main {
 	width:100%;
 	height:20px;
 	margin-left:10px;
+	margin-top:5px;
 	border:0px solid black;	
 	font-weight:bold;	
 }
-.reviewDate { 
-	margin-left:100px;
+.reviewDate {
+	float:right;
+	margin-right:20px;
+	/*
+	margin-left:95px;
+	*/
 }
 
 .review_score {
-	width:220px;
-	height:20px;
-	margin:10px auto;
-	border-bottom:2px solid #BC1131;
+	padding:0px;
+	background:url(../img/icon_star2.gif) 0px 0px; 
+	margin:0 0 10px 0; 
+	margin-left:10px;
+	width:90px;
+	height: 18px;
+	border:0px solid red;	
+}
+.review_score p {
+	padding:0px;
+	background:url(../img/icon_star.gif) 0px 0px;
+	margin:0px; 
+	height:18px;
 }
 .review_body {
 	border:1px solid #efefef;
@@ -297,6 +318,7 @@ main {
 	height:100px;
 	margin:0 auto;
 	background:#F4EEE0;
+	padding:5px;
 }
 .review_bottom {
 	width:220px;
@@ -317,35 +339,40 @@ main {
 	margin:50px 0 0;		/* section3�� ������ ���� ����.*/
 }
 #section_4_title {
-	width:300px;
+	width:100%;
 	height:40px;
 	postion:absolute;
 	font-size:1.5em;
 	font-weight:bold;
+	text-align:center;
+	border:0px solid #4E8572;
 }
 #section_4_interview{
-	border:0px solid black;	
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;	
 	width:1200px;
 	height:190px;
 	position:absolute;
 	top:40px;	
+	padding:20px 0;
 }
 #interview_img{
 	width:250px;
 	height:190px;
-	border:5px solid #4E8572;
+	border:0px solid #4E8572;
 }
 #interview_content{
-	border:5px solid #4E8572;
-	width:950px;
+	border:0px solid #4E8572;
+	width:930px;
 	height:190px;
 	position:absolute;
-	top:0px;
-	left:250px;
-	text-align:center;
-	background:#F4EEE0;
+	top:20px;
+	left:270px;
+	background:#fff;
 /* 	white-space:pre;	*/
 }
+.question { font-size:1.3em; font-weight:bold; letter-spacing:1px; color:#A69076; }
+.answer { font-size:1.1em; letter-spacing:1px; }
 /* �׹�° ���� ���� */
 
 

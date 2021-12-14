@@ -14,12 +14,9 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/footer.css" />
 	<link rel="stylesheet" type="text/css" href="css/order.css" />
 	<script src="js/jquery-3.6.0.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	<!-- 주소검색용 -->
 	<script src="js/order.js"></script>
 </head>
 <body>
@@ -41,7 +38,7 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 String pocidx = "";	// 장바구니의 인덱스 번호(들)을 저장할 변수
 int delipay = 0;	// 배송비를 저장할 변수
 int total = 0;		// 총 구매가격을 저장할 변수
-int savePnt = 0;	// 적립시킬 포인트를 저장할 변수
+int savePnt = 0;	// 적립시킬 포인트를 저장할 변수 - 우리는 컬럼이 없어서 일단 만들어 놓긴 했지만 쓰진 않을 거임
 if (pdtList != null && pdtList.size() > 0) {	// 구매할 상품이 있으면
 	for (int i = 0 ; i < pdtList.size() ; i++) {
 		CartInfo pdt = pdtList.get(i);
@@ -78,7 +75,7 @@ if (pdtList != null && pdtList.size() > 0) {	// 구매할 상품이 있으면
 %>
 </table>
 	<input type="hidden" name="pocidx" value="<%=pocidx %>" />
-	<input type="hidden" name="poipay" value="" />
+	<input type="hidden" name="poipay" value="<%=total + delipay %>" />
 	<input type="hidden" name="savePnt" value="<%=savePnt %>" />
 	<input type="hidden" name="delipay" value="<%=delipay %>" />
 </div>
@@ -86,9 +83,26 @@ if (pdtList != null && pdtList.size() > 0) {	// 구매할 상품이 있으면
 <h3>배송지 정보</h3>
 <div class="box">
 <table width="100%" cellpadding="10" cellspacing="0" id="deliTable">
+<%
+String[] arrPhone = memberInfo.getMi_phone().split("-");
+%>
+<tr><th>받는 분</th><td><input type="text" name="poi_name" value="<%=memberInfo.getMi_name() %>" /></td></tr>
+<tr>
+	<th>연락처</th>
+	<td>
+		<select name="p1">
+			<option value="010" <% if (arrPhone[0].equals("010")) { %>selected="selected"<% } %>>010</option>
+			<option value="011" <% if (arrPhone[0].equals("011")) { %>selected="selected"<% } %>>011</option>
+			<option value="016" <% if (arrPhone[0].equals("016")) { %>selected="selected"<% } %>>016</option>
+			<option value="019" <% if (arrPhone[0].equals("019")) { %>selected="selected"<% } %>>019</option>
+		</select> - 
+		<input type="text" name="p2" size="4" value="<%=arrPhone[1] %>" /> - 
+		<input type="text" name="p3" size="4" value="<%=arrPhone[2] %>" />
+	</td>
+</tr>
 <tr>
 	<th width="20%">배송지 선택</th>
-	<td width="*"><select onchange="chkAddr(this.value);">
+	<td width="*"><select onchange="chkAddr(this.value);" id="addrSelect">
 <% 
 String zip = "", addr1 = "", addr2 = "";
 for (int i = 0 ; i < addrList.size() ; i++) { 
@@ -108,23 +122,6 @@ for (int i = 0 ; i < addrList.size() ; i++) {
 			<option value="">새 주소 입력</option>
 	</select></td>
 </tr>
-<%
-String[] arrPhone = memberInfo.getMi_phone().split("-");
-%>
-<tr><th>받는 분</th><td><input type="text" name="poi_name" value="<%=memberInfo.getMi_name() %>" /></td></tr>
-<tr>
-	<th>연락처</th>
-	<td>
-		<select name="p1">
-			<option value="010" <% if (arrPhone[0].equals("010")) { %>selected="selected"<% } %>>010</option>
-			<option value="011" <% if (arrPhone[0].equals("011")) { %>selected="selected"<% } %>>011</option>
-			<option value="016" <% if (arrPhone[0].equals("016")) { %>selected="selected"<% } %>>016</option>
-			<option value="019" <% if (arrPhone[0].equals("019")) { %>selected="selected"<% } %>>019</option>
-		</select> - 
-		<input type="text" name="p2" size="4" value="<%=arrPhone[1] %>" /> - 
-		<input type="text" name="p3" size="4" value="<%=arrPhone[2] %>" />
-	</td>
-</tr>
 <tr>
 	<th>주소</th>
 	<td>
@@ -142,11 +139,11 @@ String[] arrPhone = memberInfo.getMi_phone().split("-");
 <table width="100%" cellpadding="10" cellspacing="0" id="deliTable">
 <tr><th width="20%">사용 포인트</th>
 	<td>
-		<span><input type="checkbox" id="chk_use" onclick="chkPoint(<%=total %>,<%=memberInfo.getMi_point() %>,10,10)">
+		<span><input type="checkbox" id="chk_use" onclick="chkPoint(<%=total %>,<%=memberInfo.getMi_point() %>,10, <%=delipay %>)">
 		<label for="chk_use"> 포인트 전체 사용</label></span><br />
-        <span><input type="number" name="use_pnt" id="use_pnt" min="10" max="<%=total %>" onchange="changePoint(<%=total %>,<%=memberInfo.getMi_point() %>,10,10, <%=delipay %>);"></span> p 
+        <span><input type="number" name="use_pnt" id="use_pnt" max="<%=total %>" value="0" onchange="changePoint(<%=total %>,<%=memberInfo.getMi_point() %>,10, <%=delipay %>);"></span> p 
         / <span name="left_pnt" id="left_pnt"><%=memberInfo.getMi_point() %> p</span> <br />
-        <span>포인트는 최소 10p부터 10p단위로 사용 가능합니다.</span>
+        <span>포인트는 10p단위로 사용 가능합니다.</span>
     </td>
 </tr>
 <tr><th>결제수단</th>
@@ -162,8 +159,8 @@ String[] arrPhone = memberInfo.getMi_phone().split("-");
 </table>
 </div>
 <div style="width:100%; margin:20px; text-align:center;">
-	<input type="button" value="구매취소" class="btn" onclick="history.back();" />&nbsp;&nbsp;
-	<input type="submit" value="결제하기" class="btn" />
+	<input type="button" value="결제하기" class="btn" onclick="submit();"/>&nbsp;&nbsp;
+	<input type="button" value="구매취소" class="btn" onclick="history.back();" />
 </div>
 <br />
 <br />

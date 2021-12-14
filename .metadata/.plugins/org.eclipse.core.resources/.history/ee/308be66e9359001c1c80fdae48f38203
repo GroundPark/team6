@@ -1,0 +1,22 @@
+package admin.svc;
+
+import static admin.db.JdbcUtil.*;
+import java.util.*;
+import java.sql.*;
+import admin.dao.*;
+import vo.*;
+
+public class AdminChallengeReplyListUpSvc {
+	public int setReply(String where) {
+		int rcnt = 0;		
+		
+		Connection conn = getConnection();
+		AdminChallengeReplyListDao adminChallengeReplyDao = AdminChallengeReplyListDao.getInstance();
+		adminChallengeReplyDao.setConnection(conn);
+		rcnt = adminChallengeReplyDao.getAdminChallengeReplyCount(where);
+			
+		close(conn);
+		
+		return rcnt;
+	}
+}

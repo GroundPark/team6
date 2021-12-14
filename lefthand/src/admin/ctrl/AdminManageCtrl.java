@@ -41,7 +41,7 @@ public class AdminManageCtrl extends HttpServlet {
 			action = new AdminChallengeReplyListAct();
 			break;
 		case "/admin/chal_manage_reply_up.admin" :		// 도전펀딩 게시글 댓글 관리용 요청
-		//	action = new AdminChallengReplyUpAct();
+			action = new AdminChallengeReplyUpProcAct();
 			break;
 		case "/admin/funding_list.admin" :				// 펀딩 게시글 관리용 리스트 요청	
     		action = new AdminFundingListAct();
@@ -50,11 +50,10 @@ public class AdminManageCtrl extends HttpServlet {
 			action = new AdminFundingUpAct();
 			break;
 		case "/admin/funding_up_proc.admin" :			// 펀딩 게시글 관리 (수정 처리) 요청
-		//	action = new AdminFundingUpProcAct();
+			action = new AdminFundingUpProcAct();
 			break;
-		case "/admin?funding_insert_proc.admin" :		// 펀딩 게시글 등록 요청
-		//	action = new AdminFundingInsertAct();
-		
+		case "/admin/funding_in_proc.admin" :		// 펀딩 게시글 등록 요청
+			action = new AdminFundingInProcAct();
 		}
 		
     	

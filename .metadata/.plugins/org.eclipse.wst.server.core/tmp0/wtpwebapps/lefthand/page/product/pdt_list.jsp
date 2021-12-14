@@ -28,14 +28,9 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="css/mainSlide.css" />
-	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-	<script src="js/mainSlide.js"></script>
-	<script src="js/mainPage_scroll.js"></script>
-</head>
-	
+</head>	
 <style>
 
 #align { width:1160px; align:right; }	
@@ -48,6 +43,19 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 	position:relative;
 }
 
+/* 통합 전 추가 */
+
+.pdt_contents a:link { color:black; text-decoration:none; }	
+.pdt_contents a:visited { color:black; text-decoration:none; }
+.pdt_contents a:hover { color:black; text-decoration:none; font-weight:bold; }
+.pdt_contents a:focus { color:black; text-decoration:none; }
+.pdt_contents a:active { color:black; text-decoration:none; }
+
+a {text-decoration:none; }
+
+/* 통합 전 추가 */
+
+
 .pdt { margin:30px 20px 0 20px; float:left; font-size:1.4em; }
 
 #pdt_img_box { position:relative; }
@@ -55,7 +63,7 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 #pdt_zzim {
 	position:absolute;
 	background:none;
-	border:1px solid #d1d1d1;
+	border:0px solid #d1d1d1;
 	outline:none;
 	top:90%;
 	left:87%;
@@ -66,7 +74,7 @@ args = "?cpage=" + pdtPageInfo.getCpage() + schargs;
 }
 .pdt_title { margin-top:15px; }
 #pdt_name { font-weight:bold; display:inline-block; margin-bottom:6px; text-align:right; }
-
+#pdt_soldout { color:red; font-weight:bold; font-size:0.7em; }
 
 #pdt_price1 { 
 	text-decoration:line-through; color:gray; font-size:0.9em; display:inline-block; margin:0 10px 0 -30px; 
@@ -90,6 +98,9 @@ body {
 }
 
 .bold { font-weight:bold; }
+
+
+
 </style>
 <body>
 <header>
@@ -117,9 +128,9 @@ if(pdtList.size() > 0){
 		if(pi.getPi_stock() != 0){		
 			lnk = "<a href=\"pdt_view.pdt" + args + "&piid=" + pi.getPi_id() + "&sort=" + pdtPageInfo.getSort() +
 					"&psize=" +pdtPageInfo.getPsize() + "\">";
-		}else{		
+		} else{		
 			lnk = "<a href=\"javascript:alert('품절된 상품입니다.');\">";
-		}
+		} 
 		
 		if(pdtPageInfo.getPsize() == 12) {
 		
@@ -135,8 +146,11 @@ if(pdtList.size() > 0){
 		<div id="pdt_img"><%=lnk %><img src="page/product/img/<%=pi.getPi_img1() %>" style="width:350px; height:350px; padding-bottom:10px;" /></div>
 		<button type="button" id="pdt_zzim" value="하트"><img src="img/pdt_heart_empty.png " width="28px" height="24px"/></button>
 	</div>
-	<div class="pdt_title"><span id="pdt_name"><%=pi.getPi_name() %></span></a><br />
-	<span id="pdt_price1"><%=decFormat.format(price) %>원</span>  
+	<div class="pdt_title"><span id="pdt_name"><%=pi.getPi_name() %></span></a>
+	<% if(pi.getPi_soldout().equals("y")) { %><span id ="pdt_soldout">품절</span>  <% } %> <br />	
+	<% if(pi.getPi_discount() != 0){ %>
+	<span id="pdt_price1"><%=decFormat.format(price) %>원</span>
+	<% } %>  
 	<span id="pdt_price2"><%=decFormat.format((int)(pi.getPi_price() * (1-pi.getPi_discount()))) %>원</span></div>
 </div>
 
@@ -146,8 +160,8 @@ if(pdtList.size() > 0){
 				// 현재 출력하는 데이터가 pdtList의 마지막 데이터이면서 3칸을 모두 채우지 못했을 경우
 				out.println("</div>");
 	}
-	}
-	}
+  }
+}
 
 }else{
 	out.println("<div>검색된 상품이 없습니다.</div>");

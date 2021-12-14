@@ -1,0 +1,378 @@
+/* ���� �������� ���̾ƿ��� ����� CSS */
+@charset "UTF-8";
+
+body {
+	position:relative;
+	background:;
+}
+#mainClareSpace {
+	width:1200px;
+	height:100px;
+	border:0px solid black;
+}
+main {	
+	width:1200px;	
+	margin:0 auto;
+}
+.back-to-top {
+	width:60px;
+	background:rgb(240, 240, 240);
+	border-width:0;
+	cursor:pointer;
+	display:block;
+	margin:0;
+	padding:16px;
+	position:absolute;
+	left:1700px;
+	top:2300px;
+	 
+}
+.back-to-top .label {
+	display:block;
+	height:18px;
+	margin:auto;
+	overflow:hidden;
+	width:26px; 
+}
+.back-to-top .label:before {
+	content:url("../img/sprites2.png");
+	display:inline-block;
+	font-size:0;
+	line-height:0;
+	margin-left:-40px;	
+}
+
+/* ù��° ���� ���� */
+#section_1 {		
+	border:0px solid #4E8572;
+	width:1200px;
+	height:640px;
+	position:relative;
+	margin-top:50px;
+	background:#fff;
+}
+#section_1 a:link 		{ color:#000; text-decoration:none; }
+#section_1 a:visited 	{ color:#000; text-decoration:none; }
+#section_1 a:hover 		{ color:#000; text-decoration:underline; font-weight:bold; }
+#section_1 a:focous 	{ color:#000; text-decoration:underline; }
+#section_1 a:active 	{ color:#000; text-decoration:none; }
+
+#vline { border-left:1px solid #ddd; height:670px; position:absolute; top:0px; left:600px; }
+#hline { border-top:1px solid #ddd; width:570px; position:absolute; top:330px; left:20px; }
+
+#best_title {		/* BEST ��ǰ ���� */
+	width:540px;
+	height:40px;
+	postion:absolute;
+	font-size:1.5em;
+	font-weight:bold;
+	padding-left:0px;
+	border:0px solid #a1a1a1;
+	margin:0 0 0px 30px;
+}
+#section_1_best{		
+	width:600px; 
+	height:640px;
+	border-right:0px solid #4E8572;
+}
+.best_list {
+	width:600px; 
+	height:280px;
+}
+.best_pdt {
+	border:0px solid #4E8572;
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;	
+ 	
+}
+.best_pdt_2row {
+	border:0px solid #4E8572;	
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;
+	margin-top:58px;
+	
+}
+.obj_content{
+	position:relative;
+	top:10px;
+	border:0px solid black;
+	width:100%;
+	display:inline-block;
+}
+.obj_content div {
+	text-align:center;
+}
+
+.obj_content_1row {
+	border-bottom:3px solid #a1a1a1;
+	margin:5px; 
+}
+#pdtDP {
+	color:red;
+	font-size:1.1em;
+}
+.heart {
+	position:relative;
+	left:210px;
+	top:-80px;
+	cursor:pointer;
+}
+.sympathy{
+	position:relative;
+	left:200px;
+	top:-75px;
+	cursor:pointer;
+	
+}
+/* BEST ��ǰ ���� */
+					
+#funding_title {	/* �ǽð� HOT�ݵ� ���� */
+	width:540px;
+	height:40px;
+	postion:absolute;
+	font-size:1.5em;
+	font-weight:bold;
+	padding-left:0px;
+	border:0px solid #a1a1a1;
+	margin:0 0 0px 30px;
+}
+#section_1_funding{
+	width:600px; 
+	height:300px;
+	position:absolute;
+	left:600px;
+	top:0px;
+}
+.funding_list {
+	width:600px; 
+	height:280px;
+}
+.funding_pdt {
+	border:0px solid #4E8572;
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;		
+}	
+.funding_pdt_content{
+	position:relative;
+	top:200px;
+}
+
+#obj_content_2row {
+	text-align:left;
+	font-size:0.9em;
+}
+
+#fund_rate {
+	color:#BC1131;
+	font-size:1.1em;
+}				
+#fund_goal{
+	color:#90949C;
+}
+
+	/* �ǽð� HOT�ݵ� ���� */
+
+#challenge_title {	/* �����ݵ� ���� */
+	width:540px;
+	height:40px;
+	postion:absolute;
+	font-size:1.5em;
+	font-weight:bold;
+	padding-left:0px;
+	border:0px solid #a1a1a1;
+	margin:30px 0 0px 30px;
+}
+#section_1_challenge{
+	width:600px; 
+	height:300px;
+	position:absolute;
+	left:600px;
+	top:330px;
+}
+.challenge_list {
+	width:600px; 
+	height:280px;
+}
+.challenge_pdt {
+	border:0px solid #4E8572;
+	width:250px; 
+	height:210px;
+	display:inline-block;
+	margin-left:30px;		
+}	
+.challenge_pdt_content{
+	position:relative;
+	top:200px;
+}					/* �����ݵ� ���� */
+/* ù��° ���� ���� */
+
+
+/* �ι�° ���� ���� */
+#section_2 {
+	border:0px solid #4E8572;
+	width:1200px;
+	height:400px;
+	position:relative;
+	margin-top:80px;		/* section1�� ������ ���� ���� */
+}
+#video{		
+	border-right:0px solid #4E8572;
+	width:800px;
+	height:400px;
+}
+#videoExplain{
+	border:0px solid red;
+	width:400px;
+	height:400px;
+	position:absolute;
+	top:0px;
+	left:800px;
+}
+#explain {
+	border:0px solid black;
+	margin-left:30px;
+	width:370px;
+	height:400px;
+	text-align:left;
+	background:#fff;
+	font-size:105%;
+	line-height:20px;
+			
+}
+
+#videoTitle { font-weight:bold; font-size:1.5em; margin-bottom:20px; line-height:30px;}
+/* �ι�° ���� ���� */
+
+
+
+/* ����° ���� ���� */
+#section_3 {		
+	border:0px solid black;
+	width:100%;				/* �� �� 100���� �� ������ main���� ���°͹ۿ� ����� ����? */
+	height:300px;
+	position:relative;
+	margin-top:70px;		
+}
+#section_3_title {
+	width:100%;
+	height:40px;
+	postion:absolute;
+	font-size:1.5em;
+	font-weight:bold;
+	border-bottom:1px solid #ddd;
+	text-align:center;
+}
+#section_3_review{
+	width:1200px;
+	height:240px;
+	position:absolute;
+	top:60px;
+}
+.review_obj {		/* ��� ������ �ؾ��ϴµ� �̰� �������� ����� ������ ����� �𸣰��� */
+	border:1px solid #c1c1c1;
+	width:250px;
+	height:200px;
+	display:inline-block;
+	margin-left:35px;
+}
+.review_top {
+	width:100%;
+	height:20px;
+	margin-left:10px;
+	margin-top:5px;
+	border:0px solid black;	
+	font-weight:bold;	
+}
+.reviewDate {
+	float:right;
+	margin-right:20px;
+	/*
+	margin-left:95px;
+	*/
+}
+
+.review_score {
+	padding:0px;
+	background:url(../img/icon_star2.gif) 0px 0px; 
+	margin:0 0 10px 0; 
+	margin-left:10px;
+	width:90px;
+	height: 18px;
+	border:0px solid red;	
+}
+.review_score p {
+	padding:0px;
+	background:url(../img/icon_star.gif) 0px 0px;
+	margin:0px; 
+	height:18px;
+}
+.review_body {
+	border:1px solid #efefef;
+	width:220px;
+	height:100px;
+	margin:0 auto;
+	background:#F4EEE0;
+	padding:5px;
+}
+.review_bottom {
+	width:220px;
+	height:10px;
+	margin:0 auto;
+	padding-top:10px;
+}
+/* ����° ���� ���� */
+
+
+
+/* �׹�° ���� ���� */
+#section_4 {		
+	border:0px solid black;
+	width:1200px;		
+	height:250px;
+	position:relative;
+	margin:50px 0 0;		/* section3�� ������ ���� ����.*/
+}
+#section_4_title {
+	width:100%;
+	height:40px;
+	postion:absolute;
+	font-size:1.5em;
+	font-weight:bold;
+	text-align:center;
+	border:0px solid #4E8572;
+}
+#section_4_interview{
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;	
+	width:1200px;
+	height:190px;
+	position:absolute;
+	top:40px;	
+	padding:20px 0;
+}
+#interview_img{
+	width:250px;
+	height:190px;
+	border:0px solid #4E8572;
+}
+#interview_content{
+	border:0px solid #4E8572;
+	width:930px;
+	height:190px;
+	position:absolute;
+	top:20px;
+	left:270px;
+	background:#fff;
+/* 	white-space:pre;	*/
+}
+.question { font-size:1.3em; font-weight:bold; letter-spacing:1px; color:#A69076; }
+.answer { font-size:1.1em; letter-spacing:1px; }
+/* �׹�° ���� ���� */
+
+

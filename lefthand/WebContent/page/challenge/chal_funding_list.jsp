@@ -19,9 +19,18 @@
 <%@ include file="../../include/header.jsp" %>
 </header>
 <script>
-function searchSort(url) {
-	location.href = url
-}
+$(document).ready(function() {
+    $(function() {
+        $('div.btn_near_desc_text').hide();
+        $('.qicon').hover(function() {
+            $('div.btn_near_desc_text').show();
+        }, function() {
+            $('div.btn_near_desc_text').hide();
+        });
+     });
+});
+
+
 </script>
 
 <%
@@ -29,8 +38,7 @@ request.setCharacterEncoding("utf-8");
 
 // PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");	
 ChallengePageInfo challengePageInfo = (ChallengePageInfo)request.getAttribute("challengePageInfo");	
-ArrayList<ChallengeList> challengeList = (ArrayList<ChallengeList>)request.getAttribute("challengeList");
-//ChallengeList challenge = (ChallengeList)request.getAttribute("challenge");		
+ArrayList<ChallengeList> challengeList = (ArrayList<ChallengeList>)request.getAttribute("challengeList");	
 
 String schargs = "", args = "";
 
@@ -40,29 +48,21 @@ String schargs = "", args = "";
 
 if (challengePageInfo.getSchtype() == null || challengePageInfo.getKeyword() == null) {
 	challengePageInfo.setSchtype("");	challengePageInfo.setKeyword("");
- 	// 검색 관련 정보가 null인 경우 빈 문자열로 변경함; 이거 안하면 텍스트박스에 문자열 null찍혀서 굉장히 구려보임
- }else if(!challengePageInfo.getKeyword().equals("") && !challengePageInfo.getSchtype().equals("")){	// 빈문자일 경우 일그냥 안할거
- 	// schargs = "&schtype=" + pageInfo.getSchtype() + "&keyword=" + pageInfo.getKeyword();	
+ }else if(!challengePageInfo.getKeyword().equals("") && !challengePageInfo.getSchtype().equals("")){	
 	 schargs += "&keyword=" + challengePageInfo.getKeyword() + "&schtype=" + challengePageInfo.getSchtype();
  }
 
 
 args = "?cpage=" + challengePageInfo.getCpage() + schargs; 
 
-// 콤보박스 검색 쿼리스트링
-
-// 콤보박스 정렬 쿼리스트링
-
-
-// String chalsort = (String)request.getAttribute("chalsort");
-// String chalsearch = (String)request.getAttribute("chalsearch");
-//만들고보니 담아서 안줘서 request로 판별함
-
 
 %>
 <!-- ------------------------------------------------------------------------------------------------ -->
 <div class="chal_funding_contents" >
 <div class="btn_chal_funding_write" onclick="location.href='chal_in_form.chal';" style="cursor:pointer;" >도전펀딩 등록</div>
+<div class="btn_near_desc"><img src="img/question_mark.png" alt="물음표 아이콘" class="qicon" style="width:55px; height:54px; cursor:pointer;" />
+<div class="btn_near_desc_text">1차에서 7일 이내 공감 50개 이상 달성 시 2차 (실패시 마감)<br /> 2차가 되고 30일 내 공감 200개 이상 달성시 펀딩 확정(실패시 마감)</div>
+</div>
 <br />
 <br />
 <br />

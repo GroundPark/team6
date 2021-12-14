@@ -5,17 +5,22 @@ incMypage.jsp 와 관련된 CSS
 */
 
 /* 마이페이지 안에 있는 메뉴 */
-#mypageBox { width:1200px; margin:30px auto 500px auto; display:flex;  justify-content:flex-start; flex-wrap: wrap; }
-#mypage { border:1px solid #aaa; width:130px; padding:20px; }
-#mypageMenu li { padding-bottom:10px;  }
-.grouping { padding-bottom:10px; font-weight:bold;  }
-.myMenu2 li { padding-bottom:10px;  }
-.myMenu2 li a:hover { color:#468C65; text-decoration:none; font-weight:bold; }
+#mypageBox { width:1200px; margin:30px auto 800px auto; display:flex;  justify-content:flex-start; flex-wrap: wrap; }
+#mypage { border:1px solid #aaa; width:130px; height:460px; padding:20px; line-height:2em; }
+#mypageMenu li { padding-bottom:0px;  }
+.grouping { padding-top:10px; font-weight:bold;  }
+.myMenu2 li { padding-bottom:0px;  }
+
+.myMenu2 a:link { color:#000; text-decoration:none; }
+.myMenu2 a:visited { color:#000; text-decoration:none; }
+.myMenu2 a:hover { color:#A69076; text-decoration:none; font-weight:bold; }
+.myMenu2 a:focus { color:#000; text-decoration:none; }
+.myMenu2 a:active { color:#000; text-decoration:none; }
 
 /* 마이페이지에서 항상 보여지는 기본 정보 박스 */
-#simpleInfo { border:1px solid #aaa; padding:20px; margin-left:50px;  }
+#simpleInfo { border:1px solid #aaa; padding:20px; margin-left:20px;  }
 #simpleInfo span { padding:100px; }
-.highlight { color:#468C65; font-weight:bold; font-size:1.1em; }
+.highlight { color:#A69076; font-weight:bold; font-size:1.1em; }
 
 /*
 cart_list.jsp 와 관련된 CSS
@@ -32,3 +37,5 @@ cart_list.jsp 와 관련된 CSS
 .btn { font-size:0.9em; border:1px solid #aaa; background-color:#fff; padding:5px; }
 .btn:hover { background:#F2A649; }
 #delBtn { width:80%; }
+
+a {text-decoration:none; }

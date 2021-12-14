@@ -1,11 +1,11 @@
-package vo;
+﻿package vo;
 
 public class AdminMemStatsInfo {
-// ��迡�� ��� �� �����͵��� ���� �� Ŭ����
+// 통계에서 사용 할 데이터들이 저장 될 클래스
 	private int f_acount, f_lcount, f_rcount, f_bcount;
-	// f = �ݵ� : �ֹ� ��ü����, �޼����� �ֹ� ����, ���������� �ֹ� ��, ������� �ֹ� ��
+	// f = 펀딩 : 주문 전체개수, 왼손잡이 주문 개수, 오른손잡이 주문 수, 양손잡이 주문 수
 	private int p_acount, p_lcount, p_rcount, p_bcount;
-	// p = ��ǰ : �ֹ� ��ü����, �޼����� �ֹ� ����, ���������� �ֹ� ��, ������� �ֹ� ��
+	// p = 상품 : 주문 전체개수, 왼손잡이 주문 개수, 오른손잡이 주문 수, 양손잡이 주문 수
 	
 	
 	public int getF_acount() {

@@ -48,7 +48,7 @@ public class PdtViewAct implements Action {
 		// 상품 페이징
 		PdtPageInfo pdtPageInfo = new PdtPageInfo();// 페이징에 필요한 정보들을 저장할 인스턴스
 		pdtPageInfo.setCpage(cpage);		pdtPageInfo.setPsize(psize);	pdtPageInfo.setKeyword(keyword);	
-		pdtPageInfo.setSort(sort);
+		pdtPageInfo.setSort(sort);			pdtPageInfo.setCata(cata);
 		
 		// 후기페이지
 		ReviewPageInfo revPageInfo = new ReviewPageInfo();

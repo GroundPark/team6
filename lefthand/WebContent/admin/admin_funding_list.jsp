@@ -66,8 +66,8 @@ section #search { width:100px; padding-right:60px; }
 			</ul>
 			<table width="900" cellpadding="7" cellspacing="0" id="brd">
 			<tr height="36" >
-			<th width="8%">글번호</th><th width="*%">펀딩 아이디</th><th width="15%">제목</th><th width="15%">시작일</th>
-			<th width="8%">마감일</th><th width="15%">펀딩율</th><th width="10%">진행상태</th>
+			<th width="8%">글번호</th><th width="*%">펀딩 아이디</th><th width=25%">제목</th><th width="15%">시작일</th>
+			<th width="15%">마감일</th><th width="15%">펀딩율</th><th width="10%">진행상태</th>
 			</tr>
 
 <%
@@ -87,10 +87,9 @@ section #search { width:100px; padding-right:60px; }
 		if(pageInfo.getPsize() == 10) {
 		// 한 페이지에 10개 글 리스트
 %>
-<tr height="36" align="center" onmouseover="this.style.background='#efefef';" 
-onmouseout="this.style.background='';" onclick="location.href='<%=lnk %>'" style="cursor:hand" >
+<tr height="36" align="center" onmouseover="this.style.background='#efefef';" onmouseout="this.style.background='';" onclick="location.href='<%=lnk %>'" style="cursor:pointer" >
 <td><%=aci.getFi_idx() %></td><td><%=aci.getFi_id() %></td><td><%=aci.getFi_name() %></td><td><%=aci.getFi_sdate().substring(0 , 10) %></td>
-<td><%=aci.getFi_edate().substring(0 , 10) %></td><td><%=aci.getFi_rate() %></td>
+<td><%=aci.getFi_edate().substring(0 , 10) %></td><td><%=Math.floor(aci.getFi_rate() * 100) %> %</td>
 
 <%
 // 진행상태가 char임에도 String으로 받았는데 귀찮아서 수정안함.. 야매스럽지만 너무 귀찮다..
@@ -159,4 +158,5 @@ if (adminFundingList.size() > 0){
 </main>
 <!-- main 영역 종료 -->
 </body>
+<!-- 이 모양 유지할것 -->
 </html>

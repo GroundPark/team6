@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.DecimalFormat" %>	<!-- 돈 표기 -->
 <%@ page import="java.util.*" %>
-<%@ page import="vo.*" %>		<!-- ----------- 나중에 vo.* 로 통합할 예정 ----------- -->
+<%@ page import="vo.*" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/footer.css" />
 <link rel="stylesheet" type="text/css" href="css/mypage.css" />
 <script src="js/jquery-3.6.0.js"></script>
 
@@ -40,6 +37,7 @@ if (pageInfo.getSort() != null && !pageInfo.getSort().equals(""))		args += "&sor
 ArrayList<CartInfo> cartList = (ArrayList<CartInfo>)request.getAttribute("cartList");
 CartInfo cart = new CartInfo();	
 
+// 돈 표기를 위한 인스턴스 생성
 DecimalFormat formatter = new DecimalFormat("#,##0");
 %>
 <script>
@@ -61,9 +59,9 @@ function choose(chk) {
 
 function chCount(pocidx, poccnt) {	
 // 장바구니 내의 특정 상품 수량을 변경시키는 함수(pocidx는 pk로, 변경시 where절의 조건으로 사용, poccnt:변경할 수량 값)	
-	$.ajax({
+	$.ajax({	
 		type : "POST",						
-		url : "/cart_proc.ord<%=args %>",
+		url : "cart_proc.ord<%=args %>",
 		data : {"wtype" : "up", "pocidx" : pocidx, "poccnt" : poccnt},
 		success : function(chkRs) {			
 			if (chkRs == 0) alert("선택한 상품 수량 변경에 실패했습니다.\n새로 고침 후 다시 시도해 주십시오.");
@@ -117,7 +115,7 @@ function callDel(pocidx) {	// 삭제 버튼 클릭 시
 	if (isConfirm) {
 		$.ajax({
 			type : "POST",						
-			url : "/cart_proc.ord<%=args %>",
+			url : "cart_proc.ord<%=args %>",
 			data : {"wtype" : "del", "pocidx" : pocidx},
 			success : function(chkRs) {			
 				if (chkRs == 0) alert("선택한 상품 삭제에 실패했습니다.\n새로 고침 후 다시 시도해 주십시오.");
@@ -199,9 +197,9 @@ if (cartList.size() > 0) {	// 장바구니에 상품이 들어 있으면
 <%
 } else {	// 장바구니가 비었으면
 %>
-<tr><td colspan="6" align="center">장바구니가 비었습니다.</td></tr>
-<tr><td colspan="6" align="center">
-	<input type="button" value="계속 쇼핑" onclick="location.href='pdt_list.pdt<%=args %>';" />
+<tr><td colspan="6" height="100px" align="center">장바구니가 비었습니다.</td></tr>
+<tr><td colspan="6" align="center" style="border-bottom:0;">
+	<input type="button" value="계속 쇼핑" class="btn" onclick="location.href='pdt_list.pdt<%=args %>';" />
 </td></tr>
 <%
 }

@@ -42,23 +42,23 @@ if (adminInfo == null) {
 			 <li class="menu1">
 				<a href="#">일정 관리</a>
 				<ul class="menu2">
-				   <li><a href="calendar.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일정</a></li>
-				   <li><a href="calendar_up.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일정 등록</a></li>
+				   <li><a href="admin_mainPage.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일정</a></li>
+				   <li><a href="schedule_form.sche?wtype=in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일정 등록</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">
 				<a href="#">관리자 관리</a>
 				<ul class="menu2">
-				   <li><a href="admin_list.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자 목록</a></li>
-				   <li><a href="admin_in.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자 등록</a></li>
-				   <li><a href="admin_pms_up.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;권한 설정</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자 목록</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자 등록</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;권한 설정</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">
 				<a href="#">회원 관리</a>
 				<ul class="menu2">
-				   <li><a href="member_list.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원 목록</a></li>
-				   <li><a href="member_point.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;포인트 목록</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원 목록</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;포인트 목록</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">
@@ -79,29 +79,29 @@ if (adminInfo == null) {
 				<a href="#">펀딩 관리</a>
 				<ul class="menu2">
 				   <li><a href="funding_list.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀딩 목록</a></li>
-				   <li><a href="funding_in.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀딩 등록</a></li>
+				   <li><a href="/lefthand/admin/admin_funding_in.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀딩 등록</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">
 				<a href="#">주문 관리</a>
 				<ul class="menu2">
-				   <li><a href="product_manage.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상품</a></li>
-				   <li><a href="funding_manage.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀딩</a></li>
+				   <li><a href="order_pdt.adminord">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상품</a></li>
+				   <li><a href="order_fdg.adminord">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀딩</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">
 				<a href="#">신고 관리</a>
 				<ul class="menu2">
-				   <li><a href="review_report.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;후기 신고</a></li>
-				   <li><a href="reply_report.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 신고</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;후기 신고</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 신고</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">
 				<a href="#">고객센터</a>
 				<ul class="menu2">
-				   <li><a href="notice_list.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;공지사항</a></li>
-				   <li><a href="faq.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
-				   <li><a href="1v1.admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;공지사항</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+				   <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의</a></li>
 				</ul>
 			 </li>
 			 <li class="menu1">

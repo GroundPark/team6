@@ -92,7 +92,7 @@ public class FundingDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		FundingInfo fdg = null;
-System.out.println(ocnum);
+
 		try {
 			String sql = "select * from t_funding_info where fi_isview = 'y' and fi_idx = '" + fiidx + "' ";
 			stmt = conn.createStatement();

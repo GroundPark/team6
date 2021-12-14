@@ -49,6 +49,7 @@ if (url == null)	url = "";
 	</fieldset>
 </form>
 </article>
-<%@ include file="/include/footer.jsp" %>
+<!-- ------------------------------------------------------------------------------------------------ -->
+<%@ include file="../../include/footer.jsp" %>
 </body>
 </html>

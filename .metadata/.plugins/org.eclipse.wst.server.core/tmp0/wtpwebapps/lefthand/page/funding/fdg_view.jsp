@@ -3,27 +3,13 @@
 <%@ page import="vo.*" %> <!-- ----------- 나중에 vo.* 로 통합할 예정 ----------- -->
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ include file="../../include/header.jsp" %>
-<%
-request.setCharacterEncoding("utf-8");
 
-FundingInfo fdg = (FundingInfo)request.getAttribute("fdgInfo");
-FdgPageInfo pageInfo = (FdgPageInfo)request.getAttribute("fdgPageInfo");
-// 검색 조건 등의 정보를 저장하고 있는 인스턴스
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/mainSlide.css" />
-	<link rel="stylesheet" type="text/css" href="css/mainLayout.css" />
-	<link rel="stylesheet" type="text/css" href="css/main_mainLayout.css" />
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/main_base.css" />
-	<link rel="stylesheet" type="text/css" href="css/main_footer.css" />
 	<link rel="stylesheet" type="text/css" href="css/funding_info.css" />
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -32,6 +18,19 @@ FdgPageInfo pageInfo = (FdgPageInfo)request.getAttribute("fdgPageInfo");
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
+<body>
+<header>
+<%@ include file="../../include/header.jsp" %>
+</header>
+<%
+request.setCharacterEncoding("utf-8");
+
+FundingInfo fdg = (FundingInfo)request.getAttribute("fdgInfo");
+FdgPageInfo pageInfo = (FdgPageInfo)request.getAttribute("fdgPageInfo");
+// 검색 조건 등의 정보를 저장하고 있는 인스턴스
+%>
+
 <script>
 var num = 1;							// 펀딩 개수를 저장한 변수
 var total = <%=fdg.getFi_price() %>;	// 펀딩 가격을 저장한 변수
@@ -76,7 +75,7 @@ function goFunding() {
 <% } %>
 }
 </script>
-<body>
+
 <div id="fundinginfo">
 	<form name="frmFdg" method="post">
 	<input type="hidden" name="fiidx" value="<%=fdg.getFi_idx() %>" />
@@ -97,13 +96,11 @@ function goFunding() {
 			</ul>
 		</div>
 		<div id="fundinginfodesc">
-			<%=fdg.getFi_sdate().substring(0, 10) %> ~ <%=fdg.getFi_edate().substring(0, 10) %><br /><br /><br />
-			<%=fdg.getFi_rate() * 100 %>% 달성<br /><br /><br />
-			총 <%=fdg.getFi_total() %>원<br /><br /><br />
-			<%=fdg.getFi_support() %> 명 참여
+			기간 : <%=fdg.getFi_sdate().substring(0, 10) %> ~ <%=fdg.getFi_edate().substring(0, 10) %><br /><br /><br />
+			달성률 : <%=Math.round(fdg.getFi_rate() * 100) %>% 달성<br /><br /><br />
+			총 모금액 : <%=fdg.getFi_total() %>원<br /><br /><br />
+			참여자 수 : <%=fdg.getFi_support() %> 명 참여
 		</div>
-		<div id="fundinglike"><input type="button" value="좋아요  ♡" id="fundinglikebtn" /></div>
-		<div id="fundinginquiry"><input type="button" value="문의하기" class="fundinginquirybtn" /></div>
 		<div id="fundingprice">개당 <%=fdg.getFi_price() %> 원</div>
 		<div id="fundingnum">
 			<input type="button" value="-" class="plusminus" id="minus" onclick="changeNum(this.value);" />
@@ -118,11 +115,12 @@ function goFunding() {
 	<div id="fundingdescimg"><img src="page/funding/img/<%=fdg.getFi_desc() %>" id="descImg" /></div>
 	<div id="desc"></div>
 	<div id="plicy"></div>
+
 	<div id="qna"></div>
 	<ul id="fundingdesclink">
 		<li><a href="#desc" class="hand">설명</a></li>
 		<li><a href="#plicy" class="hand">변환정책</a></li>
-		<li><a href="#qna" class="hand">Q&A</a></li>
+		<li><a href="#qna" class="hand">FAQ</a></li>
 	</ul>
 </div>
 </div>

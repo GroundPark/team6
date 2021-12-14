@@ -34,16 +34,17 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 <th width="15%">상품</th><th width="*">상품명</th><th width="20%">수량</th>
 <th width="10%">단가</th>
 </tr>
-<%for (FdgOrderDetail detail : fdgDetailList) {%>
-<tr align="center">
-<td><img src="/page/funding/img/<%=detail.getFod_pimg() %>" width="60" height="60" align="absmiddle" /></td>
-<td><%=detail.getFod_pname() %></td>
-<td><%=detail.getFod_cnt() %></td>
-<td><%=formatter.format(detail.getFod_pprice()) %>원</td>
-</tr>
-<%
-}
+<% 
+FdgOrderDetail myDetail = new FdgOrderDetail(); 
+
+myDetail = fdgDetailList.get(0);
 %>
+<tr align="center">
+<td><img src="page/funding/img/<%=myDetail.getFod_pimg() %>" width="60" height="60" align="absmiddle" /></td>
+<td><%=myDetail.getFod_pname() %></td>
+<td><%=myDetail.getFod_cnt() %></td>
+<td><%=formatter.format(myDetail.getFod_pprice()) %>원</td>
+</tr>
 </table>
 
 <h3>배송지 정보</h3>

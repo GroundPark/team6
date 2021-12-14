@@ -29,6 +29,7 @@ String args = "?cpage=" + pageInfo.getCpage();
 	width:100%;
 	padding:50px;
 }
+
 </style>
 <script>
 // textArea 글의 크기? 만큼 자동조절해줌
@@ -53,31 +54,33 @@ $("textarea").each(function () {
 <input type="hidden" name="cpage" value="<%=pageInfo.getCpage() %>" />
 <input type="hidden" name="schtype" value="" />
 <input type="hidden" name="keyword" value="" />
-    <div class="form-group">
-        <label for="inputName" class="col-lg-2 control-label">글 번호</label>
+    <div class="form-inline form-group">
+        <label for="inputName" class="col-lg-1 control-label">글 번호</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="ci_idx" value="<%=adminChallenge.getCi_idx() %>" data-rule-required="true" maxlength="15" disabled="disabled" >
+            <input type="text" style="width:25%;" class="form-control" name="ci_idx" value="<%=adminChallenge.getCi_idx() %>" data-rule-required="true" maxlength="15" disabled="disabled" >
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">글 제목</label>
+    <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">글 제목</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="ci_title" value="<%=adminChallenge.getCi_title() %>" data-rule-required="true" maxlength="30">
+            <input type="text" style="width:50%;" class="form-control" name="ci_title" value="<%=adminChallenge.getCi_title() %>" data-rule-required="true" maxlength="30">
         </div>
     </div>
-    
+    <br />
  	<div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">설명</label>
-        <div class="col-lg-10">
-            <textarea class="form-control" name="ci_content" style="resize:none">
+        <label for="inputId" class="col-lg-1 control-label">&nbsp;&nbsp;설명</label>
+        <div class="col-lg-10 w-100">
+            <textarea class="form-control" name="ci_content" style="resize:none;">
 <%=adminChallenge.getCi_content() %>
             </textarea>         
         </div>
     </div>
+    <br />
+    <br />
     <!-- .getCi_content().replace("\r\n", "<br />") 처럼 써서 줄바꿈에 대한 처리를 해야하는데 너무 귀찮다.. -->
-    <div class="form-group" id="divName">
-        <label for="inputName" class="col-lg-2 control-label">이미지</label>
+    <div class="form-inline form-group" id="divName">
+        <label for="inputName" class="col-lg-1 control-label">이미지</label>
         <div class="col-lg-10">
 		<% if(adminChallenge.getCi_img().equals("null")) { %>
 		<p>업로드한 이미지가 없습니다.</p>
@@ -86,32 +89,32 @@ $("textarea").each(function () {
 		<% } %>
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">작성자</label>
+    <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">작성자</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="mi_id" value="<%=adminChallenge.getMi_id() %>" data-rule-required="true" maxlength="30" disabled="disabled">
+            <input type="text" style="width:25%;" class="form-control" name="mi_id" value="<%=adminChallenge.getMi_id() %>" data-rule-required="true" maxlength="30" disabled="disabled">
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">등록일</label>
+    <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">등록일</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="ci_sdate" value="<%=adminChallenge.getCi_sdate().substring(0 , 10) %>" data-rule-required="true" maxlength="30" disabled="disabled">
+            <input type="text" style="width:25%;" class="form-control" name="ci_sdate" value="<%=adminChallenge.getCi_sdate().substring(0 , 10) %>" data-rule-required="true" maxlength="30" disabled="disabled">
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">마감일</label>
+    <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">마감일</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="ci_edate" value="<%=adminChallenge.getCi_edate().substring(0 , 10) %>" data-rule-required="true" maxlength="30" disabled="disabled">
+            <input type="text" style="width:25%;" class="form-control" name="ci_edate" value="<%=adminChallenge.getCi_edate().substring(0 , 10) %>" data-rule-required="true" maxlength="30" disabled="disabled">
         </div>
     </div>
     
     
     
-   <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">차수</label>
+   <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">차수</label>
         <div class="col-lg-10">
 	<ul id="admin_cmb_step" data-rule-required="true">
-		<li><select class="form-control" name="ci_step">
+		<li><select class="form-control" name="ci_step" style="width:25%;">
 			<option value="1" <% if(adminChallenge.getCi_step() == 1) { %>selected <% } %>>1차</option>
 			<option value="2" <% if(adminChallenge.getCi_step() == 2) { %>selected <% } %>>2차</option>
 		</select></li>
@@ -121,18 +124,18 @@ $("textarea").each(function () {
     
     
     
-    <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">좋아요 수</label>
+    <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">좋아요 수</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="ci_good" value="<%=adminChallenge.getCi_good() %>" data-rule-required="true" maxlength="30">
+            <input type="text" style="width:25%;" class="form-control" name="ci_good" value="<%=adminChallenge.getCi_good() %>" data-rule-required="true" maxlength="30">
         </div>
     </div>
     
-  <div class="form-group">
-        <label for="inputId" class="col-lg-2 control-label">진행상태</label>
+  <div class="form-inline form-group">
+        <label for="inputId" class="col-lg-1 control-label">진행상태</label>
         <div class="col-lg-10">
 	<ul id="admin_cmb_step" data-rule-required="true">
-		<li><select class="form-control" name="ci_status">
+		<li><select class="form-control" name="ci_status" style="width:25%;">
 			<option value="a" <% if(adminChallenge.getCi_status().equals("a")) { %>selected <% } %>>진행</option>
 			<option value="b" <% if(adminChallenge.getCi_status().equals("b")) { %>selected <% } %>>마감</option>
 			<option value="c" <% if(adminChallenge.getCi_status().equals("c")) { %>selected <% } %>>펀딩확정</option>
@@ -141,16 +144,14 @@ $("textarea").each(function () {
         </div>
     </div>
 
-    <div class="form-group">
-                  <label for="inputPhoneNumber" class="col-lg-2 control-label">게시 여부</label>
-                  <div class="col-lg-10">
-                      <label class="radio-inline">
-                          <input type="radio" id="ci_isview" name="ci_isview" value="y" <% if(adminChallenge.getCi_isview().charAt(0) == 'y' ) { %>checked <% } %>>&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;
-                      </label>
-                      <label class="radio-inline">
-                          <input type="radio" id="ci_isview" name="ci_isview" value="n" <% if(adminChallenge.getCi_isview().charAt(0) == 'n' ) { %>checked <% } %>>&nbsp;N
-                      </label>
-                  </div>
+    <div class="form-inline form-group">
+       <label for="inputPhoneNumber" class="col-lg-1 control-label" style="width:25%;">게시 여부</label>
+       <div class="col-lg-10">
+           <label class="radio-inline float-left" >
+               <input type="radio" id="ci_isview" name="ci_isview" value="y" <% if(adminChallenge.getCi_isview().charAt(0) == 'y' ) { %>checked <% } %>>&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;
+               <input type="radio" id="ci_isview" name="ci_isview" value="n" <% if(adminChallenge.getCi_isview().charAt(0) == 'n' ) { %>checked <% } %>>&nbsp;N
+           </label>
+       </div>
     </div>
             
                 

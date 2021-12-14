@@ -2,7 +2,8 @@ package order.act;
 
 import javax.servlet.http.*;
 import java.util.*;
-import java.io.*;	
+import java.io.*;
+import java.net.URLEncoder;
 import order.svc.*;
 import vo.*;
 
@@ -66,19 +67,18 @@ public class CartProcAct implements Action {
 			out.println("</script>");
 			out.close();			
 		}
-
 		// 검색 조건들 및 정렬 기준 쿼리 스트링
 		String args = "?cpage=" + request.getParameter("cpage") + "&psize=" + request.getParameter("psize");	// 필수인 파라미터들
-		String keyword = request.getParameter("keyword");	if (!isEmptyStr(keyword))	args += "&keyword=" + keyword;
+		String keyword = request.getParameter("keyword");	if (!isEmptyStr(keyword))	args += "&keyword=" + URLEncoder.encode(keyword, "UTF-8");
 		String cata = request.getParameter("cata");			if (!isEmptyStr(cata))		args += "&cata=" + cata;
 		String sort = request.getParameter("sort");			if (!isEmptyStr(sort))		args += "&sort=" + sort;
-		// sendRedirect 로 가면 request를 공유하지 않기 떄문에 이렇게 가져감
-	
+		// sendRedirect 로 가면 request를 공유하지 않기 떄문에 이렇게 가져감			
+
 		// 작업 후 이동할 위치와 방법에 대해 지정하는 ActionForward 인스턴스 생성
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("cart_list.ord" + args);
-				
+		forward.setPath("cart_list.ord" + args);		
+
 		return forward;
 	}
 	

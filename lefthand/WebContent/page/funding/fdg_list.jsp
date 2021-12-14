@@ -5,26 +5,25 @@
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.temporal.ChronoUnit" %>
-
+<%@ page import="java.text.DecimalFormat" %> 
 <%
 request.setCharacterEncoding("utf-8");
 
 ArrayList<FundingInfo> fdgList = (ArrayList<FundingInfo>)request.getAttribute("fdgList");
+FundingInfo fdg = new FundingInfo();
 FdgPageInfo fdgPageInfo = (FdgPageInfo)request.getAttribute("fdgPageInfo");
 
 String args ="";
-
+DecimalFormat formatter = new DecimalFormat("#,##0");
 args = "?cpage=" + fdgPageInfo.getCpage();
-
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/funding_list.css" />
+<link rel="stylesheet" type="text/css" href="css/funding_list.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="js/mainSlide.js"></script>
@@ -36,24 +35,23 @@ args = "?cpage=" + fdgPageInfo.getCpage();
 <header>
 <%@ include file="../../include/header.jsp" %>
 </header>
+
+<script>
+function fundingarray(url) {
+	location.href = url
+}
+</script>
 <!-- ------------------------------------------------------------------------------------------------ -->
 <div class="fdg_contents" >
 <br />
 <br />
 <ul class="fundingsearch">
 	<li>
-		<select>
-			<option value="전체">전체</option>
-			<option value="진행중">진행중</option> 
-			<option value="종료">종료</option>
-		</select>
-	</li>
-	<li>
-		<select> <!-- 전체(기본), 인기순, 최신순, 마감임박순으로 정렬 가능 -->
-			<option value="전체">전체</option>
-			<option value="인기순">인기순</option> 
-			<option value="최신순">최신순</option>
-			<option value="마감임박순">마감임박순</option>
+		<select onchange="fundingarray(this.value)"> <!-- 전체(기본), 인기순, 최신순, 마감임박순으로 정렬 가능 -->
+			<option value="">전체</option>
+			<option value="fdg_list.fdg<%=args %>&sort=rated">인기순</option>
+			<option value="fdg_list.fdg<%=args %>&sort=sdated">최신순</option>
+			<option value="fdg_list.fdg<%=args %>&sort=edatea">마감임박순</option>
 		</select>
 	</li>
 </ul>
@@ -93,7 +91,7 @@ args = "?cpage=" + fdgPageInfo.getCpage();
 	<div style="text-align:center;"><a href="#"><%=fi.getFi_name() %></a></div>
 	<table width="100%">
 		<tr><td style="text-align:center"><b><%=String.format("%.0f", fi.getFi_rate() * 100 ) %> %</b></td>
-		<td style="text-align:center"><%=fi.getFi_price() %> 원</td>
+		<td style="text-align:center; font-size:95%" > <%=formatter.format(fi.getFi_total()) %> 원</td>
 		<td style="text-align:center"><%=calDay %>일남음</td></tr>
 			<div class="progress">
 			<% if(fi.getFi_rate() * 100 < 100) { %>			

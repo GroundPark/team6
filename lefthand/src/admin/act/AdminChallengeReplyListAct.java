@@ -15,21 +15,33 @@ public class AdminChallengeReplyListAct implements Action{
 		int cpage = 1, psize = 10, bsize = 10, spage, epage, rcnt, pcnt;		
 		if(request.getParameter("cpage") != null)
 			cpage = Integer.parseInt(request.getParameter("cpage"));
-		// if(request.getParameter("psize") != null)
-		//	psize = Integer.parseInt(request.getParameter("psize"));
+		if(request.getParameter("psize") != null)
+			psize = Integer.parseInt(request.getParameter("psize"));
 		
-		// String keyword;
-		// keyword = request.getParameter("keyword");		
+		 
+		String keyword;		
+		keyword = request.getParameter("keyword");	
 		
-		 String where = " ";	// 전부 다보임
-		// if(!isEmpty(keyword))	where += " and ci_title like '%" + keyword + "%' ";
-		// else keyword = "";
+		String schtype = request.getParameter("schtype");
 		
-		String sort = request.getParameter("sort");
-		if(sort == null || sort.equals(""))		sort = "idxd";		
+		String where = "";	
+		if(keyword != null && !keyword.equals("")) {		// keyword(검색어)가 존재한다면... 
+			// 검사순서는 이거그냥 쓰셈 아니면 익셉션뜸;먼저나오면 null.equals("")...		
+				where = " where " + schtype + " like '%" + keyword + "%' ";		
+			if(schtype.equals("ci_idx") && keyword != null && !keyword.equals("")) {
+				where = " where " + schtype + " = " + keyword + " ";	
+			}
+		}
 		
-		String order = " order by ci_" + sort.substring(0, sort.length() - 1) 
-			+ (sort.charAt(sort.length() - 1) == 'a' ? " asc" : " desc");
+		
+		
+		
+		// sort 필요없는데 귀찮아서 냅둠
+		 String sort = request.getParameter("sort");
+		 if(sort == null || sort.equals(""))		sort = "idxd";		
+		
+		String order = " order by cr_" + sort.substring(0, sort.length() - 1) 
+		 	+ (sort.charAt(sort.length() - 1) == 'a' ? " asc" : " desc");
 		
 		AdminChallengeReplyListSvc adminChallengeReplyListSvc = new AdminChallengeReplyListSvc();
 		rcnt = adminChallengeReplyListSvc.getAdminChallengeReplyCount(where);		
@@ -45,8 +57,8 @@ public class AdminChallengeReplyListAct implements Action{
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setCpage(cpage);    pageInfo.setPsize(psize);        pageInfo.setBsize(bsize);
 		pageInfo.setSpage(spage);    pageInfo.setEpage(epage);        pageInfo.setRcnt(rcnt);
-		pageInfo.setPcnt(pcnt);      pageInfo.setSort(sort);
-		// challengePageInfo.setKeyword(keyword);
+		pageInfo.setPcnt(pcnt);      pageInfo.setSort(sort);		  pageInfo.setSchtype(schtype);
+		pageInfo.setKeyword(keyword);
 		
         
         request.setAttribute("pageInfo", pageInfo);
@@ -58,4 +70,10 @@ public class AdminChallengeReplyListAct implements Action{
 		return forward;
 	}
 	
+	
+	private boolean isEmpty(String str) {		
+		boolean empty = true;
+		if(str != null && !str.equals("")) empty = false;
+		return empty;
+	}
 }

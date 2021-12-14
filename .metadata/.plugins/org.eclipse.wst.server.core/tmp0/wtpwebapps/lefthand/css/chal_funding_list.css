@@ -80,7 +80,7 @@ color:black; text-decoration:none;
 	position:absolute;	
 	top:50%; left:50%;
 	transform:translate(-50%, -75%); 
-	width:200px; height:200px; background-color:rgba(158, 158, 158, 0.5);  
+	width:200px; height:200px; background-color:rgba(158, 158, 158, 0.7);  
 	z-index: 0;
 	text-align:center;
 	font-size:2em;
@@ -92,7 +92,7 @@ color:black; text-decoration:none;
 	position:absolute;	
 	top:50%; left:50%;
 	transform:translate(-50%, -75%); 
-	width:200px; height:200px; background-color:rgba(158, 158, 158, 0.5);  
+	width:200px; height:200px; background-color:rgba(158, 158, 158, 0.7);  
 	z-index: 0;
 	text-align:center;
 	font-size:2em;
@@ -141,6 +141,32 @@ color:black; text-decoration:none;
 }
 
 
+.btn_near_desc{
+	position:absolute;
+	width:550px; height:60px;
+
+	
+	line-height:150%;
+	
+	font-size:17px;
+	
+	top:30px; left:290px;
+}
+
+.btn_near_desc_text{
+	position:absolute;
+	width:550px; height:60px;
+
+	
+	line-height:150%;
+	
+	font-size:17px;
+	
+	top:1px; left:60px;
+}
+
+
+
 .chal_step1{
 	padding:5px; 
 	position:absolute;	 
@@ -156,5 +182,5 @@ color:black; text-decoration:none;
 }
 
 a {text-decoration:none; }
-/* css 꼬였을때 a태그 밑줄 계속 안사라져서 걍 날림 */
+
 

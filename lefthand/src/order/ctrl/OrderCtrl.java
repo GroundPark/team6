@@ -22,7 +22,6 @@ public class OrderCtrl extends HttpServlet {
 		String requestUri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestUri.substring(contextPath.length());
-
 		ActionForward forward = null;
 		Action action = null;
 

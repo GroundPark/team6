@@ -1,4 +1,4 @@
-package admin.ctrl;
+﻿package admin.ctrl;
 
 import java.io.*;
 import javax.servlet.*;
@@ -20,7 +20,7 @@ public class AdminStatCtrl extends HttpServlet {
 		String requestUri = request.getRequestURI();		
 		String contextPath = request.getContextPath();
 		String command = requestUri.substring(contextPath.length());
-		// �ε������� ���� �͵��� ����!
+		// 인덱스에서 보낸 것들을 받음!
 		ActionForward forward = null;		
 		Action action = null;				
 
@@ -28,17 +28,17 @@ public class AdminStatCtrl extends HttpServlet {
 		case "/admin/member.stat" :				
 			action = new AdminMemberStatAct();
 			break;
-		case "/period.stat" :			
-//			action = new AdminPeriodStatAct();
+		case "/admin/period.stat" :			
+			action = new AdminPeriodStatAct();
 			break;
-		case "/fund.stat" :							
-//			action = new AdminFundStatAct();
+		case "/admin/fund.stat" :							
+			action = new AdminFundStatAct();
 			break;
 		}
 		
 		try {
 			forward = action.execute(request, response);	
-			// ó�� �� ���� �� �̵��� ��ο� ����� �޾ƿ�
+			// 처리 및 실행 후 이동할 경로와 방법을 받아옴
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

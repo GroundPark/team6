@@ -21,7 +21,7 @@ ArrayList<AdminChallengeList> adminChallengeList = (ArrayList<AdminChallengeList
  	schargs = "&schtype=" + pageInfo.getSchtype() + "&keyword=" + pageInfo.getKeyword();	
  }
 
- args = "&cpage=" + pageInfo.getCpage() + schargs;
+ args = "?cpage=" + pageInfo.getCpage() + schargs;
  
  
  
@@ -59,7 +59,6 @@ section #search { width:100px; padding-right:60px; }
 		<!-- section 영역 시작 -->
 	    <section>
 		    <h2>도전 펀딩 관리</h2>
-			<h2>검색 창</h2>
 			<ul id="sort">
 				<li>
 				<form name="frm0" method="get">

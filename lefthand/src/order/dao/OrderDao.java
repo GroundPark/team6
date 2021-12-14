@@ -38,7 +38,7 @@ public class OrderDao {
 					"' and a.mi_id = '" + cart.getMi_id() + "' ";
 			rs = stmt.executeQuery(sql);
 			
-			if (rs.next()) {	// 추가하려는 상품과 동일한 상품(옵션 포함)이 이미 존재한다면(기존 상품 정보에서 수량만 조절)
+			if (rs.next()) {	// 추가하려는 상품과 동일한 상품이 이미 존재한다면(기존 상품 정보에서 수량만 조절)
 				sql = "update t_product_order_cart set poc_cnt = poc_cnt + " + cart.getPoc_cnt() + " where poc_idx = " + rs.getInt("poc_idx") ;
 				if (rs.getInt("pi_stock") > 0) {	// 재고가 무제한(-1)이 아니면
 					sql += " and (poc_cnt + " + cart.getPoc_cnt() + ") <= " + rs.getInt("pi_stock");
@@ -140,6 +140,41 @@ public class OrderDao {
 		return cartList;
 	}
 
+	public ArrayList<CartInfo> getDirectOrderPdtList(String piid, int poccnt, String miid) {
+	// 상품 바로주문 시 상품 정보를 ArrayList<CartInfo>형 인스턴스로 리턴하는 메소드
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<CartInfo> cartList = new ArrayList<CartInfo>();
+		CartInfo cart = null;
+		
+		try {
+			stmt = conn.createStatement();
+			String sql = "select pi_name, pi_img1, pi_price, pi_stock, pi_discount " + 
+					" from t_product_info where pi_isview = 'y' and pi_id = '" + piid +  
+					"' and (pi_stock >= " + poccnt + " or pi_stock = -1) order by pi_id";
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {	
+				cart = new CartInfo();	// cartList에 저장할 하나의 상품 정보를 담을 CartInfo형 인스턴스 생성
+				
+				cart.setMi_id(miid);		cart.setPi_id(piid);		cart.setPoc_cnt(poccnt);
+				cart.setPi_discount(rs.getDouble("pi_discount"));		cart.setPi_name(rs.getString("pi_name"));				
+				cart.setPi_price(rs.getInt("pi_price"));				cart.setPi_img1(rs.getString("pi_img1"));				
+				cart.setPi_stock(rs.getInt("pi_stock"));
+				
+				cartList.add(cart);	// 하나의 상품 정보를 담은 인스턴스 cart를 cartList에 저장
+			}
+			
+		} catch(Exception e) {
+			System.out.println("OrderDao 클래스의 getDirectOrderPdtList() 메소드 오류");
+			e.printStackTrace();
+		} finally {
+			close(rs);	close(stmt);	
+		}
+		
+		return cartList;
+	}
+	
 	public ArrayList<MemberAddr> getAddrList(String uid) {
 	// 상품을 구매하려는 회원의 주소목록을 ArrayList<MemberAddr>형 인스턴스로 리턴하는 메소드
 		Statement stmt = null;
@@ -224,8 +259,8 @@ public class OrderDao {
 					if (result.charAt(13) == '0') { System.out.println("t_product_info 테이블 update 쿼리 오류"); return result; }
 					
 				} while (rs.next());
-				// 포인트 적립 쿼리
 				
+				// 포인트 적립 쿼리
 				if (ord.getPoi_point() > 0) {
 					sql = "insert into t_member_point (mi_id, mp_kind, mp_point, mp_content) values (?, ?, ?, ?)";
 					pstmt = conn.prepareStatement(sql);
@@ -255,6 +290,84 @@ public class OrderDao {
 		
 		return result;
 	}
+
+	public String directOrderInsert(OrderInfo ord, String piid, int poccnt) {
+		// 주문 처리 메소드
+			PreparedStatement pstmt = null;	// insert문에서 사용하기 위함
+			Statement stmt = null, stmt2 = null;
+			ResultSet rs = null;
+			String poiid = getOrderId();	// 새 주문번호 받아오기
+			String result = poiid + ":";	// 리턴값을 저장할 변수(주문번호와 변경된 레코드 개수)
+			
+			try {
+				String sql = "select pi_id, pi_name, pi_img1, pi_price, pi_stock " + 
+						" from t_product_info where pi_id = '" + piid + "' and pi_isview = 'y' " + 
+						" and (pi_stock >= " + poccnt + " or pi_stock = -1) order by pi_id";
+
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {	// 장바구니에 구매하고자 하는 상품이 있는 경우
+					sql = "insert into t_product_order_info (poi_id, mi_id, poi_name, poi_phone, poi_zip, poi_addr1, poi_addr2, poi_memo, poi_payment, "
+							+ "poi_pay, poi_point, poi_discount, poi_delipay, poi_status) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1,  poiid);					pstmt.setString(2, ord.getMi_id());
+					pstmt.setString(3, ord.getPoi_name());		pstmt.setString(4, ord.getPoi_phone());
+					pstmt.setString(5, ord.getPoi_zip());		pstmt.setString(6, ord.getPoi_addr1());
+					pstmt.setString(7, ord.getPoi_addr2());		pstmt.setString(8, "");
+					pstmt.setString(9, ord.getPoi_payment());	pstmt.setInt(10, ord.getPoi_pay());
+					pstmt.setInt(11, ord.getPoi_point());		pstmt.setInt(12, ord.getPoi_discount());
+					pstmt.setInt(13,  ord.getPoi_delipay());	pstmt.setString(14, ord.getPoi_status());	
+					
+					result += pstmt.executeUpdate();
+					if (result.charAt(13) == '0') { System.out.println("t_order_info 테이블  insert 쿼리 오류");	return result; }
+					// 주문 테이블(t_order_info)에 insert 쿼리가 정상적으로 동작하지 않은 경우 더 이상 메소드를 진행시키지 않음(서비스에서 rollback할 거임)
+
+					stmt2 = conn.createStatement();
+					do {	// 장바구니의 구매상품 정보를 이용하여 t_product_order_detail(insert), t_product_order_info(update) 작업
+						sql = "insert into t_product_order_detail (poi_id, pi_id, pod_cnt, pod_pname, pod_pimg, pod_pprice) values (?, ?, ?, ?, ?, ?)";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, poiid);						pstmt.setString(2, piid);
+						pstmt.setInt(3, poccnt);						pstmt.setString(4, rs.getString("pi_name"));
+						pstmt.setString(5, rs.getString("pi_img1"));	pstmt.setInt(6, rs.getInt("pi_price"));
+
+						result += pstmt.executeUpdate();
+						if (result.charAt(13) == '0') { System.out.println("t_product_order_detail 테이블  insert 쿼리 오류");	return result; }
+						// 주문 상세정보(t_product_order_detail) 추가 쿼리
+						
+						String stock = ", pi_stock = pi_stock - " + poccnt;	// 판매한 개수만큼 재고량을 줄이는 쿼리
+						if (rs.getInt("pi_stock") == -1)	stock = "";		// 재고량이 무제한이면 줄이지 않음
+						sql = "update t_product_info set pi_salecnt = pi_salecnt + " + poccnt + 
+						stock + " where pi_id = '" + piid + "' ";
+						result += stmt2.executeUpdate(sql);
+						if (result.charAt(13) == '0') { System.out.println("t_product_info 테이블 update 쿼리 오류"); return result; }
+						
+					} while (rs.next());
+					
+					// 포인트 적립 쿼리
+					if (ord.getPoi_point() > 0) {
+						sql = "insert into t_member_point (mi_id, mp_kind, mp_point, mp_content) values (?, ?, ?, ?)";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, ord.getMi_id());			pstmt.setString(2, "b");
+						pstmt.setInt(3, ord.getPoi_point());		pstmt.setString(4, "상품구매-" + poiid);
+						result += pstmt.executeUpdate();		// 포인트 적립 내역 추가 쿼리
+						if (result.charAt(13) == '0') { System.out.println("t_member_point 테이블  insert 쿼리 오류");	return result; }
+						
+						sql = "update t_member_info set mi_point = mi_point - " + ord.getPoi_point() + " where mi_id = '" + ord.getMi_id() + "' ";
+						result += stmt2.executeUpdate(sql);	// 회원 보유 포인트 변경 쿼리
+						if (result.charAt(13) == '0') { System.out.println("t_member_info 테이블  update 쿼리 오류");	return result; }
+					}
+					
+				}
+				
+			} catch(Exception e) {
+				System.out.println("OrderDao 클래스의 directOrderInsert() 메소드 오류");
+				e.printStackTrace();
+			} finally {
+				close(rs);	close(stmt2);	close(pstmt);	close(stmt);
+			}
+			
+			return result;
+		}
 	
 	public String getOrderId() {
 	// 새 주문아이디를 생성하여 리턴하는 메소드(yymmdd + 랜덤영문 3자리 + 일련번호 3자리 : 101)
@@ -344,111 +457,115 @@ public class OrderDao {
 	}
 	
 // 펀딩 관련 order DB 처리 영역       ///////////////////////////////////////
-
 	public String fdgOrderInsert(FdgOrderInfo fdgOrd, String where, int ocnum) {
-	// 펀딩 주문 처리 메소드
-		PreparedStatement pstmt = null;	// insert문에서 사용하기 위함
-		Statement stmt = null, stmt2 = null;
-		ResultSet rs = null;
-		String foiid = getOrderId();	// 새 주문번호 받아오기
-		String result = foiid + ":";	// 리턴값을 저장할 변수(주문번호와 변경된 레코드 개수)
-		
-		try {
-			String sql = "select fi_id, fi_name, fi_img1, fi_price from t_funding_info where fi_isview = 'y'" + where;
-
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+		// 펀딩 주문 처리 메소드
+			PreparedStatement pstmt = null;	// insert문에서 사용하기 위함
+			Statement stmt = null, stmt2 = null;
+			ResultSet rs = null;
+			String foiid = getOrderId();	// 새 주문번호 받아오기
+			String result = foiid + ":";	// 리턴값을 저장할 변수(주문번호와 변경된 레코드 개수)
 			
-			if (rs.next()) {	// 구매하고자 하는 펀딩이 있는 경우
+			try {
+				String sql = "select fi_id, fi_name, fi_img1, fi_price from t_funding_info where fi_isview = 'y'" + where;
+
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
 				
-				sql = "insert into t_funding_order_info (foi_id, mi_id, foi_name, foi_phone, foi_zip, foi_addr1, foi_addr2, foi_memo, "
-							+ "foi_pay, foi_status) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, foiid);						pstmt.setString(2, fdgOrd.getMi_id());
-				pstmt.setString(3, fdgOrd.getFoi_name());		pstmt.setString(4, fdgOrd.getFoi_phone());
-				pstmt.setString(5, fdgOrd.getFoi_zip());		pstmt.setString(6, fdgOrd.getFoi_addr1());
-				pstmt.setString(7, fdgOrd.getFoi_addr2());		pstmt.setString(8, "");
-				pstmt.setInt(9, fdgOrd.getFoi_pay());			pstmt.setString(10, fdgOrd.getFoi_status());	
-				
-				result += pstmt.executeUpdate();
-				if (result.charAt(13) == '0') { System.out.println("t_funding_order_info 테이블  insert 쿼리 오류");	return result; }
-				// 주문 테이블(t_funding_order_info)에 insert 쿼리가 정상적으로 동작하지 않은 경우 더 이상 메소드를 진행시키지 않음(서비스에서 rollback할 거임)
-				
-				stmt2 = conn.createStatement();
-				do {
-					sql = "insert into t_funding_order_detail (foi_id, fi_id, fod_cnt, fod_pname, fod_pimg, fod_pprice) values (?, ?, ?, ?, ?, ?)";
+				if (rs.next()) {	// 구매하고자 하는 펀딩이 있는 경우
+					
+					sql = "insert into t_funding_order_info (foi_id, mi_id, foi_name, foi_phone, foi_zip, foi_addr1, foi_addr2, foi_memo, "
+								+ "foi_pay, foi_status) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, foiid);						pstmt.setString(2, rs.getString("fi_id"));
-					pstmt.setInt(3, ocnum);							pstmt.setString(4, rs.getString("fi_name"));
-					pstmt.setString(5, rs.getString("fi_img1"));	pstmt.setInt(6, rs.getInt("fi_price"));
-		
+					pstmt.setString(1, foiid);						pstmt.setString(2, fdgOrd.getMi_id());
+					pstmt.setString(3, fdgOrd.getFoi_name());		pstmt.setString(4, fdgOrd.getFoi_phone());
+					pstmt.setString(5, fdgOrd.getFoi_zip());		pstmt.setString(6, fdgOrd.getFoi_addr1());
+					pstmt.setString(7, fdgOrd.getFoi_addr2());		pstmt.setString(8, "");
+					pstmt.setInt(9, fdgOrd.getFoi_pay());			pstmt.setString(10, fdgOrd.getFoi_status());	
+					
 					result += pstmt.executeUpdate();
-					if (result.charAt(13) == '0') { System.out.println("t_funding_order_detail 테이블  insert 쿼리 오류");	return result; }
-					// 주문 상세정보(t_funding_order_detail) 추가 쿼리
+					if (result.charAt(13) == '0') { System.out.println("t_funding_order_info 테이블  insert 쿼리 오류");	return result; }
+					// 주문 테이블(t_funding_order_info)에 insert 쿼리가 정상적으로 동작하지 않은 경우 더 이상 메소드를 진행시키지 않음(서비스에서 rollback할 거임)
 					
-					sql = "update t_funding_info set fi_ordercnt = fi_ordercnt + " + ocnum + " , fi_total = fi_total + " + rs.getInt("fi_price")
-							+ " where fi_id = '" + rs.getString("fi_id") + "' ";
-					result += stmt2.executeUpdate(sql);
-					if (result.charAt(13) == '0') { System.out.println("t_fundging_info 테이블 update 쿼리 오류"); return result; }
+					stmt2 = conn.createStatement();
+					do {
+						sql = "insert into t_funding_order_detail (foi_id, fi_id, fod_cnt, fod_pname, fod_pimg, fod_pprice) values (?, ?, ?, ?, ?, ?)";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, foiid);						pstmt.setString(2, rs.getString("fi_id"));
+						pstmt.setInt(3, ocnum);							pstmt.setString(4, rs.getString("fi_name"));
+						pstmt.setString(5, rs.getString("fi_img1"));	pstmt.setInt(6, rs.getInt("fi_price"));
+			
+						result += pstmt.executeUpdate();
+						if (result.charAt(13) == '0') { System.out.println("t_funding_order_detail 테이블  insert 쿼리 오류");	return result; }
+						// 주문 상세정보(t_funding_order_detail) 추가 쿼리
+						
+						sql = "update t_funding_info set fi_ordercnt = fi_ordercnt + " + ocnum 
+								+ " , fi_total = fi_total + " + rs.getInt("fi_price")
+								+ " , fi_support = fi_support + 1"		// 통합전 바꿈
+								+ ", fi_total= fi_price * fi_ordercnt, fi_rate = (fi_total / fi_goal) where fi_id = '" 
+								+ rs.getString("fi_id") + "' ";
+						result += stmt2.executeUpdate(sql);
+						if (result.charAt(13) == '0') { System.out.println("t_fundging_info 테이블 update 쿼리 오류"); return result; }
+					
+					} while (rs.next());
+				}
 				
-				} while (rs.next());
+			} catch(Exception e) {
+				System.out.println("OrderDao 클래스의 fdgOrderInsert() 메소드 오류");
+				e.printStackTrace();
+				
+			} finally {
+				close(rs);	close(stmt2);	close(pstmt);	close(stmt);	
 			}
 			
-		} catch(Exception e) {
-			System.out.println("OrderDao 클래스의 fdgOrderInsert() 메소드 오류");
-			e.printStackTrace();
-			
-		} finally {
-			close(rs);	close(stmt2);	close(pstmt);	close(stmt);	
+			return result;
 		}
-		
-		return result;
-	}
 
-	public FdgOrderInfo getFdgOrderInfo(String miid, String foiid) {
-	// 지정된 회원이 가장 최근에 주문한 내역을 추출하여 리턴하는 메소드
-		Statement stmt = null;
-		ResultSet rs = null;
-		FdgOrderInfo fdgOrd = null;
-		
-		try {
-			stmt = conn.createStatement();
-			String sql = "select a.*, b.fi_id, b.fod_cnt, b.fod_pname, b.fod_pimg, b.fod_pprice " + 
-					" from t_funding_order_info a, t_funding_order_detail b where a.foi_id = b.foi_id and a.mi_id = '" + 
-					miid + "' and a.foi_id = '" + foiid + "' order by b.fi_id";
-			rs = stmt.executeQuery(sql);
-			
-			if (rs.next()) {	// 해당 주문이 존재하면
-				fdgOrd = new FdgOrderInfo();	// 주문 정보들을 저장할 인스턴스 생성
-				fdgOrd.setFoi_id(foiid);							fdgOrd.setMi_id(miid);
-				fdgOrd.setFoi_name(rs.getString("foi_name"));		fdgOrd.setFoi_phone(rs.getString("foi_phone"));
-				fdgOrd.setFoi_zip(rs.getString("foi_zip"));			fdgOrd.setFoi_addr1(rs.getString("foi_addr1"));
-				fdgOrd.setFoi_addr2(rs.getString("foi_addr2"));		fdgOrd.setFoi_memo(rs.getString("foi_memo"));
-				fdgOrd.setFoi_pay(rs.getInt("foi_pay"));			fdgOrd.setFoi_status(rs.getString("foi_status"));
-				fdgOrd.setFoi_date(rs.getString("foi_date"));
-				// t_funding_order_info 테이블 내의 정보
-				
-				ArrayList<FdgOrderDetail> detailList = new ArrayList<FdgOrderDetail>();
-				// 주문 내역의 상품정보들을 저장할 ArrayList 생성
-				do {
-					FdgOrderDetail detail = new FdgOrderDetail();	// OrderDetail 인스턴스 생성
-					detail.setFi_id(rs.getString("fi_id"));			detail.setFod_cnt(rs.getInt("fod_cnt"));				
-					detail.setFod_pname(rs.getString("fod_pname"));	detail.setFod_pimg(rs.getString("fod_pimg"));	
-					detail.setFod_pprice(rs.getInt("fod_pprice"));
+		public FdgOrderInfo getFdgOrderInfo(String miid, String foiid) {
+		// 지정된 회원이 가장 최근에 주문한 내역을 추출하여 리턴하는 메소드
+			Statement stmt = null;
+			ResultSet rs = null;
+			FdgOrderInfo fdgOrd = null;
+
+			try {
+				stmt = conn.createStatement();
+				String sql = "select a.*, b.fi_id, b.fod_cnt, b.fod_pname, b.fod_pimg, b.fod_pprice " + 
+						" from t_funding_order_info a, t_funding_order_detail b where a.foi_id = b.foi_id and a.mi_id = '" + 
+						miid + "' and a.foi_id = '" + foiid + "' order by b.fi_id";
+				rs = stmt.executeQuery(sql);
+
+				if (rs.next()) {	// 해당 주문이 존재하면
+					fdgOrd = new FdgOrderInfo();	// 주문 정보들을 저장할 인스턴스 생성
+					fdgOrd.setFoi_id(foiid);							fdgOrd.setMi_id(miid);
+					fdgOrd.setFoi_name(rs.getString("foi_name"));		fdgOrd.setFoi_phone(rs.getString("foi_phone"));
+					fdgOrd.setFoi_zip(rs.getString("foi_zip"));			fdgOrd.setFoi_addr1(rs.getString("foi_addr1"));
+					fdgOrd.setFoi_addr2(rs.getString("foi_addr2"));		fdgOrd.setFoi_memo(rs.getString("foi_memo"));
+					fdgOrd.setFoi_pay(rs.getInt("foi_pay"));			fdgOrd.setFoi_status(rs.getString("foi_status"));
+					fdgOrd.setFoi_date(rs.getString("foi_date"));
+					// t_funding_order_info 테이블 내의 정보
+
+					ArrayList<FdgOrderDetail> detailList = new ArrayList<FdgOrderDetail>();
+					// 주문 내역의 상품정보들을 저장할 ArrayList 생성
+					do {
+						FdgOrderDetail detail = new FdgOrderDetail();	// OrderDetail 인스턴스 생성
+						detail.setFi_id(rs.getString("fi_id"));			detail.setFod_cnt(rs.getInt("fod_cnt"));				
+						detail.setFod_pname(rs.getString("fod_pname"));	detail.setFod_pimg(rs.getString("fod_pimg"));	
+						detail.setFod_pprice(rs.getInt("fod_pprice"));
+						
+						detailList.add(detail);			// 통합전 수정
+						
+					} while (rs.next());
 					
-				} while (rs.next());
-				
-				fdgOrd.setFdgDetailList(detailList);
-				// 주문내역의  상품정보들을 저장한 detailList를 OrderInfo형 인스턴스 fdgOrd에 저장
+					fdgOrd.setFdgDetailList(detailList);
+					// 주문내역의  상품정보들을 저장한 detailList를 OrderInfo형 인스턴스 fdgOrd에 저장
+				}
+
+			} catch(Exception e) {
+				System.out.println("OrderDao 클래스의 getFdgOrderInfo() 메소드 오류");
+				e.printStackTrace();
+			} finally {
+				close(rs);	close(stmt);	
 			}
-			
-		} catch(Exception e) {
-			System.out.println("OrderDao 클래스의 getFdgOrderInfo() 메소드 오류");
-			e.printStackTrace();
-		} finally {
-			close(rs);	close(stmt);	
-		}
-		
-		return fdgOrd;
-	}
+
+			return fdgOrd;
+		}	
 }

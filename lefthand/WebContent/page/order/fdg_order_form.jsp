@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.DecimalFormat" %>	<!-- 돈 표기 -->
 <%@ page import="java.util.*" %>
-<%@ page import="vo.*" %>	<!-- ----------- 나중에 vo.* 로 통합할 예정 ----------- -->
+<%@ page import="vo.*" %>
 <%
 request.setCharacterEncoding("utf-8");
 
@@ -15,12 +15,9 @@ DecimalFormat formatter = new DecimalFormat("#,##0");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<link rel="stylesheet" type="text/css" href="css/footer.css" />
 	<link rel="stylesheet" type="text/css" href="css/order.css" />
 	<script src="js/jquery-3.6.0.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	<!-- 주소검색용 -->
 	<script src="js/order.js"></script>
 </head>
 <body>

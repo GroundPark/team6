@@ -55,27 +55,25 @@ public class AdminPdtListDao {
 				stmt = conn.createStatement();
 				int snum = (cpage - 1) * psize;
 				String sql ="select a.pi_idx, a.pi_id, b.pc_name, a.pi_name, a.pi_stock, a.pi_review, a.pi_date, a.pi_isview " 
-						+ "from t_product_info a, t_pdt_cata b "+ where + order + " limit " + ((cpage - 1) * psize) + ", " + psize;
+						+ "from t_product_info a, t_pdt_cata b "+ where + order + " limit " + snum + ", " + psize;
 				rs= stmt.executeQuery(sql);
 				while (rs.next()) {
 					pdt = new ProductInfo();	
-					// ArrayList에 저장할 NoticeList형 인스턴스 생성
-					
+//System.out.println(sql);					
 					pdt.setPi_idx(rs.getInt("pi_idx"));
 					pdt.setPi_id(rs.getString("pi_id"));
 					pdt.setPc_name(rs.getString("pc_name"));
 					pdt.setPi_name(rs.getString("pi_name"));
 					pdt.setPi_stock(rs.getInt("pi_stock"));
-					pdt.setPi_stock(rs.getInt("pi_review"));
+					pdt.setPi_review(rs.getInt("pi_review"));
 					pdt.setPi_date(rs.getString("pi_date"));
 					pdt.setPi_isview(rs.getString("pi_isview"));
-					
+										
 					pdtList.add(pdt);
-					// rs에 들어있는 레코드들을 NoticeList형 인스턴스로 생성한 후 ArrayList인 noticeList에 차례대로 저장
 				}	
 				
 			} catch(Exception e) {
-				System.out.println("BackPdtListDao 클래스의 getPdtList() 메소드 오류");
+				System.out.println("AdminPdtListDao 클래스의 getPdtList() 메소드 오류");
 				e. printStackTrace();
 			} 
 			
@@ -103,7 +101,7 @@ public class AdminPdtListDao {
 				cataList.add(cata);
 				}
 				}catch(Exception e) {
-					System.out.println("BackPdtListDao : getCataList() 에서 에러남");			
+					System.out.println("AdminPdtListDao : getCataList() 에서 에러남");			
 					e.printStackTrace();
 				}finally {
 					close(rs);	close(stmt);

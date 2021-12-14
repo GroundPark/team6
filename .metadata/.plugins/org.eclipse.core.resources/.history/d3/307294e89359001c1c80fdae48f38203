@@ -1,0 +1,34 @@
+package admin.svc;
+
+import static admin.db.JdbcUtil.*;
+import java.util.*;
+import java.sql.*;
+import admin.dao.*;
+import vo.*;
+
+public class AdminChallengeReplyListUpSvc {
+	public int setReply(int cridx, String ciid, String miid, String view) {
+		int vcnt = 0;		
+		
+		
+		Connection conn = getConnection();
+		AdminChallengeReplyListDao adminChallengeReplyDao = AdminChallengeReplyListDao.getInstance();
+		adminChallengeReplyDao.setConnection(conn);
+		vcnt = adminChallengeReplyDao.getAdminChallengeReplyCount(where);
+		
+		close(conn);
+		
+		return vcnt;
+	}
+}
+
+public AdminChallengeList getNoticeInfo(int idx) {
+	Connection conn = getConnection();
+	AdminChallengeUpDao adminChallengeUpDao = AdminChallengeUpDao.getInstance();
+	adminChallengeUpDao.setConnection(conn);
+	AdminChallengeList adminChallenge = adminChallengeUpDao.getAdminChallengeInfo(idx);
+	
+	close(conn);
+	
+	return adminChallenge;
+	}

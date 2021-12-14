@@ -10,7 +10,7 @@ public class CartListAct implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ArrayList<CartInfo> cartList = new ArrayList<CartInfo>();
-		
+System.out.println("cartListAct의 keyword : " + request.getParameter("keyword"));  // 여기부터 이상		
 		HttpSession session = request.getSession();	// 세션 생성 : 그래야 장바구니에 올 수 있음
 		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 		if (memberInfo == null) {
@@ -37,7 +37,8 @@ public class CartListAct implements Action {
 		if (request.getParameter("psize") == null)	pdtPageInfo.setPsize(12);
 		else	pdtPageInfo.setPsize(Integer.parseInt(request.getParameter("psize")));
 
-		pdtPageInfo.setKeyword(request.getParameter("keyword"));		
+		pdtPageInfo.setKeyword(request.getParameter("keyword"));	
+
 		pdtPageInfo.setCata(request.getParameter("cata"));
 		pdtPageInfo.setSort(request.getParameter("sort"));	
 		

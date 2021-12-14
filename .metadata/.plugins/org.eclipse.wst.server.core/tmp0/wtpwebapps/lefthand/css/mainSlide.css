@@ -33,7 +33,7 @@ a { text-decoration:none; }
 
 /* middleArea���� ���� */
 .slideshow {
-		background:#007656; height:465px; min-width:960px; 
+		background:#fff; height:465px; min-width:960px; 	/* #007656 */
 		overflow:hidden; position:relative;
 }
 .slideshow-slides { width:100%; height:100%; position:absolute; }
