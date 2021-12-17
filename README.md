@@ -8,7 +8,7 @@ JSP(servlet), js(jq), apache tomcat, mySQL
 
 bootstrap css
 
-
+JSP Model 2
 
 
 ------------------------------------------
