@@ -14,7 +14,7 @@ JSP Model 2
 
 http://qkrwltkd7946.cafe24.com/
 
-호스팅 연습 
+호스팅 연습 (~1.19)
 
 * localhost 포폴에선 전부 정상 작동하나 
 * 호스팅시 이미지 upload가 안되므로 카페24 관리자에게 문의 및 해당부분 inproc 수정 필요!!
